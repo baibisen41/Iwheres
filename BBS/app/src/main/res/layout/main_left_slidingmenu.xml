@@ -6,11 +6,19 @@
 
     <include layout="@layout/main_left_item_home" />
 
+    <include layout="@layout/main_item_view" />
+
     <include layout="@layout/main_left_item_location_open" />
+
+    <include layout="@layout/main_item_view" />
 
     <include layout="@layout/main_left_item_location" />
 
+    <include layout="@layout/main_item_view" />
+
     <include layout="@layout/main_left_item_way" />
+
+    <include layout="@layout/main_item_view" />
 
     <include layout="@layout/main_left_item_setting" />
 
