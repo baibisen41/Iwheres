@@ -43,17 +43,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         rightLeftSlidingMenu.setFadeEnabled(true);// 设置滑动时菜单的是否淡入淡出
         rightLeftSlidingMenu.setBehindScrollScale(0.333f);// 设置滑动时拖拽效果
         rightLeftSlidingMenu.setSecondaryMenu(R.layout.main_right_slidingmenu);
-
-        setBehindContentView(R.layout.main_left_slidingmenu);
-        //左侧SlidingMenu
-        leftSlidingMenu = getSlidingMenu();
-        leftSlidingMenu.setMode(SlidingMenu.LEFT);
-        leftSlidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset_left);
-        leftSlidingMenu.setFadeDegree(0.35f);
-        leftSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        leftSlidingMenu.setFadeEnabled(true);
-        leftSlidingMenu.setBehindScrollScale(0.333f);
-
     }
 
 
@@ -61,17 +50,10 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.leftbutton:
-<<<<<<< HEAD
                 rightLeftSlidingMenu.showMenu();
                 break;
             case R.id.rightbutton:
                 rightLeftSlidingMenu.showSecondaryMenu(true);
-=======
-                leftSlidingMenu.showMenu();
-                break;
-            case R.id.rightbutton:
-                rightSlidingMenu.showMenu();
->>>>>>> 2c2cec6833570b11f1a6d80c9f80678bc9ab8f70
                 break;
             default:
                 break;

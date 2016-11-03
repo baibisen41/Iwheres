@@ -2,13 +2,5 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-<<<<<<< HEAD
-    <dimen name="slidingmenu_offset">170dp</dimen>
-=======
-    <dimen name="slidingmenu_offset_left">170dp</dimen>
-    <dimen name="slidingmenu_offset_right">190dp</dimen>
-
-
->>>>>>> 2c2cec6833570b11f1a6d80c9f80678bc9ab8f70
-
+    <dimen name="slidingmenu_offset">190dp</dimen>
 </resources>
