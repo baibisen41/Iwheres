@@ -69,4 +69,9 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         }
 
     }
+
+    public void switchFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.default_frame, fragment).commit();
+        showContent();
+    }
 }

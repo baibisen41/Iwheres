@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.iwhere.bbs.R;
+import com.iwhere.bbs.view.activity.MainActivity;
 
 /**
  * Created by beasley on 2016/11/7.
@@ -20,6 +21,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     private View location;
     private View way;
     private View setting;
+    private Fragment itemFragment = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,8 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (getId()) {
+        switch (v.getId()) {
             case R.id.username:
-
                 break;
             case R.id.location_open:
                 break;
@@ -56,9 +57,19 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
             case R.id.way:
                 break;
             case R.id.setting:
+                itemFragment = new SettingFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(false);
+                way.setSelected(false);
+                setting.setSelected(true);
                 break;
             default:
                 break;
+        }
+        if (getActivity() != null) {
+            MainActivity main = (MainActivity) getActivity();
+            main.switchFragment(itemFragment);
         }
 
     }
