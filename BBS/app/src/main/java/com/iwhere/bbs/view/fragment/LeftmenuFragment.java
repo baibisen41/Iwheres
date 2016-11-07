@@ -1,0 +1,65 @@
+package com.iwhere.bbs.view.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.iwhere.bbs.R;
+
+/**
+ * Created by beasley on 2016/11/7.
+ */
+
+public class LeftmenuFragment extends Fragment implements View.OnClickListener {
+    private View username;
+    private View location_open;
+    private View location;
+    private View way;
+    private View setting;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.main_left_slidingmenu, container, false);
+        username = view.findViewById(R.id.username);
+        username.setOnClickListener(this);
+        location_open = view.findViewById(R.id.location_open);
+        location_open.setOnClickListener(this);
+        location = view.findViewById(R.id.location);
+        location.setOnClickListener(this);
+        way = view.findViewById(R.id.way);
+        way.setOnClickListener(this);
+        setting = view.findViewById(R.id.setting);
+        setting.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (getId()) {
+            case R.id.username:
+
+                break;
+            case R.id.location_open:
+                break;
+            case R.id.location:
+                break;
+            case R.id.way:
+                break;
+            case R.id.setting:
+                break;
+            default:
+                break;
+        }
+
+    }
+}

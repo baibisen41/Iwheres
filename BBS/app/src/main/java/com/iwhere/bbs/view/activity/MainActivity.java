@@ -1,10 +1,13 @@
 package com.iwhere.bbs.view.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.iwhere.bbs.R;
+import com.iwhere.bbs.view.fragment.LeftmenuFragment;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
@@ -12,6 +15,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
     private ImageView titleLeftBt;
     private ImageView titleRightBt;
+    private Fragment leftFragment;
     protected SlidingMenu rightLeftSlidingMenu;
 
     @Override
@@ -33,7 +37,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
 
     private void initSlidingMenu() {
-        setBehindContentView(R.layout.main_left_slidingmenu);
+        setBehindContentView(R.layout.main_left_layout);
+        FragmentTransaction leftFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        leftFragment = new LeftmenuFragment();
+        leftFragmentTransaction.replace(R.id.main_left_fragment, leftFragment);
+        leftFragmentTransaction.commit();
+
         rightLeftSlidingMenu = getSlidingMenu();
         rightLeftSlidingMenu.setMode(SlidingMenu.LEFT_RIGHT);// 设置是左滑还是右滑，还是左右都可以滑，我这里只做了左滑
         rightLeftSlidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);// 设置菜单宽度
