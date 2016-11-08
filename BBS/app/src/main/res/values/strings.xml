@@ -8,6 +8,9 @@
     <string name="item_friend">好友管理</string>
     <string name="item_friend_find">好友查找</string>
     <string name="item_message">消息管理</string>
+    <string name="setting_clean">清除缓存</string>
+    <string name="setting_push">推送消息</string>
+    <string name="setting_about">关于</string>
 
 
 </resources>

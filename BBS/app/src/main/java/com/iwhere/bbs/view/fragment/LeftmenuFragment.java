@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.iwhere.bbs.R;
 import com.iwhere.bbs.view.activity.MainActivity;
@@ -51,10 +50,28 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
             case R.id.username:
                 break;
             case R.id.location_open:
+                itemFragment = new LocationopenFragment();
+                username.setSelected(false);
+                location_open.setSelected(true);
+                location.setSelected(false);
+                way.setSelected(false);
+                setting.setSelected(false);
                 break;
             case R.id.location:
+                itemFragment = new LocationFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(true);
+                way.setSelected(false);
+                setting.setSelected(false);
                 break;
             case R.id.way:
+                itemFragment = new WayFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(false);
+                way.setSelected(true);
+                setting.setSelected(false);
                 break;
             case R.id.setting:
                 itemFragment = new SettingFragment();

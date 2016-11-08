@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="itemPressed">#BFBFBF</color>
+    <color name="cutTextview">#E0E0E0</color>
 </resources>

@@ -44,7 +44,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         leftFragmentTransaction.commit();
 
         rightLeftSlidingMenu = getSlidingMenu();
-        rightLeftSlidingMenu.setMode(SlidingMenu.LEFT_RIGHT);// 设置是左滑还是右滑，还是左右都可以滑，我这里只做了左滑
+        rightLeftSlidingMenu.setMode(SlidingMenu.LEFT_RIGHT);// 设置是左滑还是右滑，还是左右都可以滑
         rightLeftSlidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);// 设置菜单宽度
         rightLeftSlidingMenu.setFadeDegree(0.35f);// 设置淡入淡出的比例
         rightLeftSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//设置手势模式
