@@ -21,7 +21,7 @@ public class MessageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.content_left_friendmanager, container, false);
+        View view = inflater.inflate(R.layout.content_left_message, container, false);
         return view;
     }
 
