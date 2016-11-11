@@ -4,15 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip">
 
-        <include layout="@layout/title_main" />
-    </LinearLayout>
+    <include layout="@layout/title_main" />
+
 
     <FrameLayout
         android:id="@+id/default_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

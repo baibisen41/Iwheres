@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">BBS</string>
-    <string name="item_home">用户名</string>
+    <string name="item_username">白碧森</string>
+    <string name="item_school">大连民族大学</string>
     <string name="item_location">查看好友定位</string>
     <string name="item_location_open">打开定位</string>
     <string name="item_setting">设置</string>
@@ -11,6 +12,7 @@
     <string name="setting_clean">清除缓存</string>
     <string name="setting_push">推送消息</string>
     <string name="setting_about">关于</string>
-
-
+    <string name="setting_share">推荐给好友</string>
+    <string name="setting_opinion">意见反馈</string>
+    <string name="quit_button">退出登陆</string>
 </resources>

@@ -2,7 +2,170 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cutTextview"
     android:orientation="vertical">
-    
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0">
+
+        <TableRow>
+
+            <TextView android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/settingItem"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="@string/setting_clean"
+                android:textSize="@dimen/setting_textsize" />
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
+                android:src="@mipmap/setting_in" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/settingItem"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="@string/setting_push"
+                android:textSize="@dimen/setting_textsize" />
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
+                android:src="@mipmap/setting_in" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/settingItem"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="@string/setting_share"
+                android:textSize="@dimen/setting_textsize" />
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
+                android:src="@mipmap/setting_in" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/settingItem"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="@string/setting_opinion"
+                android:textSize="@dimen/setting_textsize" />
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
+                android:src="@mipmap/setting_in" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/settingItem"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="@string/setting_about"
+                android:textSize="@dimen/setting_textsize" />
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
+                android:src="@mipmap/setting_in" />
+        </TableRow>
+
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/temp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/itemPressed"
+            android:text="@string/quit_button"
+            android:textSize="@dimen/setting_textsize" />
+    </RelativeLayout>
 
 </LinearLayout>
