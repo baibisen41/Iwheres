@@ -59,6 +59,18 @@
     <include layout="@layout/main_item_view" />
 
     <include
+        android:id="@+id/friend_manager"
+        layout="@layout/main_left_item_friendmanager" />
+
+    <include layout="@layout/main_item_view" />
+
+    <include
+        android:id="@+id/message_manager"
+        layout="@layout/main_left_item_message" />
+
+    <include layout="@layout/main_item_view" />
+
+    <include
         android:id="@+id/setting"
         layout="@layout/main_left_item_setting" />
 
