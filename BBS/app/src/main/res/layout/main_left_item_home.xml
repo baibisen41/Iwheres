@@ -2,14 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="@drawable/selector_itembutton"
     android:gravity="center_horizontal"
     android:orientation="horizontal">
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-
         android:src="@mipmap/temp" />
 
     <LinearLayout
@@ -27,4 +25,5 @@
             android:layout_height="wrap_content"
             android:text="@string/item_school" />
     </LinearLayout>
+
 </LinearLayout>

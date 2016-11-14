@@ -8,7 +8,6 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="@drawable/selector_itembutton"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal">
 
@@ -33,10 +32,6 @@
                 android:text="@string/item_school" />
         </LinearLayout>
     </LinearLayout>
-
-    <!--   <include
-           android:id="@+id/username"
-           layout="@layout/main_left_item_home" />-->
 
     <include layout="@layout/main_item_view" />
 
