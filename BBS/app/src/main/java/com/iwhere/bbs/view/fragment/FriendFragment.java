@@ -1,27 +1,23 @@
 package com.iwhere.bbs.view.fragment;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.iwhere.bbs.R;
+import com.iwhere.bbs.view.fragment.common.SwipeFragment;
 
 
-public class FriendFragment extends Fragment {
+public class FriendFragment extends SwipeFragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    protected View friendview;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.content_left_friendmanager, container, false);
+    protected View addView(View view) {
+        super.addView(view);
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.swipe_main);
+        friendview = View.inflate(getActivity(), R.layout.content_left_friendmanager, null);
+        relativeLayout.addView(friendview);
         return view;
     }
 

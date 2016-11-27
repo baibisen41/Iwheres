@@ -1,23 +1,24 @@
 package com.iwhere.bbs.view.fragment;
 
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+
 
 import com.iwhere.bbs.R;
+import com.iwhere.bbs.view.fragment.common.SwipeFragment;
 
 
-public class MessageFragment extends BaseFragment {
+public class MessageFragment extends SwipeFragment {
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected View addView(View view) {
+        super.addView(view);
+        RelativeLayout relativelayout = (RelativeLayout) view.findViewById(R.id.swipe_main);
+        Button button = new Button(relativelayout.getContext());
+        button.setText("aaa");
+        relativelayout.addView(button);
+        return view;
     }
 
 

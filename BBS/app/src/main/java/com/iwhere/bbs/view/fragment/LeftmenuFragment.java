@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.iwhere.bbs.R;
 import com.iwhere.bbs.view.activity.MainActivity;
+import com.iwhere.bbs.view.fragment.common.SwipeFragment;
 
 /**
  * Created by beasley on 2016/11/7.
@@ -21,6 +22,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     private View way;
     private View friendmanager;
     private View messagemanager;
+    private View swipemanager;
     private View setting;
     private Fragment itemFragment = null;
 

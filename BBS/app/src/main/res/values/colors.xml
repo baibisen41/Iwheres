@@ -7,5 +7,5 @@
     <color name="cutTextview">#E0E0E0</color>
     <color name="settingItem">#FFFFFF</color>
     <color name="searchTx">#8a8a8a</color>
-    <color name="swipe_background_color">#FFFFFF</color>
+    <color name="refreshcolor">#8a8a8a</color>
 </resources>
