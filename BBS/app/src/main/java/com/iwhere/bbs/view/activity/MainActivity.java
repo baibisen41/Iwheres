@@ -16,6 +16,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     private ImageView titleLeftBt;
     private ImageView titleRightBt;
     private Fragment leftFragment;
+    private Fragment currentFragment = null;
     protected SlidingMenu rightLeftSlidingMenu;
 
     @Override
@@ -35,7 +36,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         titleRightBt.setOnClickListener(this);
     }
 
-
     private void initSlidingMenu() {
         setBehindContentView(R.layout.main_left_layout);
         FragmentTransaction leftFragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -54,7 +54,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 //        rightLeftSlidingMenu.setSecondaryMenu(R.layout.main_right_slidingmenu);
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -67,11 +66,23 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             default:
                 break;
         }
-
     }
 
     public void switchFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.default_frame, fragment).commit();
+        //优化选项卡切换   先判断当前fragment是否为空，如果不为空，判断新fragment是否被添加过，如果没有添加，直接add进来
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (fragment != currentFragment) {
+            if (!fragment.isAdded()) {
+                if (currentFragment != null) {
+                    fragmentTransaction.hide(currentFragment).add(R.id.default_frame, fragment).commit();
+                } else {
+                    fragmentTransaction.add(R.id.default_frame, fragment).commit();
+                }
+            } else {
+                fragmentTransaction.hide(currentFragment).show(fragment).commit();
+            }
+            currentFragment = fragment;
+        }
         showContent();
     }
 }

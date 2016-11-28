@@ -2,6 +2,7 @@ package com.iwhere.bbs.view.fragment.common;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.iwhere.bbs.R;
 public class SwipeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     protected View view;
+    private SwipeRefreshLayout swiperefreshlayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,15 +41,21 @@ public class SwipeFragment extends BaseFragment implements SwipeRefreshLayout.On
 
 
     private void initRefresh() {
-        SwipeRefreshLayout swiperefreshlayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_main);
+        swiperefreshlayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_main);
         swiperefreshlayout.setColorSchemeResources(R.color.refreshcolor);
         swiperefreshlayout.setDistanceToTriggerSync(100);
-        swiperefreshlayout.setProgressViewEndTarget(false, 200);
+        swiperefreshlayout.setProgressViewEndTarget(false, 250);
         swiperefreshlayout.setOnRefreshListener(this);
     }
 
     @Override
     public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swiperefreshlayout.setRefreshing(false);
+            }
+        }, 3000);
 
     }
 
