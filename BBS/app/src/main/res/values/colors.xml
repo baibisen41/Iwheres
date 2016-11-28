@@ -9,4 +9,5 @@
     <color name="searchTx">#8a8a8a</color>
     <color name="refreshcolor">#8a8a8a</color>
     <color name="slidingmenucolor">#6c6c6c</color>
+    <color name="slidingmenupressed">#7b7b7b</color>
 </resources>

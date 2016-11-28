@@ -26,7 +26,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         setContentView(R.layout.activity_main);
         initView();
 
-
     }
 
     private void initView() {
