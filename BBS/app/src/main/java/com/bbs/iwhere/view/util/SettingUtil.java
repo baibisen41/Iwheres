@@ -1,4 +1,4 @@
-package com.bbs.iwhere.util;
+package com.bbs.iwhere.view.util;
 
 /**
  * Created by beasley on 2016/11/29.

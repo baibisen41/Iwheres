@@ -1,4 +1,4 @@
-package com.bbs.iwhere.util;
+package com.bbs.iwhere.view.util;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
  * Created by beasley on 2016/12/14.
  */
 
+//------------------------ 传感器具体实现-----------------------
 public class MyDirectionListener implements SensorEventListener {
 
     private SensorManager mSensorManager;
