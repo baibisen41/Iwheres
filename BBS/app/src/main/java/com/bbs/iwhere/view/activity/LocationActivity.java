@@ -69,6 +69,7 @@ public class LocationActivity extends Activity {
         initLocation();
 
     }
+
     private void initView() {
         mapView = (MapView) findViewById(R.id.imp);
         baiduMap = mapView.getMap();
@@ -130,18 +131,18 @@ public class LocationActivity extends Activity {
 //            double c3 = c.get(2);
 //            int flag = (int) c3;
 //            if (flag != 1){1
-                longitude = location.getLongitude();
-                latitude = location.getLatitude();
-                radius = location.getRadius();
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            radius = location.getRadius();
 
-                MyLocationConfiguration config = new MyLocationConfiguration(
-                        mLocationMode, true, mCurrentMarket);
-                baiduMap.setMyLocationConfigeration(config);
+            MyLocationConfiguration config = new MyLocationConfiguration(
+                    mLocationMode, true, mCurrentMarket);
+            baiduMap.setMyLocationConfigeration(config);
 
 //            }else {
 //                longitude =c1;
 //                latitude = c2;
- //           }
+            //           }
 
             //设置定位参数
             MyLocationData locData = new MyLocationData.Builder()
@@ -152,7 +153,6 @@ public class LocationActivity extends Activity {
                     .longitude(longitude)
                     .build();
             baiduMap.setMyLocationData(locData);
-
 
 
             if (isFirstLoc) {
@@ -202,19 +202,19 @@ public class LocationActivity extends Activity {
         baiduMap.setMyLocationEnabled(false);
         mapView.onDestroy();
         mapView = null;
-        overridePendingTransition(0,R.anim.out_to_right);
+        overridePendingTransition(0, R.anim.out_to_right);
 
     }
 
-   /* @Override
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if (keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             this.finish();
-            overridePendingTransition(0,R.anim.out_to_right);
+            overridePendingTransition(0, R.anim.out_to_right);
         }
 
         return false;
-    }*/
+    }
 }

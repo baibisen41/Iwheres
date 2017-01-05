@@ -19,6 +19,14 @@
     <string name="mylongitude">我的经度</string>
     <string name="mylatitude">我的纬度</string>
     <string name="mydetail">详细位置</string>
+    <string name="str_userstatus">当前状态:</string>
+    <string name="userstatus">离线</string>
+    <string name="location_detail">详细地址</string>
+    <string name="str_traffic">离我最近的交通方式</string>
+    <string name="str_bus">公交车</string>
+    <string name="str_subway">地铁</string>
+    <string name="show_mylocation">显示我的位置</string>
+    <string name="str_nearbybuild">离我最近的标志物</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

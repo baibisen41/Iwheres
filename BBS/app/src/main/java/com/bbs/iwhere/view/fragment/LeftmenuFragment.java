@@ -58,22 +58,10 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (v == location_open) {
-            Intent intent = new Intent(getActivity(), LocationopenActivity.class);
-            startActivity(intent);
-            getActivity().overridePendingTransition(R.anim.in_to_left, 0);
-
-        } else if (v == location) {
-            Intent intent = new Intent(getActivity(), LocationActivity.class);
-            startActivity(intent);
-            getActivity().overridePendingTransition(R.anim.in_to_left, 0);
-
-        } else {
-            switch (v.getId()) {
-                case R.id.username:
-                    break;
-
-            /*case R.id.location_open:
+        switch (v.getId()) {
+            case R.id.username:
+                break;
+            case R.id.location_open:
                 itemFragment = new LocationopenFragment();
                 username.setSelected(false);
                 location_open.setSelected(true);
@@ -92,55 +80,53 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 friendmanager.setSelected(false);
                 messagemanager.setSelected(false);
                 setting.setSelected(false);
-                break;*/
-                case R.id.way:
-                    itemFragment = new WayFragment();
-                    username.setSelected(false);
-                    location_open.setSelected(false);
-                    location.setSelected(false);
-                    way.setSelected(true);
-                    friendmanager.setSelected(false);
-                    messagemanager.setSelected(false);
-                    setting.setSelected(false);
-                    break;
-                case R.id.friend_manager:
-                    itemFragment = new FriendFragment();
-                    username.setSelected(false);
-                    location_open.setSelected(false);
-                    location.setSelected(false);
-                    way.setSelected(false);
-                    friendmanager.setSelected(true);
-                    messagemanager.setSelected(false);
-                    setting.setSelected(false);
-                    break;
-                case R.id.message_manager:
-                    itemFragment = new MessageFragment();
-                    username.setSelected(false);
-                    location_open.setSelected(false);
-                    location.setSelected(false);
-                    way.setSelected(false);
-                    friendmanager.setSelected(false);
-                    messagemanager.setSelected(true);
-                    setting.setSelected(false);
-                    break;
-                case R.id.setting:
-                    itemFragment = new SettingFragment();
-                    username.setSelected(false);
-                    location_open.setSelected(false);
-                    location.setSelected(false);
-                    way.setSelected(false);
-                    friendmanager.setSelected(false);
-                    messagemanager.setSelected(false);
-                    setting.setSelected(true);
-                    break;
-                default:
-                    break;
-            }
-            if (getActivity() != null) {
-                MainActivity main = (MainActivity) getActivity();
-                main.switchFragment(itemFragment);
-            }
+                break;
+            case R.id.way:
+                itemFragment = new WayFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(false);
+                way.setSelected(true);
+                friendmanager.setSelected(false);
+                messagemanager.setSelected(false);
+                setting.setSelected(false);
+                break;
+            case R.id.friend_manager:
+                itemFragment = new FriendFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(false);
+                way.setSelected(false);
+                friendmanager.setSelected(true);
+                messagemanager.setSelected(false);
+                setting.setSelected(false);
+                break;
+            case R.id.message_manager:
+                itemFragment = new MessageFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(false);
+                way.setSelected(false);
+                friendmanager.setSelected(false);
+                messagemanager.setSelected(true);
+                setting.setSelected(false);
+                break;
+            case R.id.setting:
+                itemFragment = new SettingFragment();
+                username.setSelected(false);
+                location_open.setSelected(false);
+                location.setSelected(false);
+                way.setSelected(false);
+                friendmanager.setSelected(false);
+                messagemanager.setSelected(false);
+                setting.setSelected(true);
+                break;
+            default:
+                break;
         }
-
+        if (getActivity() != null) {
+            MainActivity main = (MainActivity) getActivity();
+            main.switchFragment(itemFragment);
+        }
     }
 }
