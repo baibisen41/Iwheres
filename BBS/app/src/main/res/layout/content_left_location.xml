@@ -1,12 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cutTextview">
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/imp"
+    <RelativeLayout
+        android:id="@+id/friendlocationlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.baidu.mapapi.map.MapView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/settingItem">
+
+        <ImageView
+            android:id="@+id/friendpic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/friendname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/friendpic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="beasley" />
+
+        <TextView
+            android:id="@+id/friendstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/friendname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="离线" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/friendshowmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/friendlocationlayout"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/locationbutton"
+        android:text="查看好友位置" />
+
+    <TextView
+        android:id="@+id/friendaddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/friendshowmap"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/settingItem"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="3dp"
+        android:text="金州区金石路31号" />
 
 
 </RelativeLayout>

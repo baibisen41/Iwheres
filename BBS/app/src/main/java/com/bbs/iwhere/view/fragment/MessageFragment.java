@@ -20,6 +20,4 @@ public class MessageFragment extends SwipeFragment {
         relativelayout.addView(button);
         return view;
     }
-
-
 }

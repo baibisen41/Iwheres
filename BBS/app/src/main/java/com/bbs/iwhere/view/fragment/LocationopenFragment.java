@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.view.activity.LocationActivity;
+import com.bbs.iwhere.view.activity.LocationopenActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
 /**
@@ -25,24 +26,22 @@ public class LocationopenFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.content_left_location_open, container, false);
-        Button showbutton = (Button) view.findViewById(R.id.show_switch);
+        final Button showbutton = (Button) view.findViewById(R.id.show_switch);
         showbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LocationActivity.class);
+                Intent intent = new Intent(getActivity(), LocationopenActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
             }
         });
         return view;
     }
-
 
     @Override
     public void onStart() {

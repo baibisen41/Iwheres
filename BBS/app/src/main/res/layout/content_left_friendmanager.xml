@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -40,6 +40,50 @@
             android:text="@string/search_friend"
             android:textSize="@dimen/search_textsize" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/friendmanagerA"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <ImageView
+            android:id="@+id/friendA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/friendnameA"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/friendA"
+            android:gravity="center_vertical"
+            android:text="穿41号的司机球迷"
+            android:textSize="@dimen/setting_textsize" />
+
+        <TextView
+            android:id="@+id/friendmanagerstatusA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/friendnameA"
+            android:gravity="right|center"
+            android:layout_marginRight="8dp"
+            android:text="离线" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/friendlayoutA"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/cutline" />
 
 
 </LinearLayout>
