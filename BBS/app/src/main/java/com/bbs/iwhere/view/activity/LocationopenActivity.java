@@ -125,7 +125,7 @@ public class LocationopenActivity extends Activity implements View.OnClickListen
         }
     }
 
-    private class MyLocationListener implements BDLocationListener {
+    public class MyLocationListener implements BDLocationListener {
 
         @Override
         public void onReceiveLocation(BDLocation location) {

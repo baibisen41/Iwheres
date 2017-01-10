@@ -42,7 +42,7 @@ public class SwipeFragment extends BaseFragment implements SwipeRefreshLayout.On
 
     private void initRefresh() {
         swiperefreshlayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_main);
-        swiperefreshlayout.setColorSchemeResources(R.color.refreshcolor);
+        swiperefreshlayout.setColorSchemeResources(R.color.swipecolor, R.color.userstatuscolor, R.color.colorAccent);
         swiperefreshlayout.setDistanceToTriggerSync(100);
         swiperefreshlayout.setProgressViewEndTarget(false, 250);
         swiperefreshlayout.setOnRefreshListener(this);

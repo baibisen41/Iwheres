@@ -13,4 +13,6 @@
     <color name="slidingmenupressed">#7b7b7b</color>
     <color name="cutline">#000000</color>
     <color name="locationbutton">#B0E2FF</color>
+    <color name="userstatuscolor">#ff0000</color>
+    <color name="swipecolor">#00FF00</color>
 </resources>

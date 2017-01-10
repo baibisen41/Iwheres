@@ -68,15 +68,14 @@
     <TextView
         android:id="@+id/locationdetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/settingItem"
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingTop="8dp"
-        android:text="辽宁省大连市金石路31号" />
+        android:paddingTop="8dp" />
 
     <Button
         android:id="@+id/show_switch"
@@ -88,28 +87,28 @@
         android:background="@color/locationbutton"
         android:text="@string/show_mylocation" />
 
-    <TextView
-        android:id="@+id/tx_build"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/str_nearbybuild" />
+    <!-- <TextView
+         android:id="@+id/tx_build"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="8dp"
+         android:layout_marginRight="8dp"
+         android:layout_marginTop="8dp"
+         android:text="@string/str_nearbybuild" />
 
-    <TextView
-        android:id="@+id/nearby_build"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/settingItem"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
-        android:text="KFC  距离 500米\n大连民族大学  距离 800米" />
+     <TextView
+         android:id="@+id/nearby_build"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="8dp"
+         android:layout_marginRight="8dp"
+         android:layout_marginTop="3dp"
+         android:background="@color/settingItem"
+         android:paddingBottom="8dp"
+         android:paddingLeft="8dp"
+         android:paddingRight="8dp"
+         android:paddingTop="8dp"
+         android:text="KFC  距离 500米\n大连民族大学  距离 800米" />-->
 
 
     <TextView
@@ -118,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="@string/str_traffic" />
 
     <!--    <RelativeLayout
@@ -161,7 +160,7 @@
         <TextView
             android:id="@+id/nearby_busA"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:text="22路  距离 50米" />
@@ -169,15 +168,16 @@
         <ImageView
             android:id="@+id/busA_bt"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:paddingRight="20dp"
             android:src="@mipmap/setting_in" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
-            android:layout_below="@+id/busA_bt"
+            android:layout_below="@+id/nearby_busA"
             android:background="@color/cutTextview" />
 
     </RelativeLayout>
@@ -194,7 +194,7 @@
         <TextView
             android:id="@+id/nearby_busB"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:text="18路  距离 100米" />
@@ -202,15 +202,16 @@
         <ImageView
             android:id="@+id/busB_bt"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:paddingRight="20dp"
             android:src="@mipmap/setting_in" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
-            android:layout_below="@+id/busB_bt"
+            android:layout_below="@+id/nearby_busB"
             android:background="@color/cutTextview" />
     </RelativeLayout>
 
@@ -226,7 +227,7 @@
         <TextView
             android:id="@+id/nearby_busC"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:text="531路  距离 50米" />
@@ -234,8 +235,9 @@
         <ImageView
             android:id="@+id/busC_bt"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:paddingRight="20dp"
             android:src="@mipmap/setting_in" />
 
@@ -281,7 +283,7 @@
         <TextView
             android:id="@+id/nearby_subwayA"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:text="1号线  距离 100米" />
@@ -289,15 +291,16 @@
         <ImageView
             android:id="@+id/subwayA_bt"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:paddingRight="20dp"
             android:src="@mipmap/setting_in" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
-            android:layout_below="@+id/subwayA_bt"
+            android:layout_below="@+id/nearby_subwayA"
             android:background="@color/cutTextview" />
 
     </RelativeLayout>
@@ -314,7 +317,7 @@
         <TextView
             android:id="@+id/nearby_subwayB"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:text="2号线  距离180米" />
@@ -322,12 +325,12 @@
         <ImageView
             android:id="@+id/subwayB_bt"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:paddingRight="20dp"
             android:src="@mipmap/setting_in" />
 
     </RelativeLayout>
-
 
 </LinearLayout>
