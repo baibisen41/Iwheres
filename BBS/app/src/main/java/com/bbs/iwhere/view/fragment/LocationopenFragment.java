@@ -1,6 +1,5 @@
 package com.bbs.iwhere.view.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,24 +13,13 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.search.core.PoiInfo;
-import com.baidu.mapapi.search.core.SearchResult;
-import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
-import com.baidu.mapapi.search.poi.PoiDetailResult;
-import com.baidu.mapapi.search.poi.PoiIndoorResult;
-import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
-import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.view.activity.LocationopenActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
-import com.bbs.iwhere.view.util.MapoiUtil;
+import com.bbs.iwhere.view.util.LocationUtil;
+import com.bbs.iwhere.view.util.PoiUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 大森 on 2016/11/8.
@@ -44,23 +32,24 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     private Button showbutton;
     private TextView userstatus;
     private ImageView statusSwitch;
-    private LocationClient locationClient;
     private PoiSearch poiSearch;
     private boolean bstatusOnorClose = false;
-    //private MapoiUtil mapoiUtil = new MapoiUtil();
+    private double locationX;
+    private double locationY;
+    LocationUtil locationUtil;
+    PoiUtil poiUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        locationUtil = new LocationUtil();
+        poiUtil = new PoiUtil();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.content_left_location_open, container, false);
-        poiSearch = PoiSearch.newInstance();
-        getPoiData();
         initLocationView();
-        getLocationData();
         return view;
     }
 
@@ -87,81 +76,35 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
+    BDLocationListener bdLocationListeners = new BDLocationListener() {
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+            Log.e("abcdesf", bdLocation.getAddrStr());
+            locationopenaddress.setText(bdLocation.getAddrStr());
+        }
+    };
+
     private void statusOnorClose() {
         if (bstatusOnorClose == false) {
             bstatusOnorClose = true;
             statusSwitch.setImageResource(R.mipmap.switch_pressed);
             userstatus.setText("在线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.userstatuscolor));
-            getLocationData();
-            locationClient.start();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    startPoi();
-                }
-            }).start();
+            locationUtil.getLocationData(getActivity().getApplicationContext(), bdLocationListeners);
+            locationUtil.startLocation();
+            poiUtil.getPoiData();
+            poiUtil.startPoi();
+
         } else {
             bstatusOnorClose = false;
             statusSwitch.setImageResource(R.mipmap.switch_normal);
             userstatus.setText("离线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.cutline));
-            locationClient.stop();
+            locationUtil.stopLocation(bdLocationListeners);
+            poiUtil.stopPoi();
             locationopenaddress.setText("");
         }
     }
-
-    private void getLocationData() {
-        locationClient = new LocationClient(getActivity().getApplicationContext());
-        LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);//打开GPS
-        option.setCoorType("bd09ll");//返回的定位结果是百度经纬度，默认值是gcj02 是bg09ll 不是bg0911
-        option.setScanSpan(5000);//设置发起定位请求的时间间隔为5000ms
-        option.setIsNeedAddress(true);
-        locationClient.setLocOption(option);
-        locationClient.registerLocationListener(new BDLocationListener() {
-            @Override
-            public void onReceiveLocation(BDLocation bdLocation) {
-                locationopenaddress.setText(bdLocation.getAddrStr());
-            }
-        });
-    }
-
-    private void getPoiData() {
-        poiSearch.setOnGetPoiSearchResultListener(new OnGetPoiSearchResultListener() {
-            @Override
-            public void onGetPoiResult(PoiResult poiResult) {
-                if (poiResult == null
-                        || poiResult.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {// 没有找到检索结果
-                    Log.e("poi结果", "无结果");
-                    return;
-                }
-
-                if (poiResult.error == SearchResult.ERRORNO.NO_ERROR) {// 检索结果正常返回
-                    List<PoiInfo> allpoi = new ArrayList<>();
-                    for (PoiInfo poi : allpoi) {
-                        Log.e("poi信息", poi.toString());
-                    }
-                }
-            }
-
-            @Override
-            public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
-
-            }
-
-            @Override
-            public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
-
-            }
-        });
-    }
-
-    private void startPoi() {
-        LatLng latLng = new LatLng(121.529596, 38.867355);
-        poiSearch.searchNearby(new PoiNearbySearchOption().location(latLng).radius(1000).pageNum(1).keyword("公交站"));
-    }
-
 
     @Override
     public void onStart() {
@@ -193,5 +136,4 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         super.onDestroy();
 
     }
-
 }

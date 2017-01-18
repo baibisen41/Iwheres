@@ -51,6 +51,7 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="30dp"
+            android:onClick="startPoi"
             android:src="@mipmap/switch_normal" />
 
     </RelativeLayout>
