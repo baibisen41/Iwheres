@@ -13,7 +13,11 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.baidu.mapapi.search.poi.PoiSearch;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.view.activity.LocationopenActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
@@ -29,13 +33,16 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
 
     private View view;
     private TextView locationopenaddress;
+    private TextView nearby_bus1;
+    private TextView nearby_bus2;
+    private TextView nearby_bus3;
+    private TextView nearby_busdetail1;
+    private TextView nearby_busdetail2;
+    private TextView nearby_busdetail3;
     private Button showbutton;
     private TextView userstatus;
     private ImageView statusSwitch;
-    private PoiSearch poiSearch;
     private boolean bstatusOnorClose = false;
-    private double locationX;
-    private double locationY;
     LocationUtil locationUtil;
     PoiUtil poiUtil;
 
@@ -57,6 +64,12 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         showbutton = (Button) view.findViewById(R.id.show_switch);
         showbutton.setOnClickListener(this);
         locationopenaddress = (TextView) view.findViewById(R.id.locationdetail);
+        nearby_bus1 = (TextView) view.findViewById(R.id.nearby_busA);
+        nearby_bus2 = (TextView) view.findViewById(R.id.nearby_busB);
+        nearby_bus3 = (TextView) view.findViewById(R.id.nearby_busC);
+        nearby_busdetail1 = (TextView) view.findViewById(R.id.nearby_busdetail);
+        nearby_busdetail2 = (TextView) view.findViewById(R.id.nearby_busdetailB);
+        nearby_bus3 = (TextView) view.findViewById(R.id.nearby_busdetailC);
         statusSwitch = (ImageView) view.findViewById(R.id.statuswitch);
         statusSwitch.setOnClickListener(this);
         userstatus = (TextView) view.findViewById(R.id.userstatus);
@@ -76,14 +89,6 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    BDLocationListener bdLocationListeners = new BDLocationListener() {
-        @Override
-        public void onReceiveLocation(BDLocation bdLocation) {
-            Log.e("abcdesf", bdLocation.getAddrStr());
-            locationopenaddress.setText(bdLocation.getAddrStr());
-        }
-    };
-
     private void statusOnorClose() {
         if (bstatusOnorClose == false) {
             bstatusOnorClose = true;
@@ -92,7 +97,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.userstatuscolor));
             locationUtil.getLocationData(getActivity().getApplicationContext(), bdLocationListeners);
             locationUtil.startLocation();
-            poiUtil.getPoiData();
+            poiUtil.getPoiData(onGetPoiSearchResultListener);
             poiUtil.startPoi();
 
         } else {
@@ -103,37 +108,55 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             locationUtil.stopLocation(bdLocationListeners);
             poiUtil.stopPoi();
             locationopenaddress.setText("");
+            nearby_bus2.setText("");
+            nearby_bus1.setText("");
+            nearby_busdetail1.setText("");
+            nearby_busdetail2.setText("");
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
+    /*定位功能返回结果*/
+    BDLocationListener bdLocationListeners = new BDLocationListener() {
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+            Log.e("abcdesf", bdLocation.getAddrStr());
+            locationopenaddress.setText(bdLocation.getAddrStr());
+            //使用SharedPreferences进行保存定位信息，然后在POI中获取展示
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+        }
+    };
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
+    /*附近公交站返回结果*/
+    OnGetPoiSearchResultListener onGetPoiSearchResultListener = new OnGetPoiSearchResultListener() {
+        @Override
+        public void onGetPoiResult(PoiResult poiResult) {
+            if (poiResult == null
+                    || poiResult.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {// 没有找到检索结果
+                Log.e("LogPoiUtilerror", "无结果");
+                return;
+            }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
+            if (poiResult.error == SearchResult.ERRORNO.NO_ERROR) {// 检索结果正常返回
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
+                if (poiResult.getAllPoi().size() <= 3) {
+                    nearby_bus1.setText(poiResult.getAllPoi().get(0).name);
+                    nearby_busdetail1.setText(poiResult.getAllPoi().get(0).address);
+                    nearby_bus2.setText(poiResult.getAllPoi().get(1).name);
+                    nearby_busdetail2.setText(poiResult.getAllPoi().get(1).address);
+                } else {
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+                }
+            }
+        }
 
-    }
+        @Override
+        public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+
+        }
+
+        @Override
+        public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+        }
+    };
 }
