@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="50dp"
     android:background="@drawable/selector_slidingmenu">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/location_open_id"
+        android:paddingRight="10dp"
+        android:src="@mipmap/mylocationicons" />
+
     <TextView
+        android:id="@+id/location_open_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/item_location_open"
         android:textColor="@color/settingItem"
-        android:textSize="@dimen/slidingmenu_textsize"/>
+        android:textSize="@dimen/slidingmenu_textsize" />
 </RelativeLayout>

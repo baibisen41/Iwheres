@@ -5,7 +5,7 @@
     <dimen name="slidingmenu_offset">180dp</dimen>
     <dimen name="setting_textsize">17sp</dimen>
     <dimen name="search_textsize">13sp</dimen>
-    <dimen name="slidingmenu_textsize">15dp</dimen>
+    <dimen name="slidingmenu_textsize">18dp</dimen>
     <dimen name="location_textsize">15dp</dimen>
     <dimen name="user_status">13dp</dimen>
 

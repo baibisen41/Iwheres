@@ -17,7 +17,7 @@ public class LocationUtil {
     private LocationClientOption locationClientOption;
 
     public void startLocation() {
-        locationClient.start();
+
     }
 
     public void stopLocation(BDLocationListener bdLocationListener) {
@@ -30,6 +30,7 @@ public class LocationUtil {
         locationClient.registerLocationListener(bdLocationListener);
         locationOption();
         locationClient.setLocOption(locationClientOption);
+        locationClient.start();
     }
 
     public void locationOption() {

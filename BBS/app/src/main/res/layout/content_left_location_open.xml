@@ -168,7 +168,7 @@
             android:textColor="@color/cutline" />
 
         <TextView
-            android:id="@+id/nearby_busdetail"
+            android:id="@+id/nearby_busdetailA"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
@@ -270,95 +270,186 @@
             android:layout_toRightOf="@+id/nearby_busC"
             android:gravity="center_vertical" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_below="@+id/nearby_busC"
+            android:background="@color/cutTextview" />
+
     </RelativeLayout>
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/strbuslayoutD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/strbuslayoutC"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/settingItem">
+
+
+        <ImageView
+            android:id="@+id/busD_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:src="@mipmap/setting_in" />
+
+        <TextView
+            android:id="@+id/nearby_busD"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:textColor="@color/cutline" />
+
+        <TextView
+            android:id="@+id/nearby_busdetailD"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/nearby_busD"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_below="@+id/nearby_busD"
+            android:background="@color/cutTextview" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/strbuslayoutE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/strbuslayoutD"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/settingItem">
+
+
+        <ImageView
+            android:id="@+id/busE_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:src="@mipmap/setting_in" />
+
+        <TextView
+            android:id="@+id/nearby_busE"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:textColor="@color/cutline" />
+
+        <TextView
+            android:id="@+id/nearby_busdetailE"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/nearby_busE"
+            android:gravity="center_vertical" />
+
+    </RelativeLayout>
+
+
+    <!--   <TextView
         android:id="@+id/cut_line"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_below="@+id/strbuslayoutC"
         android:background="@color/cutTextview" />
 
-    <TextView
-        android:id="@+id/strsubway"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_below="@+id/cut_line"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/settingItem"
-        android:gravity="center_vertical"
-        android:paddingBottom="3dp"
-        android:paddingLeft="8dp"
-        android:paddingTop="3dp"
-        android:text="@string/str_subway" />
-
-    <RelativeLayout
-        android:id="@+id/strsubwaylayoutA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/strsubway"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/settingItem">
-
         <TextView
+            android:id="@+id/strsubway"
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:background="@color/cutTextview" />
-
-        <TextView
-            android:id="@+id/nearby_subwayA"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/cut_line"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/settingItem"
             android:gravity="center_vertical"
+            android:paddingBottom="3dp"
             android:paddingLeft="8dp"
-            android:text="1号线  距离 100米" />
+            android:paddingTop="3dp"
+            android:text="@string/str_subway" />
 
-        <ImageView
-            android:id="@+id/subwayA_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:paddingRight="20dp"
-            android:src="@mipmap/setting_in" />
-
-        <TextView
+        <RelativeLayout
+            android:id="@+id/strsubwaylayoutA"
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_below="@+id/nearby_subwayA"
-            android:background="@color/cutTextview" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/strsubwaylayoutB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/strsubwaylayoutA"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/settingItem">
-
-        <TextView
-            android:id="@+id/nearby_subwayB"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dp"
-            android:text="2号线  距离180米" />
-
-        <ImageView
-            android:id="@+id/subwayB_bt"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:paddingRight="20dp"
-            android:src="@mipmap/setting_in" />
+            android:layout_below="@+id/strsubway"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/settingItem">
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/cutTextview" />
+
+            <TextView
+                android:id="@+id/nearby_subwayA"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="1号线  距离 100米" />
+
+            <ImageView
+                android:id="@+id/subwayA_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="20dp"
+                android:src="@mipmap/setting_in" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_below="@+id/nearby_subwayA"
+                android:background="@color/cutTextview" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/strsubwaylayoutB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/strsubwaylayoutA"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/settingItem">
+
+            <TextView
+                android:id="@+id/nearby_subwayB"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="2号线  距离180米" />
+
+            <ImageView
+                android:id="@+id/subwayB_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="20dp"
+                android:src="@mipmap/setting_in" />
+
+        </RelativeLayout>-->
 
 </LinearLayout>

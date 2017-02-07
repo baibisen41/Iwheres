@@ -1,7 +1,5 @@
 package com.bbs.iwhere.view.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.model.Location;
-import com.bbs.iwhere.view.activity.LocationActivity;
-import com.bbs.iwhere.view.activity.LocationopenActivity;
 import com.bbs.iwhere.view.activity.MainActivity;
 
 /**
