@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="37dp">
 
@@ -39,7 +39,38 @@
             android:layout_marginTop="7dp"
             android:text="@string/search_friend"
             android:textSize="@dimen/search_textsize" />
+    </RelativeLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/addfriendlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/addfriendicon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@mipmap/addfriendicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/addfriendicon"
+            android:text="添加好友"
+            android:textColor="@color/cutline"
+            android:textSize="@dimen/location_textsize" />
+
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_below="@+id/addfriendlayout"
+        android:background="@color/cutTextview" />
 
     <RelativeLayout
         android:id="@+id/friendmanagerA"
@@ -68,9 +99,9 @@
             android:id="@+id/friendmanagerstatusA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
             android:layout_toRightOf="@+id/friendnameA"
             android:gravity="right|center"
-            android:layout_marginRight="8dp"
             android:text="离线" />
 
 
@@ -78,12 +109,12 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/friendlayoutA"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/cutline" />
+        android:background="@color/itemPressed" />
 
 
 </LinearLayout>

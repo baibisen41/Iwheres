@@ -8,13 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.mapapi.map.Text;
-import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.presenter.MyLocationPresenter;
@@ -22,14 +18,12 @@ import com.bbs.iwhere.presenter.MyLocationPresenterImpl;
 import com.bbs.iwhere.view.activity.LocationopenActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
-import java.util.List;
-
 
 /**
  * Created by 大森 on 2016/11/8.
  */
 
-public class LocationopenFragment extends BaseFragment implements View.OnClickListener, IMyLocationView {
+public class LocationopenFragment extends BaseFragment implements View.OnClickListener, MyLocationView {
 
     private View view;
     private TextView locationopenaddress;

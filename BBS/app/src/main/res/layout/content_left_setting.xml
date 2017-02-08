@@ -59,9 +59,11 @@
                 android:textSize="@dimen/setting_textsize" />
 
             <ImageView
+                android:id="@+id/push_switch"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:paddingRight="8dp"
-                android:src="@mipmap/setting_in" />
+                android:paddingRight="10dp"
+                android:src="@mipmap/push_normal" />
         </TableRow>
 
         <TableRow>

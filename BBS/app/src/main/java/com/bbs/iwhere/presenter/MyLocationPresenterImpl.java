@@ -2,24 +2,19 @@ package com.bbs.iwhere.presenter;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.LinearLayout;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
-import com.baidu.mapapi.search.poi.PoiAddrInfo;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.model.MyLocation;
 import com.bbs.iwhere.model.MyLocationPoi;
-import com.bbs.iwhere.view.fragment.IMyLocationView;
+import com.bbs.iwhere.view.fragment.MyLocationView;
 import com.bbs.iwhere.view.util.LocationUtil;
 import com.bbs.iwhere.view.util.PoiUtil;
-
-import java.util.List;
 
 /**
  * Created by ${白碧森} on ${2017/1/18}.
@@ -27,7 +22,7 @@ import java.util.List;
 
 public class MyLocationPresenterImpl implements MyLocationPresenter, BDLocationListener, OnGetPoiSearchResultListener {
 
-    private IMyLocationView myLocationView;
+    private MyLocationView myLocationView;
     private MyLocation myLocation = new MyLocation();
     private MyLocationPoi myLocationPoi = new MyLocationPoi();
     private LocationUtil locationUtil = new LocationUtil();
@@ -35,9 +30,8 @@ public class MyLocationPresenterImpl implements MyLocationPresenter, BDLocationL
     boolean firstShow = true;
     double saveLatitude = 0.0;
     double saveLongitude = 0.0;
-    List<PoiAddrInfo> poiAddrInfoList = null;
 
-    public MyLocationPresenterImpl(IMyLocationView myLocationView) {
+    public MyLocationPresenterImpl(MyLocationView myLocationView) {
         this.myLocationView = myLocationView;
     }
 

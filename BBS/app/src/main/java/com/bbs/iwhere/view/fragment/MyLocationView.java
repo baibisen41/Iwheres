@@ -7,7 +7,7 @@ import com.baidu.mapapi.search.poi.PoiResult;
  * Created by ${白碧森} on ${2017/1/18}.
  */
 
-public interface IMyLocationView {
+public interface MyLocationView {
 
     void showLocation(String strLocation);
 
