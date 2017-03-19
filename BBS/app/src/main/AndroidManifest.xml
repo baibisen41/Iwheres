@@ -41,7 +41,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="FLQLmFWCKbPk3m2uaP9DG1lObvAyMP6P" />
+            android:value="ydlDpZvxycqszGWNMtuGpQ1YI2K4Kt1C" />
 
         <activity
             android:name="com.bbs.iwhere.view.activity.MainActivity"

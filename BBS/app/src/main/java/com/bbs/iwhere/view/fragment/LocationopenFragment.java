@@ -1,8 +1,10 @@
 package com.bbs.iwhere.view.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +15,8 @@ import android.widget.Toast;
 
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.presenter.MyLocationPresenter;
-import com.bbs.iwhere.presenter.MyLocationPresenterImpl;
+import com.bbs.iwhere.service.LocationOpenCallback;
+import com.bbs.iwhere.service.LocationOpenService;
 import com.bbs.iwhere.view.activity.LocationopenActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
@@ -23,7 +25,7 @@ import com.bbs.iwhere.view.fragment.common.BaseFragment;
  * Created by 大森 on 2016/11/8.
  */
 
-public class LocationopenFragment extends BaseFragment implements View.OnClickListener, MyLocationView {
+public class LocationopenFragment extends BaseFragment implements View.OnClickListener {
 
     private View view;
     private TextView locationopenaddress;
@@ -41,7 +43,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     private TextView userstatus;
     private ImageView statusSwitch;
     private boolean bstatusOnorClose = false;
-    private MyLocationPresenter iMyLocationPresenter = new MyLocationPresenterImpl(this);
+    private LocationOpenService mLocationOpenService = new LocationOpenService();
 
 
     @Override
@@ -58,23 +60,23 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     }
 
     private void initLocationView() {
-        showbutton = (Button) view.findViewById(R.id.show_switch);
+        showbutton = findViewId(view, R.id.show_switch);
         showbutton.setOnClickListener(this);
-        locationopenaddress = (TextView) view.findViewById(R.id.locationdetail);
-        nearby_bus1 = (TextView) view.findViewById(R.id.nearby_busA);
-        nearby_bus2 = (TextView) view.findViewById(R.id.nearby_busB);
-        nearby_bus3 = (TextView) view.findViewById(R.id.nearby_busC);
-        nearby_bus4 = (TextView) view.findViewById(R.id.nearby_busD);
-        nearby_bus5 = (TextView) view.findViewById(R.id.nearby_busE);
-        nearby_busdetail1 = (TextView) view.findViewById(R.id.nearby_busdetailA);
-        nearby_busdetail2 = (TextView) view.findViewById(R.id.nearby_busdetailB);
-        nearby_busdetail3 = (TextView) view.findViewById(R.id.nearby_busdetailC);
-        nearby_busdetail4 = (TextView) view.findViewById(R.id.nearby_busdetailD);
-        nearby_busdetail5 = (TextView) view.findViewById(R.id.nearby_busdetailE);
-        nearby_bus3 = (TextView) view.findViewById(R.id.nearby_busdetailC);
-        statusSwitch = (ImageView) view.findViewById(R.id.statuswitch);
+        locationopenaddress = findViewId(view, R.id.locationdetail);
+        nearby_bus1 = findViewId(view, R.id.nearby_busA);
+        nearby_bus2 = findViewId(view, R.id.nearby_busB);
+        nearby_bus3 = findViewId(view, R.id.nearby_busC);
+        nearby_bus4 = findViewId(view, R.id.nearby_busD);
+        nearby_bus5 = findViewId(view, R.id.nearby_busE);
+        nearby_busdetail1 = findViewId(view, R.id.nearby_busdetailA);
+        nearby_busdetail2 = findViewId(view, R.id.nearby_busdetailB);
+        nearby_busdetail3 = findViewId(view, R.id.nearby_busdetailC);
+        nearby_busdetail4 = findViewId(view, R.id.nearby_busdetailD);
+        nearby_busdetail5 = findViewId(view, R.id.nearby_busdetailE);
+        nearby_bus3 = findViewId(view, R.id.nearby_busdetailC);
+        statusSwitch = findViewId(view, R.id.statuswitch);
         statusSwitch.setOnClickListener(this);
-        userstatus = (TextView) view.findViewById(R.id.userstatus);
+        userstatus = findViewId(view, R.id.userstatus);
     }
 
     @Override
@@ -97,15 +99,34 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             statusSwitch.setImageResource(R.mipmap.switch_pressed);
             userstatus.setText("在线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.userstatuscolor));
-            iMyLocationPresenter.startLocation(getActivity());
+            mLocationOpenService.startLocationService(getActivity());
+            mLocationOpenService.setLocationOpenCallback(new LocationOpenCallback() {//实现接口回掉
+                @Override
+                public void showUserStatus() {
+
+                }
+
+                @Override
+                public void showUserLocation(String strLocation) {
+                    if (!strLocation.equals("")) {
+                        Log.e("strlocation", strLocation);
+                        showLocation(strLocation);
+                    }
+                }
+
+                @Override
+                public void showUserBus(PoiResult poiResult) {
+                    if (poiResult != null) {
+                        showBus(poiResult);
+                    }
+                }
+            });
 
         } else {
             bstatusOnorClose = false;
             statusSwitch.setImageResource(R.mipmap.switch_normal);
             userstatus.setText("离线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.cutline));
-            iMyLocationPresenter.stopLocation();
-            iMyLocationPresenter.stopPoi();
             clearBus();
         }
     }
@@ -125,12 +146,12 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         nearby_busdetail5.setText("");
     }
 
-    @Override
+
     public void showLocation(String strLocation) {
         locationopenaddress.setText(strLocation);
     }
 
-    @Override
+
     public void showBus(PoiResult poiResult) {
         int poiNumber = poiResult.getTotalPoiNum();
         switch (poiNumber) {

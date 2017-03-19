@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ZoomControls;
 
@@ -24,7 +22,7 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.view.util.MyDirectionListener;
+import com.bbs.iwhere.util.MyDirectionListener;
 
 /**
  * Created by beasley on 2017/1/4.

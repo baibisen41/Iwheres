@@ -1,4 +1,4 @@
-package com.bbs.iwhere.view.util;
+package com.bbs.iwhere.util;
 
 import android.content.Context;
 import android.hardware.Sensor;

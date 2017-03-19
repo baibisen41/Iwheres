@@ -1,4 +1,4 @@
-package com.bbs.iwhere.view.util;
+package com.bbs.iwhere.util;
 
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;

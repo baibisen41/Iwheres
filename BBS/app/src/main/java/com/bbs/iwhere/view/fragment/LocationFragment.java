@@ -10,20 +10,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.presenter.LocationPresenter;
-import com.bbs.iwhere.presenter.LocationPresenterImpl;
+import com.bbs.iwhere.service.LocationCallback;
+import com.bbs.iwhere.service.LocationService;
+import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
 
 /**
  * Created by 大森 on 2016/11/8.
  */
 
-public class LocationFragment extends Fragment implements LocationView {
+public class LocationFragment extends BaseFragment {
 
-    protected Context mcontext;
-    private View view = null;
+    private View view;
     private TextView friendLocation;
-    private LocationPresenter locationPresenter = new LocationPresenterImpl(this);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,31 +35,29 @@ public class LocationFragment extends Fragment implements LocationView {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.content_left_location, container, false);
         friendLocation = (TextView) view.findViewById(R.id.friendaddress);
+        new LocationService().setLocationCallback(new LocationCallback() {
+            @Override
+            public void showFriendLocationStatus() {
+
+            }
+
+            @Override
+            public void showFriendPic() {
+
+            }
+
+            @Override
+            public void showFriendName() {
+
+            }
+
+            @Override
+            public void showFriendLocation() {
+
+            }
+        });
         return view;
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void showFriendStatus() {
-
-    }
-
-    @Override
-    public void showFriendLocation(String strFriendLocation) {
-        friendLocation.setText(strFriendLocation);
-    }
 }
