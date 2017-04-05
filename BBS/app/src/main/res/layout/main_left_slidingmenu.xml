@@ -36,9 +36,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--   <include
-           android:id="@+id/username"
-           layout="@layout/main_left_item_home" />-->
 
     <include layout="@layout/main_item_view" />
 
@@ -55,20 +52,14 @@
     <include layout="@layout/main_item_view" />
 
     <include
-        android:id="@+id/way"
-        layout="@layout/main_left_item_way" />
+        android:id="@+id/nearby"
+        layout="@layout/main_left_item_nearby" />
 
     <include layout="@layout/main_item_view" />
 
     <include
         android:id="@+id/friend_manager"
         layout="@layout/main_left_item_friendmanager" />
-
-    <include layout="@layout/main_item_view" />
-
-    <include
-        android:id="@+id/message_manager"
-        layout="@layout/main_left_item_message" />
 
     <include layout="@layout/main_item_view" />
 

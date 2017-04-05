@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<!--    <include layout="@layout/title_main" />-->
-
-    <FrameLayout
-        android:id="@+id/default_frame"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:text="222222222222222222222222222222" />
+
 </LinearLayout>

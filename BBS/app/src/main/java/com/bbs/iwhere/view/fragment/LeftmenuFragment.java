@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.view.activity.MainActivity;
+import com.bbs.iwhere.view.fragment.FriendManager.FriendFragment;
 
 /**
  * Created by beasley on 2016/11/7.
@@ -18,9 +19,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     private View username;
     private View location_open;
     private View location;
-    private View way;
     private View friendmanager;
-    private View messagemanager;
     private View setting;
     private Fragment itemFragment = null;
 
@@ -39,12 +38,8 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
         location_open.setOnClickListener(this);
         location = view.findViewById(R.id.location);
         location.setOnClickListener(this);
-        way = view.findViewById(R.id.way);
-        way.setOnClickListener(this);
         friendmanager = view.findViewById(R.id.friend_manager);
         friendmanager.setOnClickListener(this);
-        messagemanager = view.findViewById(R.id.message_manager);
-        messagemanager.setOnClickListener(this);
         setting = view.findViewById(R.id.setting);
         setting.setOnClickListener(this);
         return view;
@@ -61,9 +56,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 username.setSelected(false);
                 location_open.setSelected(true);
                 location.setSelected(false);
-                way.setSelected(true);
                 friendmanager.setSelected(false);
-                messagemanager.setSelected(false);
                 setting.setSelected(false);
                 break;
             case R.id.location:
@@ -71,39 +64,16 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 username.setSelected(false);
                 location_open.setSelected(false);
                 location.setSelected(true);
-                way.setSelected(false);
                 friendmanager.setSelected(false);
-                messagemanager.setSelected(false);
                 setting.setSelected(false);
                 break;
-            case R.id.way:
-                itemFragment = new WayFragment();
-                username.setSelected(false);
-                location_open.setSelected(false);
-                location.setSelected(false);
-                way.setSelected(true);
-                friendmanager.setSelected(false);
-                messagemanager.setSelected(false);
-                setting.setSelected(false);
-                break;
+
             case R.id.friend_manager:
                 itemFragment = new FriendFragment();
                 username.setSelected(false);
                 location_open.setSelected(false);
                 location.setSelected(false);
-                way.setSelected(false);
                 friendmanager.setSelected(true);
-                messagemanager.setSelected(false);
-                setting.setSelected(false);
-                break;
-            case R.id.message_manager:
-                itemFragment = new MessageFragment();
-                username.setSelected(false);
-                location_open.setSelected(false);
-                location.setSelected(false);
-                way.setSelected(false);
-                friendmanager.setSelected(false);
-                messagemanager.setSelected(true);
                 setting.setSelected(false);
                 break;
             case R.id.setting:
@@ -111,9 +81,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 username.setSelected(false);
                 location_open.setSelected(false);
                 location.setSelected(false);
-                way.setSelected(false);
                 friendmanager.setSelected(false);
-                messagemanager.setSelected(false);
                 setting.setSelected(true);
                 break;
             default:

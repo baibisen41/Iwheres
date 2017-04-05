@@ -1,120 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="37dp">
+    <!--    <RelativeLayout
+            android:id="@+id/addfriendlayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/addfriendicon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:background="@mipmap/addfriendicon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/addfriendicon"
+                android:text="添加好友"
+                android:textColor="@color/cutline"
+                android:textSize="@dimen/location_textsize" />
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_edittext" />
+            android:layout_height="12dp"
+            android:layout_below="@+id/addfriendlayout"
+            android:background="@color/cutTextview" />
 
-        <ImageView
-            android:id="@+id/image_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="7dp"
-            android:layout_toLeftOf="@+id/tx_search"
-            android:src="@mipmap/searchfriend" />
-
-        <TextView
-            android:id="@+id/tx_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="7dp"
-            android:text="@string/search_friend"
-            android:textSize="@dimen/search_textsize" />
-    </RelativeLayout>-->
-
-    <RelativeLayout
-        android:id="@+id/addfriendlayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:id="@+id/addfriendicon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:background="@mipmap/addfriendicon" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/addfriendicon"
-            android:text="添加好友"
-            android:textColor="@color/cutline"
-            android:textSize="@dimen/location_textsize" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:layout_below="@+id/addfriendlayout"
-        android:background="@color/cutTextview" />
-
-    <RelativeLayout
-        android:id="@+id/friendmanagerA"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
-
-        <ImageView
-            android:id="@+id/friendA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/friendnameA"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/friendA"
-            android:gravity="center_vertical"
-            android:text="穿41号的司机球迷"
-            android:textSize="@dimen/setting_textsize" />
-
-        <TextView
-            android:id="@+id/friendmanagerstatusA"
+        <RelativeLayout
+            android:id="@+id/friendmanagerA"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:id="@+id/friendA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/friendnameA"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/friendA"
+                android:gravity="center_vertical"
+                android:text="穿41号的司机球迷"
+                android:textSize="@dimen/setting_textsize" />
+
+            <TextView
+                android:id="@+id/friendmanagerstatusA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/friendnameA"
+                android:gravity="right|center"
+                android:text="离线" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_below="@+id/friendlayoutA"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_toRightOf="@+id/friendnameA"
-            android:gravity="right|center"
-            android:text="离线" />
+            android:layout_marginTop="8dp"
+            android:background="@color/itemPressed" />-->
 
 
-    </RelativeLayout>
-
-    <TextView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_below="@+id/friendlayoutA"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/itemPressed" />
+        android:layout_height="40dp"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="1dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/cutline">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v4.view.ViewPager>
 
 
 </LinearLayout>
