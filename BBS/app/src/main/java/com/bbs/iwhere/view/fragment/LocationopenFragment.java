@@ -1,6 +1,5 @@
 package com.bbs.iwhere.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,7 +16,7 @@ import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.service.LocationOpenCallback;
 import com.bbs.iwhere.service.LocationOpenService;
-import com.bbs.iwhere.view.activity.LocationopenActivity;
+import com.bbs.iwhere.view.activity.LocationShowActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
 
@@ -83,7 +82,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.show_switch:
-                Intent intent = new Intent(getActivity(), LocationopenActivity.class);
+                Intent intent = new Intent(getActivity(), LocationShowActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
                 break;

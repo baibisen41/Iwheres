@@ -29,10 +29,10 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     }
 
     private void initView() {
-//        titleLeftBt = (ImageView) findViewById(R.id.leftbutton);
-//        titleLeftBt.setOnClickListener(this);
-//        titleRightBt = (ImageView) findViewById(R.id.rightbutton);
-//        titleRightBt.setOnClickListener(this);
+        titleLeftBt = (ImageView) findViewById(R.id.leftbutton);
+        titleLeftBt.setOnClickListener(this);
+        titleRightBt = (ImageView) findViewById(R.id.rightbutton);
+        titleRightBt.setOnClickListener(this);
     }
 
     private void initSlidingMenu() {

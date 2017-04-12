@@ -12,6 +12,6 @@ public interface LocationCallback {
 
     void showFriendName();
 
-    void showFriendLocation();
+    void showFriendLocation(String text);
 
 }

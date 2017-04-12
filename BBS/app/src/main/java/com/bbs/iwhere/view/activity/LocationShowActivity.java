@@ -28,7 +28,7 @@ import com.bbs.iwhere.util.MyDirectionListener;
  * Created by beasley on 2017/1/4.
  */
 
-public class LocationopenActivity extends Activity implements View.OnClickListener {
+public class LocationShowActivity extends Activity implements View.OnClickListener {
 
     protected ImageView mapback = null;
     //地图控件
@@ -51,11 +51,15 @@ public class LocationopenActivity extends Activity implements View.OnClickListen
     private double latitude;
     private double radius;
 
+    private int flag = 0;//flag代表该activity显示的是自己的地图还是好友地图，0默认代表自己地图
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mylocation);
         this.mContext = this;
+        String friendLocationStatus = getIntent().getStringExtra("friendLocationStatus");//获取从locationFragment中跳转附加的参数
+        int[] friendLocation = getIntent().getIntArrayExtra("friendLocation");
         initView();
         initLocation();
     }
@@ -128,26 +132,18 @@ public class LocationopenActivity extends Activity implements View.OnClickListen
         @Override
         public void onReceiveLocation(BDLocation location) {
 
-            //模拟定位其他好友位置
-//            OtherFragment of = new OtherFragment();
-//            List<Double> c = of.otherway();
-//            double c1 = c.get(0);
-//            double c2 = c.get(1);
-//            double c3 = c.get(2);
-//            int flag = (int) c3;
-//            if (flag != 1){1
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-            radius = location.getRadius();
+            if (flag == 0) {
+                //模拟定位其他好友位置
+                longitude = location.getLongitude();
+                latitude = location.getLatitude();
+                radius = location.getRadius();
+            } else {
+                //传入好友的经纬度
+            }
 
             MyLocationConfiguration config = new MyLocationConfiguration(
                     mLocationMode, true, mCurrentMarket);
             baiduMap.setMyLocationConfigeration(config);
-
-//            }else {
-//                longitude =c1;
-//                latitude = c2;
-            //           }
 
             //设置定位参数
             MyLocationData locData = new MyLocationData.Builder()

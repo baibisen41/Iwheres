@@ -40,7 +40,7 @@
 
     </RelativeLayout>
 
-    <Button
+    <!--    <Button
         android:id="@+id/friendshowmap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,24 +49,59 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/locationbutton"
-        android:text="查看好友位置" />
+        android:text="查看好友位置" />-->
+
+    <LinearLayout
+        android:id="@+id/friend_show_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/friendlocationlayout"
+        android:layout_alignStart="@+id/friendlocationlayout"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/showmap_tab"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight = "1"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorAccent"
+            android:text="查看好友位置"
+            android:textColor="#FFFFFF"
+            android:gravity="center_horizontal|center_vertical"/>
+        <TextView
+            android:id="@+id/showay_tab"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight = "1"
+            android:layout_toRightOf="@+id/showmap"
+            android:background="@color/locationbutton"
+            android:text="查看到达路线"
+            android:textColor="#FFFFFF"
+            android:gravity="center_horizontal|center_vertical"
+            />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/friendaddress"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/friendshowmap"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:background="@color/settingItem"
         android:gravity="center_horizontal|center_vertical"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="3dp"
-        android:text="金州区金石路31号" />
+        android:text="金州区金石路31号"
+        android:layout_below="@+id/friend_show_tab"
+        android:layout_alignEnd="@+id/friend_show_tab" />
 
 
 </RelativeLayout>
