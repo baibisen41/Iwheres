@@ -3,9 +3,11 @@ package com.bbs.iwhere.view.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ZoomControls;
 
 import com.baidu.location.BDLocation;
@@ -28,6 +30,7 @@ import com.bbs.iwhere.util.MyDirectionListener;
  * Created by beasley on 2017/1/4.
  */
 
+/*地图显示封装类*/
 public class LocationShowActivity extends Activity implements View.OnClickListener {
 
     protected ImageView mapback = null;
@@ -51,15 +54,34 @@ public class LocationShowActivity extends Activity implements View.OnClickListen
     private double latitude;
     private double radius;
 
-    private int flag = 0;//flag代表该activity显示的是自己的地图还是好友地图，0默认代表自己地图
+    private int typeFlag = 0;//flag代表该activity显示的是自己的地图还是好友地图，0默认代表自己地图
+
+    //好友定位信息
+    private String friendLocationType = "";
+    private double[] friendLocation;
+    private double friendLongitude = 0.0;
+    private double friendLatitude = 0.0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mylocation);
         this.mContext = this;
-        String friendLocationStatus = getIntent().getStringExtra("friendLocationStatus");//获取从locationFragment中跳转附加的参数
-        int[] friendLocation = getIntent().getIntArrayExtra("friendLocation");
+
+        friendLocationType = getIntent().getStringExtra("friendLocationType");//获取从locationFragment中跳转附加的参数
+        friendLocation = getIntent().getDoubleArrayExtra("friendLocation");//获取发送过来的数据包
+        if (friendLocationType != null && friendLocation != null) {
+
+            typeFlag = Integer.parseInt(friendLocationType);
+            Log.e("baibisen1", friendLocationType);
+
+            friendLatitude = friendLocation[0];
+            friendLongitude = friendLocation[1];
+        } else if (friendLocationType != null && friendLocation == null) {
+            Toast.makeText(this, "拉取好友数据失败", Toast.LENGTH_SHORT).show();
+        }
+
         initView();
         initLocation();
     }
@@ -132,13 +154,17 @@ public class LocationShowActivity extends Activity implements View.OnClickListen
         @Override
         public void onReceiveLocation(BDLocation location) {
 
-            if (flag == 0) {
-                //模拟定位其他好友位置
+            if (typeFlag == 0) {
+                //主人态
                 longitude = location.getLongitude();
                 latitude = location.getLatitude();
                 radius = location.getRadius();
-            } else {
-                //传入好友的经纬度
+                Log.e("bbsbbsLO", String.valueOf(longitude));
+                Log.e("bbsbbsLA", String.valueOf(latitude));
+            } else if (typeFlag == 1) {
+                //好友态
+                longitude = friendLongitude;
+                latitude = friendLatitude;
             }
 
             MyLocationConfiguration config = new MyLocationConfiguration(

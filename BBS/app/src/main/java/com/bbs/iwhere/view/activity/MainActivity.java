@@ -51,7 +51,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 //        rightLeftSlidingMenu.setShadowDrawable(R.drawable.shadow);// 设置左菜单阴影图片
         rightLeftSlidingMenu.setFadeEnabled(true);// 设置滑动时菜单的是否淡入淡出
         rightLeftSlidingMenu.setBehindScrollScale(0.333f);// 设置滑动时拖拽效果
-//        rightLeftSlidingMenu.setSecondaryMenu(R.layout.main_right_slidingmenu);
 
     }
 

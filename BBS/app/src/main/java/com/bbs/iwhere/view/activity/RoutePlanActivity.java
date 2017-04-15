@@ -10,13 +10,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.RouteLine;
@@ -51,20 +49,18 @@ import java.util.List;
  * Created by 大森 on 2017/4/12.
  */
 
-public class RoutePlanActivity extends Activity implements BaiduMap.OnMapClickListener, OnGetRoutePlanResultListener {
+/*路线规划封装类*/
+public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultListener {
 
     RouteLine route = null;
     MassTransitRouteLine massroute = null;
     OverlayManager routeOverlay = null;
     boolean useDefaultIcon = false;
 
-    // 地图相关，使用继承MapView的MyRouteMapView目的是重写touch事件实现泡泡处理
-    // 如果不处理touch事件，则无需继承，直接使用MapView即可
-    MapView mMapView = null;    // 地图View
+    MapView mMapView = null;
     BaiduMap mBaidumap = null;
     // 搜索相关
     RoutePlanSearch mSearch = null;    // 搜索模块，也可去掉地图模块独立使用
-
     WalkingRouteResult nowResultwalk = null;
     BikingRouteResult nowResultbike = null;
     TransitRouteResult nowResultransit = null;
@@ -73,8 +69,18 @@ public class RoutePlanActivity extends Activity implements BaiduMap.OnMapClickLi
 
     int nowSearchType = -1; // 当前进行的检索，供判断浏览节点时结果使用。
 
-    String startNodeStr = "西二旗";
-    String endNodeStr = "龙泽";
+
+    private LatLng stLoc;
+    private LatLng enLoc;
+    double startNodeLatitude = 39.085994;
+    double startNodeLongitude = 121.985379;
+    double endNodeLatitude = 38.887686;
+    double endNodeLongitude = 121.562245;
+
+    double[] myData;
+    double[] busData;
+
+
     boolean hasShownDialogue = false;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +92,13 @@ public class RoutePlanActivity extends Activity implements BaiduMap.OnMapClickLi
         mMapView = (MapView) findViewById(R.id.map);
         mBaidumap = mMapView.getMap();
 
-        // 地图点击事件处理
-        mBaidumap.setOnMapClickListener(this);
         // 初始化搜索模块，注册事件监听
         mSearch = RoutePlanSearch.newInstance();
         mSearch.setOnGetRoutePlanResultListener(this);
+
+        //获取从我的定位界面跳转来的公交车路线
+        myData = getIntent().getDoubleArrayExtra("myData");
+        busData = getIntent().getDoubleArrayExtra("busAData");
     }
 
     /**
@@ -104,8 +112,19 @@ public class RoutePlanActivity extends Activity implements BaiduMap.OnMapClickLi
         mBaidumap.clear();
         // 处理搜索按钮响应
         // 设置起终点信息，对于tranist search 来说，城市名无意义
-        PlanNode stNode = PlanNode.withCityNameAndPlaceName("北京", startNodeStr);
-        PlanNode enNode = PlanNode.withCityNameAndPlaceName("北京", endNodeStr);
+
+
+        if (myData != null && busData != null) {
+            stLoc = new LatLng(myData[0], myData[1]);
+            enLoc = new LatLng(busData[0], busData[1]);
+        } else {
+            stLoc = new LatLng(startNodeLatitude, startNodeLongitude);
+            enLoc = new LatLng(endNodeLatitude, endNodeLongitude);
+        }
+
+
+        PlanNode stNode = PlanNode.withLocation(stLoc);
+        PlanNode enNode = PlanNode.withLocation(enLoc);
 
         // 实际使用中请对起点终点城市进行正确的设定
         if (v.getId() == R.id.mass) {
@@ -120,7 +139,7 @@ public class RoutePlanActivity extends Activity implements BaiduMap.OnMapClickLi
             nowSearchType = 1;
         } else if (v.getId() == R.id.transit) {
             mSearch.transitSearch((new TransitRoutePlanOption())
-                    .from(stNode).city("北京").to(enNode));
+                    .from(stNode).city("大连").to(enNode));
             nowSearchType = 2;
         } else if (v.getId() == R.id.walk) {
             mSearch.walkingSearch((new WalkingRoutePlanOption())
@@ -541,38 +560,37 @@ public class RoutePlanActivity extends Activity implements BaiduMap.OnMapClickLi
             return null;
         }
 
-
-    }
-
-    @Override
-    public void onMapClick(LatLng point) {
-        mBaidumap.hideInfoWindow();
-    }
-
-    @Override
-    public boolean onMapPoiClick(MapPoi poi) {
-        return false;
     }
 
     @Override
     protected void onPause() {
-        mMapView.onPause();
         super.onPause();
+        mMapView.onPause();
+
     }
 
     @Override
     protected void onResume() {
-        mMapView.onResume();
         super.onResume();
+        mMapView.onResume();
     }
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         if (mSearch != null) {
             mSearch.destroy();
         }
         mMapView.onDestroy();
-        super.onDestroy();
+        mMapView = null;
+        overridePendingTransition(0, R.anim.out_to_right);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+        overridePendingTransition(0, R.anim.out_to_right);
     }
 
     // 响应DLg中的List item 点击

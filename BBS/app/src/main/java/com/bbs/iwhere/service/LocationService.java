@@ -10,6 +10,7 @@ public class LocationService extends BaseLocationService {
 
     private LocationCallback locationCallback;
     private String strlocation;
+    private int[] locationData;
     private boolean friendStatus = false;//好友状态默认为false，如果false状态，address和showmap等都传入null值
 
     public void setLocationCallback(LocationCallback locationCallback) {
@@ -22,6 +23,7 @@ public class LocationService extends BaseLocationService {
         locationCallback.showFriendName();
         locationCallback.showFriendLocationStatus();
         locationCallback.showFriendLocation(strlocation);
+        locationCallback.showFriendLocationData(locationData);
     }
 
 

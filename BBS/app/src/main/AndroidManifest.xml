@@ -39,6 +39,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--公司PC-->
+        <!--        <meta-data
+                    android:name="com.baidu.lbsapi.API_KEY"
+                    android:value="I1OOcuMV7eK2RNrPG412Mik5HuphsH9h" />-->
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="ydlDpZvxycqszGWNMtuGpQ1YI2K4Kt1C" />
@@ -65,7 +70,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.RoutePlanActivity"></activity>
+        <activity
+            android:name=".view.activity.RoutePlanActivity"
+            android:theme="@style/Transparent"></activity>
 
         <service
             android:name="com.baidu.location.f"

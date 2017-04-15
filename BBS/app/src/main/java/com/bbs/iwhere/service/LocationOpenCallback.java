@@ -16,4 +16,6 @@ public interface LocationOpenCallback {
 
     void showUserBus(PoiResult poiResult);
 
+    void showUserData(double latitude, double longitude);
+
 }

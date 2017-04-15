@@ -42,6 +42,7 @@ public class LocationOpenService extends BaseLocationService implements BDLocati
         Log.e("testlocationstr", bdLocation.getAddrStr());
         if (bdLocation.getLatitude() != saveLatitude && bdLocation.getLongitude() != saveLongitude) {
             locationOpenCallback.showUserLocation(bdLocation.getAddrStr());
+            locationOpenCallback.showUserData(bdLocation.getLatitude(), bdLocation.getLongitude());
             mPoiUtil.getPoiData(this);
             mPoiUtil.startPoi(bdLocation.getLatitude(), bdLocation.getLongitude());
             if (firstLocation == true) {

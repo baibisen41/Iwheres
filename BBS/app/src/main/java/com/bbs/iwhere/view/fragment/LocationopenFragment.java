@@ -9,14 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.service.LocationOpenCallback;
 import com.bbs.iwhere.service.LocationOpenService;
 import com.bbs.iwhere.view.activity.LocationShowActivity;
+import com.bbs.iwhere.view.activity.RoutePlanActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
 
@@ -27,6 +30,7 @@ import com.bbs.iwhere.view.fragment.common.BaseFragment;
 public class LocationopenFragment extends BaseFragment implements View.OnClickListener {
 
     private View view;
+    private RelativeLayout buslayoutA;
     private TextView locationopenaddress;
     private TextView nearby_bus1;
     private TextView nearby_bus2;
@@ -43,6 +47,10 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     private ImageView statusSwitch;
     private boolean bstatusOnorClose = false;
     private LocationOpenService mLocationOpenService = new LocationOpenService();
+
+    private LatLng nearby_bus1_location;
+    private double[] my_locationData = {0, 0};
+    private double[] nearby_bus1_locationData = {0, 0};
 
 
     @Override
@@ -63,11 +71,13 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         showbutton.setOnClickListener(this);
         locationopenaddress = findViewId(view, R.id.locationdetail);
         nearby_bus1 = findViewId(view, R.id.nearby_busA);
+        nearby_bus1.setOnClickListener(this);
         nearby_bus2 = findViewId(view, R.id.nearby_busB);
         nearby_bus3 = findViewId(view, R.id.nearby_busC);
         nearby_bus4 = findViewId(view, R.id.nearby_busD);
         nearby_bus5 = findViewId(view, R.id.nearby_busE);
         nearby_busdetail1 = findViewId(view, R.id.nearby_busdetailA);
+        nearby_busdetail1.setOnClickListener(this);
         nearby_busdetail2 = findViewId(view, R.id.nearby_busdetailB);
         nearby_busdetail3 = findViewId(view, R.id.nearby_busdetailC);
         nearby_busdetail4 = findViewId(view, R.id.nearby_busdetailD);
@@ -88,6 +98,17 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                 break;
             case R.id.statuswitch:
                 statusOnorClose();
+                break;
+
+            case R.id.nearby_busdetailA:
+                Intent busIntent = new Intent(getActivity(), RoutePlanActivity.class);
+                nearby_bus1_locationData[0] = nearby_bus1_location.latitude;
+                nearby_bus1_locationData[1] = nearby_bus1_location.longitude;
+                busIntent.putExtra("busType", "2");
+                busIntent.putExtra("busAData", nearby_bus1_locationData);
+                busIntent.putExtra("myData", my_locationData);
+                startActivity(busIntent);
+                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
                 break;
         }
     }
@@ -118,6 +139,12 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                     if (poiResult != null) {
                         showBus(poiResult);
                     }
+                }
+
+                @Override
+                public void showUserData(double latitude, double longitude) {
+                    my_locationData[0] = latitude;
+                    my_locationData[1] = longitude;
                 }
             });
 
@@ -163,6 +190,9 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                 nearby_busdetail1.setText(poiResult.getAllPoi().get(0).address);
                 nearby_bus2.setText(poiResult.getAllPoi().get(1).name);
                 nearby_busdetail2.setText(poiResult.getAllPoi().get(1).address);
+
+                nearby_bus1_location = poiResult.getAllPoi().get(0).location;
+                Log.e("1111", String.valueOf(nearby_bus1_location.longitude));
                 break;
             case 3:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);

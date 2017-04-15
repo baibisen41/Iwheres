@@ -14,4 +14,6 @@ public interface LocationCallback {
 
     void showFriendLocation(String text);
 
+    void showFriendLocationData(int[] data);
+
 }
