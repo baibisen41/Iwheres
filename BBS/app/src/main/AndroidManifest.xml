@@ -44,6 +44,11 @@
                     android:name="com.baidu.lbsapi.API_KEY"
                     android:value="I1OOcuMV7eK2RNrPG412Mik5HuphsH9h" />-->
 
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1176170417115976#iwhere" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="ydlDpZvxycqszGWNMtuGpQ1YI2K4Kt1C" />
@@ -62,6 +67,8 @@
             android:name=".view.activity.LocationShowActivity"
             android:theme="@style/Transparent"></activity>
 
+        <activity android:name=".view.activity.MeSettingActivity"></activity>
+
         <activity
             android:name=".view.activity.LocationActivity"
             android:theme="@style/Transparent">
@@ -78,6 +85,28 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
 
 
     </application>

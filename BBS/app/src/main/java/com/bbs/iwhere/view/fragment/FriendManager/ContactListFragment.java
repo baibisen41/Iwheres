@@ -1,24 +1,35 @@
 package com.bbs.iwhere.view.fragment.FriendManager;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.bbs.iwhere.R;
+import com.hyphenate.easeui.ui.EaseContactListFragment;
+
 
 /**
  * Created by 大森 on 2017/3/29.
  */
 
-public class ContactListFragment extends Fragment {
+public class ContactListFragment extends EaseContactListFragment implements View.OnClickListener {
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.a, container, false);
-        return view;
+    protected void initView() {
+        super.initView();
+        hideTitleBar();
+        View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.contact_list_layout, null);
+        listView.addHeaderView(headerView);
+        registerForContextMenu(listView);
+    }
+
+    @Override
+    protected void setUpView() {
+        super.setUpView();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

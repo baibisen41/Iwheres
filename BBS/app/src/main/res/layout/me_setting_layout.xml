@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/mebackId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00BFFF">
+
+        <ImageView
+            android:id="@+id/me_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/selector_mapback" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iwherePic"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/meRoot"
+        android:layout_below="@+id/mebackId"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/temp" />
+
+    <RelativeLayout
+        android:id="@+id/meRoot"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/rootTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/loginTx1"
+                android:layout_width="40dp"
+                android:layout_height="0.1dp"
+                android:layout_centerVertical="true"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/loginTx2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@id/loginTx1"
+                android:gravity="center_vertical"
+                android:text="社交帐号直接登录"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/loginTx3"
+                android:layout_width="40dp"
+                android:layout_height="0.1dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/loginTx2"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/loginIconLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rootTx"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/loginIcon1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/loginIcon2"
+                android:src="@mipmap/weixin" />
+
+            <ImageView
+                android:id="@+id/loginIcon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/qq" />
+
+            <ImageView
+                android:id="@+id/loginIcon3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/loginIcon2"
+                android:src="@mipmap/weibo" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

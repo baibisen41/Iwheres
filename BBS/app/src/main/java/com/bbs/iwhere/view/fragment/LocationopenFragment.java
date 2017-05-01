@@ -184,13 +184,13 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             case 1:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);
                 nearby_busdetail1.setText(poiResult.getAllPoi().get(0).address);
+
                 break;
             case 2:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);
                 nearby_busdetail1.setText(poiResult.getAllPoi().get(0).address);
                 nearby_bus2.setText(poiResult.getAllPoi().get(1).name);
                 nearby_busdetail2.setText(poiResult.getAllPoi().get(1).address);
-
                 nearby_bus1_location = poiResult.getAllPoi().get(0).location;
                 Log.e("1111", String.valueOf(nearby_bus1_location.longitude));
                 break;

@@ -24,4 +24,6 @@ public class FriendLocation {
     public void setFriendLocationtx(String friendLocationtx) {
         FriendLocationtx = friendLocationtx;
     }
+
+
 }

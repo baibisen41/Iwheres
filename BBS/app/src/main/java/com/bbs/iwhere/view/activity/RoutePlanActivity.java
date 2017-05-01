@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ZoomControls;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -50,7 +52,7 @@ import java.util.List;
  */
 
 /*路线规划封装类*/
-public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultListener {
+public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultListener, View.OnClickListener {
 
     RouteLine route = null;
     MassTransitRouteLine massroute = null;
@@ -69,6 +71,8 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
 
     int nowSearchType = -1; // 当前进行的检索，供判断浏览节点时结果使用。
 
+    private PlanNode stNode;
+    private PlanNode enNode;
 
     private LatLng stLoc;
     private LatLng enLoc;
@@ -91,6 +95,8 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
         // 初始化地图
         mMapView = (MapView) findViewById(R.id.map);
         mBaidumap = mMapView.getMap();
+        ImageView imageViewBack = (ImageView) findViewById(R.id.map_back);
+        imageViewBack.setOnClickListener(this);
 
         // 初始化搜索模块，注册事件监听
         mSearch = RoutePlanSearch.newInstance();
@@ -99,6 +105,36 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
         //获取从我的定位界面跳转来的公交车路线
         myData = getIntent().getDoubleArrayExtra("myData");
         busData = getIntent().getDoubleArrayExtra("busAData");
+
+        ///////////进入到路线规划界面，先默认为步行，代码后期优化
+        if (myData != null && busData != null) {
+            stLoc = new LatLng(myData[0], myData[1]);
+            enLoc = new LatLng(busData[0], busData[1]);
+            stNode = PlanNode.withLocation(stLoc);
+            enNode = PlanNode.withLocation(enLoc);
+
+            mSearch.walkingSearch((new WalkingRoutePlanOption())
+                    .from(stNode).to(enNode));
+
+            myData = null;
+            busData = null;
+        } else {
+            stLoc = new LatLng(startNodeLatitude, startNodeLongitude);
+            enLoc = new LatLng(endNodeLatitude, endNodeLongitude);
+            stNode = PlanNode.withLocation(stLoc);
+            enNode = PlanNode.withLocation(enLoc);
+
+            mSearch.walkingSearch((new WalkingRoutePlanOption())
+                    .from(stNode).to(enNode));
+        }
+        /////////////////////////////////////////////////////
+
+        //隐藏logo
+        View child = mMapView.getChildAt(1);
+        if (child != null && (child instanceof ImageView || child instanceof ZoomControls)) {
+            child.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     /**
@@ -112,19 +148,6 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
         mBaidumap.clear();
         // 处理搜索按钮响应
         // 设置起终点信息，对于tranist search 来说，城市名无意义
-
-
-        if (myData != null && busData != null) {
-            stLoc = new LatLng(myData[0], myData[1]);
-            enLoc = new LatLng(busData[0], busData[1]);
-        } else {
-            stLoc = new LatLng(startNodeLatitude, startNodeLongitude);
-            enLoc = new LatLng(endNodeLatitude, endNodeLongitude);
-        }
-
-
-        PlanNode stNode = PlanNode.withLocation(stLoc);
-        PlanNode enNode = PlanNode.withLocation(enLoc);
 
         // 实际使用中请对起点终点城市进行正确的设定
         if (v.getId() == R.id.mass) {
@@ -151,6 +174,20 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
             nowSearchType = 4;
         }
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.map_back:
+                finish();
+                overridePendingTransition(0, R.anim.out_to_right);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {

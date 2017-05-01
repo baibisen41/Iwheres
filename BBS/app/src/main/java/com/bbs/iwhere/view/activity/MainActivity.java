@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.view.fragment.LeftmenuFragment;
+import com.bbs.iwhere.view.fragment.LocationopenFragment;
 import com.bbs.slidingmenu.SlidingMenu;
 import com.bbs.slidingmenu.app.SlidingFragmentActivity;
 

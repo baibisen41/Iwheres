@@ -5,36 +5,32 @@
     android:background="@color/slidingmenucolor"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/username"
+    <RelativeLayout
+        android:id="@+id/usernameLayout"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/usernamePic"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/temp" />
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@id/usernamePic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/item_username"
+            android:textColor="@color/settingItem" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/item_username"
-                android:textColor="@color/settingItem" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/item_school"
-                android:textColor="@color/settingItem" />
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <include layout="@layout/main_item_view" />
