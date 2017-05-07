@@ -208,12 +208,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_video_download_btn_nor.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_location_msg.9.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_location_msg.9.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_mm_listitem_grey_normal.9.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_mm_listitem_grey_normal.9.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_location_msg.9.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_location_msg.9.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_27.png",
@@ -336,12 +336,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_mm_title_back.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_mm_title_back.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_mm_title_back.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_mm_title_back.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_dx_checkbox_on.png",

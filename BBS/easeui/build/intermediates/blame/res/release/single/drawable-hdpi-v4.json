@@ -4,12 +4,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_video_recorder_start_btn.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_9.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ee_9.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_default_avatar.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_default_avatar.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_9.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ee_9.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_01.png",
@@ -396,12 +396,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_default_image.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f3.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_chatfrom_voice_playing_f3.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_app_panel_video_icon.9.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_app_panel_video_icon.9.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f3.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_chatfrom_voice_playing_f3.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_09.png",
