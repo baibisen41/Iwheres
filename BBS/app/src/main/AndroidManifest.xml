@@ -81,6 +81,10 @@
             android:name=".view.activity.RoutePlanActivity"
             android:theme="@style/Transparent"></activity>
 
+        <activity android:name=".view.activity.common.BaseActivity"></activity>
+
+        <activity android:name=".view.activity.ChatActivity"></activity>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
