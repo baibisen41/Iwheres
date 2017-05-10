@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendManager;
 import com.bbs.iwhere.model.DbFriendModel;
 import com.bbs.iwhere.view.activity.ChatActivity;
+import com.bbs.iwhere.view.activity.NewFriendActivity;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
 
@@ -24,12 +26,15 @@ import java.util.Map;
 public class ContactListFragment extends EaseContactListFragment implements View.OnClickListener {
 
     DbFriendModel dbFriendModel = new DbFriendModel();
+    private RelativeLayout newFriendLayout;
 
     @Override
     protected void initView() {
         super.initView();
         hideTitleBar();
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.contact_list_layout, null);
+        newFriendLayout = (RelativeLayout) headerView.findViewById(R.id.new_friend_layout);
+        newFriendLayout.setOnClickListener(this);
         listView.addHeaderView(headerView);
         registerForContextMenu(listView);
     }
@@ -61,10 +66,11 @@ public class ContactListFragment extends EaseContactListFragment implements View
 
     @Override
     public void onClick(View v) {
-/*        switch (v.getId()) {
-            case R.id.bt1:
-                DbFriendManager.getInstance().getContactList();
+        switch (v.getId()) {
+            case R.id.new_friend_layout:
+                startActivity(new Intent(getActivity(), NewFriendActivity.class));
+                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
                 break;
-        }*/
+        }
     }
 }

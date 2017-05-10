@@ -85,6 +85,8 @@
 
         <activity android:name=".view.activity.ChatActivity"></activity>
 
+        <activity android:name=".view.activity.NewFriendActivity"></activity>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
