@@ -27,12 +27,15 @@ public class ContactListFragment extends EaseContactListFragment implements View
 
     DbFriendModel dbFriendModel = new DbFriendModel();
     private RelativeLayout newFriendLayout;
+    private Button testButton;
 
     @Override
     protected void initView() {
         super.initView();
         hideTitleBar();
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.contact_list_layout, null);
+        testButton = (Button) headerView.findViewById(R.id.testId);
+        testButton.setOnClickListener(this);
         newFriendLayout = (RelativeLayout) headerView.findViewById(R.id.new_friend_layout);
         newFriendLayout.setOnClickListener(this);
         listView.addHeaderView(headerView);
@@ -70,6 +73,9 @@ public class ContactListFragment extends EaseContactListFragment implements View
             case R.id.new_friend_layout:
                 startActivity(new Intent(getActivity(), NewFriendActivity.class));
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+                break;
+            case R.id.testId:
+                new DbFriendManager().testDB();
                 break;
         }
     }

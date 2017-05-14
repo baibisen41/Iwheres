@@ -1,4 +1,4 @@
-package com.bbs.iwhere.service;
+package com.bbs.iwhere.service.LocationService;
 
 /**
  * Created by 大森 on 2017/3/19.

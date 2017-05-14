@@ -1,4 +1,4 @@
-package com.bbs.iwhere.service;
+package com.bbs.iwhere.service.LocationService;
 
 import com.bbs.iwhere.service.common.BaseLocationService;
 

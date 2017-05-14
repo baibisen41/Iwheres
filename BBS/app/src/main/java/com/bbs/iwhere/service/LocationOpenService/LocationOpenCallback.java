@@ -1,4 +1,4 @@
-package com.bbs.iwhere.service;
+package com.bbs.iwhere.service.LocationOpenService;
 
 import android.content.Context;
 

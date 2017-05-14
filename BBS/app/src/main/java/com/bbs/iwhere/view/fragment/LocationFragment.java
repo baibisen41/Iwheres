@@ -3,19 +3,17 @@ package com.bbs.iwhere.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.service.LocationCallback;
-import com.bbs.iwhere.service.LocationService;
+import com.bbs.iwhere.service.LocationService.LocationCallback;
+import com.bbs.iwhere.service.LocationService.LocationService;
 import com.bbs.iwhere.view.activity.LocationShowActivity;
 import com.bbs.iwhere.view.activity.RoutePlanActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
-import com.bbs.iwhere.view.fragment.common.SwipeFragment;
 
 
 /**

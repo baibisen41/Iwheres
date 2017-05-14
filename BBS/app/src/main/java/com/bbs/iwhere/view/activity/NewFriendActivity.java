@@ -97,10 +97,6 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
 
         if (dbFriendModel.getContactList().containsKey(nameText.getText().toString())) {
             //let the user know the contact already in your contact list
-            if (EMClient.getInstance().contactManager().getBlackListUsernames().contains(nameText.getText().toString())) {
-                new EaseAlertDialog(this, R.string.user_already_in_contactlist).show();
-                return;
-            }
             new EaseAlertDialog(this, R.string.This_user_is_already_your_friend).show();
             return;
         }

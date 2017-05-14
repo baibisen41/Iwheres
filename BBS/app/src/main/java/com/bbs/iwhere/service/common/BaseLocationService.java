@@ -7,7 +7,7 @@ package com.bbs.iwhere.service.common;
 public abstract class BaseLocationService {
 
     //发送json数据
-    public void reqPostJson() {
+    public void reqPostJson(String strJson) {
 
     }
 
@@ -26,6 +26,7 @@ public abstract class BaseLocationService {
 
     }
 
+    ////////////////////////////////////////////
     //获取json数据
     public void reqGetJson() {
 

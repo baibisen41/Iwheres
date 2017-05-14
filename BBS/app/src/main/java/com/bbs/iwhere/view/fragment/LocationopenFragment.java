@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.service.LocationOpenCallback;
-import com.bbs.iwhere.service.LocationOpenService;
+import com.bbs.iwhere.service.LocationOpenService.LocationOpenCallback;
+import com.bbs.iwhere.service.LocationOpenService.LocationOpenService;
 import com.bbs.iwhere.view.activity.LocationShowActivity;
 import com.bbs.iwhere.view.activity.RoutePlanActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
@@ -146,6 +146,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                     my_locationData[0] = latitude;
                     my_locationData[1] = longitude;
                 }
+
             });
 
         } else {
@@ -153,6 +154,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             statusSwitch.setImageResource(R.mipmap.switch_normal);
             userstatus.setText("离线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.cutline));
+            mLocationOpenService.closeLocationOpen();
             clearBus();
         }
     }
