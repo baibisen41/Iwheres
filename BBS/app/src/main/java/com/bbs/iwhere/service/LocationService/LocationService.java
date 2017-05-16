@@ -13,12 +13,13 @@ public class LocationService extends BaseLocationService {
     private int[] locationData;
     private boolean friendStatus = false;//好友状态默认为false，如果false状态，address和showmap等都传入null值
 
+
     public void setLocationCallback(LocationCallback locationCallback) {
         this.locationCallback = locationCallback;
     }
 
     public void showFriendLocation() {
-        reqGetJson();
+//        reqGetJson();
         locationCallback.showFriendPic();
         locationCallback.showFriendName();
         locationCallback.showFriendLocationStatus();
