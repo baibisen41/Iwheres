@@ -112,6 +112,7 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
     //弹出好友列表dialog
     public void friendListDialog(List<FriendListModel> friendLists) {
 
+/*
         ////////////模拟数据/////////////////
         friendListModel.setUserId(0);
         friendListModel.setFriendPic("aaa");
@@ -124,6 +125,7 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
         friendlist.add(friendListModel);
         friendlist.add(friendListModel1);
         ////////////模拟数据/////////////////
+*/
 
         selectFriendDialog = new AlertDialog.Builder(getActivity());
         selectFriendDialog.setTitle("请选择好友");
@@ -175,8 +177,8 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            viewHolder.friendPic.setBackgroundResource(R.mipmap.ic_launcher);
-            viewHolder.friendName.setText(dataList.get(position).getFriendName());
+//            viewHolder.friendPic.setBackgroundResource(R.mipmap.ic_launcher);
+//            viewHolder.friendName.setText(dataList.get(position).getFriendName());
 
             return convertView;
         }

@@ -6,11 +6,11 @@ package com.bbs.iwhere.service.LocationService;
 
 public interface LocationCallback {
 
-    void showFriendLocationStatus();
+    void showFriendLocationStatus(String userStatus);
 
-    void showFriendPic();
+    void showFriendPic(String url);
 
-    void showFriendName();
+    void showFriendName(String userName);
 
     void showFriendLocation(String text);
 

@@ -14,8 +14,9 @@ import okhttp3.Call;
  */
 /*
 关于拉取好友信息思路：
-* 在splashActivity加载中首先进行一波好友id+头像的拉取，存入数据库，将头像的命名成id+image的形式
-* 在进入好友定位第二次拉取好友信息时只需要拉取好友id+name即可，到时候根据id进行图片的索引显示
+* 1.在splashActivity加载中首先进行一波userid+url+name+description的拉取，存入数据库，
+*   再在将头像url进行下载到sd卡缓存，并将sd卡路径存入数据库中
+* 2.在进入好友定位第二次拉取好友信息时只需要拉取好友id+status即可，并从数据库中取出userid+name+pic+description+status即可
 * */
 
 ///////////用于点击好友定位时，拉取好友列表数据
@@ -28,6 +29,7 @@ public class LoadFriendListService extends BaseLocationService {
         this.loadFriendListCallback = loadFriendListCallback;
     }
 
+    //直接发送请求 -> 返回 userId + status
     public void loadFriendList() {
         reqGetJson(url, new MyStringCallback());
     }
@@ -42,10 +44,16 @@ public class LoadFriendListService extends BaseLocationService {
 
         @Override
         public void onResponse(String response, int id) {
-            List<FriendListModel> friendlist = new JsonHelper().getJson(response, FriendListModel.class);//id+name+status
-            loadFriendListCallback.showFriendList(friendlist);
+            saveDbOption(response);
         }
-
-
     }
+
+    //将id+status存入数据库
+    public void saveDbOption(String strjson) {
+        List<FriendListModel> friendlist = new JsonHelper().getJson(strjson, FriendListModel.class);//id+name+status
+        loadFriendListCallback.showFriendList(friendlist);
+    }
+
+
+
 }
