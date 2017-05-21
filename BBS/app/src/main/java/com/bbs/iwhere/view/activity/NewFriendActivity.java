@@ -2,7 +2,6 @@ package com.bbs.iwhere.view.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,9 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.mapapi.map.Text;
 import com.bbs.iwhere.R;
-import com.bbs.iwhere.model.DbFriendModel;
+import com.bbs.iwhere.service.ContactListService.ContactListService;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 
@@ -35,7 +33,7 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
     private String toAddUsername;
     private ProgressDialog progressDialog;
 
-    DbFriendModel dbFriendModel = new DbFriendModel();
+    ContactListService dbFriendModel = new ContactListService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -46,7 +46,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     private TextView userstatus;
     private ImageView statusSwitch;
     private boolean bstatusOnorClose = false;
-    private LocationOpenService mLocationOpenService = new LocationOpenService();
+    private LocationOpenService mLocationLocationOpenService = new LocationOpenService();
 
     private LatLng nearby_bus1_location;
     private double[] my_locationData = {0, 0};
@@ -119,8 +119,8 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             statusSwitch.setImageResource(R.mipmap.switch_pressed);
             userstatus.setText("在线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.userstatuscolor));
-            mLocationOpenService.startLocationService(getActivity());
-            mLocationOpenService.setLocationOpenCallback(new LocationOpenCallback() {//实现接口回掉
+            mLocationLocationOpenService.startLocationService(getActivity());
+            mLocationLocationOpenService.setLocationOpenCallback(new LocationOpenCallback() {//实现接口回掉
                 @Override
                 public void showUserStatus() {
 
@@ -154,7 +154,7 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             statusSwitch.setImageResource(R.mipmap.switch_normal);
             userstatus.setText("离线");
             userstatus.setTextColor(getActivity().getResources().getColor(R.color.cutline));
-            mLocationOpenService.closeLocationOpen();
+            mLocationLocationOpenService.closeLocationOpen();
             clearBus();
         }
     }

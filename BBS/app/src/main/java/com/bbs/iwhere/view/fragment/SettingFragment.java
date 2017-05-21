@@ -17,7 +17,7 @@ import com.bbs.iwhere.R;
 
 public class SettingFragment extends Fragment implements View.OnClickListener {
 
-    private ImageView pushSwitch;
+//    private ImageView pushSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,15 +27,15 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_left_setting, container, false);
-        pushSwitch = (ImageView) view.findViewById(R.id.push_switch);
-        pushSwitch.setOnClickListener(this);
+//        pushSwitch = (ImageView) view.findViewById(R.id.push_switch);
+//        pushSwitch.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
 
-        pushSwitch.setImageResource(R.mipmap.push_pressed);
+//        pushSwitch.setImageResource(R.mipmap.push_pressed);
 
     }
 }

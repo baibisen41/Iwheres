@@ -1,8 +1,8 @@
 package com.bbs.iwhere.service.LocationService;
 
 import com.bbs.iwhere.model.FriendListModel;
-import com.bbs.iwhere.service.common.BaseLocationService;
-import com.bbs.iwhere.util.JsonHelper;
+import com.bbs.iwhere.service.common.BaseService;
+import com.bbs.iwhere.util.JsonUtil;
 import com.bbs.okhttp.callback.StringCallback;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import okhttp3.Call;
 * */
 
 ///////////用于点击好友定位时，拉取好友列表数据
-public class LoadFriendListService extends BaseLocationService {
+public class LoadFriendListService extends BaseService {
 
     private String url;//好友信息路径
     private LoadFriendListCallback loadFriendListCallback;
@@ -50,7 +50,7 @@ public class LoadFriendListService extends BaseLocationService {
 
     //将id+status存入数据库
     public void saveDbOption(String strjson) {
-        List<FriendListModel> friendlist = new JsonHelper().getJson(strjson, FriendListModel.class);//id+name+status
+        List<FriendListModel> friendlist = new JsonUtil().getJson(strjson, FriendListModel.class);//id+name+status
         loadFriendListCallback.showFriendList(friendlist);
     }
 

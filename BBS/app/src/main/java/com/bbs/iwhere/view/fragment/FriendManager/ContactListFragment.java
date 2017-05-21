@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendManager;
-import com.bbs.iwhere.model.DbFriendModel;
+import com.bbs.iwhere.service.ContactListService.ContactListService;
 import com.bbs.iwhere.view.activity.ChatActivity;
 import com.bbs.iwhere.view.activity.NewFriendActivity;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class ContactListFragment extends EaseContactListFragment implements View.OnClickListener {
 
-    DbFriendModel dbFriendModel = new DbFriendModel();
+    ContactListService getContactList = new ContactListService();
     private RelativeLayout newFriendLayout;
     private Button testButton;
 
@@ -46,7 +46,7 @@ public class ContactListFragment extends EaseContactListFragment implements View
     protected void setUpView() {
 
         //直接从model中取出好友列表数据，如果为null暂时不处理
-        Map<String, EaseUser> m = dbFriendModel.getContactList();
+        Map<String, EaseUser> m = getContactList.getContactList();
         if (m != null) {
             if (m instanceof Hashtable<?, ?>) {
                 m = (Map<String, EaseUser>) ((Hashtable<String, EaseUser>) m).clone();

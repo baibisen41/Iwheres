@@ -3,7 +3,6 @@ package com.bbs.iwhere.view.fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -46,6 +45,7 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
     private FriendListModel friendListModel = new FriendListModel();
     private FriendListModel friendListModel1 = new FriendListModel();
     private List<FriendListModel> friendlist = new ArrayList<>();
+    private LocationService locationLocationService = new LocationService();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,34 +63,6 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void showFriendList(List<FriendListModel> friendListModelList) {
                 friendListDialog(friendListModelList);
-            }
-        });
-
-        new LocationService().setLocationCallback(new LocationCallback() {
-            @Override
-            public void showFriendLocationStatus() {
-
-            }
-
-            @Override
-            public void showFriendPic() {
-
-            }
-
-            @Override
-            public void showFriendName() {
-
-            }
-
-            @Override
-            public void showFriendLocation(String text) {
-                friendLocationAddress.setText(text);
-            }
-
-            @Override
-            public void showFriendLocationData(int[] data) {
-                //好友数据包
-                //friendLocation = data;
             }
         });
 
@@ -134,6 +106,9 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getActivity(), "已点击", Toast.LENGTH_LONG).show();
+                int userId = 0;//模拟
+                locationLocationService.postFriendLocation(userId);//发送选择好友定位请求
+                showFriendLocation();
             }
         });
         selectFriendDialog.show();
@@ -189,6 +164,39 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    //选择好友，拉取定位信息
+    private void showFriendLocation() {
+
+        locationLocationService.setLocationCallback(new LocationCallback() {
+
+            @Override
+            public void showFriendLocationStatus(String userStatus) {
+
+            }
+
+            @Override
+            public void showFriendPic(String url) {
+
+            }
+
+            @Override
+            public void showFriendName(String userName) {
+
+            }
+
+            @Override
+            public void showFriendLocation(String text) {
+                friendLocationAddress.setText(text);
+            }
+
+            @Override
+            public void showFriendLocationData(int[] data) {
+                //好友数据包
+                //friendLocation = data;
+            }
+        });
+    }
+
     //顶部选项卡
     private void changeLocationButtonIcon(int buttonId) {
 
@@ -218,7 +226,7 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
                 break;
             case R.id.select_friend_button:
-        //        friendListDialog();
+                //   friendListDialog();
                 break;
             default:
                 break;

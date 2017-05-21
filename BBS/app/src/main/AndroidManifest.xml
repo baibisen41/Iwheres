@@ -54,13 +54,19 @@
             android:value="ydlDpZvxycqszGWNMtuGpQ1YI2K4Kt1C" />
 
         <activity
-            android:name="com.bbs.iwhere.view.activity.MainActivity"
-            android:theme="@style/Transparent">
+            android:name=".view.activity.SplashActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.bbs.iwhere.view.activity.MainActivity"
+            android:theme="@style/Transparent">
+
         </activity>
 
         <activity
