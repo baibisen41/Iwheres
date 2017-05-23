@@ -3,6 +3,8 @@ package com.bbs.iwhere.view.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -55,6 +57,18 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == event.KEYCODE_BACK) {
+            MainActivity.this.moveTaskToBack(true);//退到后台
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+
+        }
+
+    }
 
     @Override
     public void onClick(View v) {

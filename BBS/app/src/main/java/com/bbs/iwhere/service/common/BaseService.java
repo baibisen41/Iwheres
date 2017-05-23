@@ -3,6 +3,7 @@ package com.bbs.iwhere.service.common;
 import android.os.Environment;
 import android.util.Log;
 
+import com.bbs.iwhere.constants.AppConstants;
 import com.bbs.okhttp.OkHttpUtils;
 import com.bbs.okhttp.callback.Callback;
 import com.bbs.okhttp.callback.FileCallBack;
@@ -14,6 +15,7 @@ import okhttp3.MediaType;
  */
 
 public abstract class BaseService {
+
 
     public String BaseUrl = "http://192.168.191.1:8080/IwhereServer";
 

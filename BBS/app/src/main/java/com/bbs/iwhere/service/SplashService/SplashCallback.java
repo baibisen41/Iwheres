@@ -6,5 +6,5 @@ package com.bbs.iwhere.service.SplashService;
 
 public interface SplashCallback {
 
-    void getPicture();
+    void finishLoading(boolean isFinish);
 }
