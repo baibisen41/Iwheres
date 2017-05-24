@@ -64,7 +64,6 @@ public class SplashService extends BaseService {
 
                     Log.e("downPictureErrorId", pictureName + "_userPicture.jpg");
                     Log.e("downPictureError", e.getStackTrace().toString());
-
                 }
 
                 @Override

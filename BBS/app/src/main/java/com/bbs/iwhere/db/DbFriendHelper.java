@@ -19,11 +19,29 @@ public class DbFriendHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME_NICK = "nick";
     public static final String COLUMN_NAME_AVATAR = "avatar";
 
+    public static final String FRIENDLIST_TABLE_NAME = "friendlist";
+    public static final String FRIENDLIST_COLUMN_FRIEND_ID = "friendid";
+    public static final String FRIENDLIST_COLUMN_FRIEND_PIC_URL = "friendpicurl";
+    public static final String FRIENDLIST_COLUMN_FRIEND_PIC_SD_URL = "friendpicsd";
+    public static final String FRIENDLIST_COLUMN_FRIEND_NAME = "friendname";
+    public static final String FRIENDLIST_COLUMN_FRIEND_DESCRIPTION = "friendescription";
+    public static final String FRIENDLIST_COLUMN_FRIEND_STATUS = "friendstatus";
+
     private static final String USERNAME_TABLE_CREATE = "CREATE TABLE "
             + TABLE_NAME + " ("
             + COLUMN_NAME_NICK + " TEXT, "
             + COLUMN_NAME_AVATAR + " TEXT, "
             + COLUMN_NAME_ID + " TEXT PRIMARY KEY);";
+
+    private static final String FRIENDLIST_TABLE_CREATE = "CREATE TABLE "
+            + FRIENDLIST_TABLE_NAME + " ("
+            + FRIENDLIST_COLUMN_FRIEND_ID + " TEXT, "
+            + FRIENDLIST_COLUMN_FRIEND_PIC_URL + " TEXT, "
+            + FRIENDLIST_COLUMN_FRIEND_PIC_SD_URL + " TEXT, "
+            + FRIENDLIST_COLUMN_FRIEND_NAME + " TEXT, "
+            + FRIENDLIST_COLUMN_FRIEND_DESCRIPTION + " TEXT, "
+            + FRIENDLIST_COLUMN_FRIEND_STATUS + " TEXT PRIMARY KEY);";
+
 
     public DbFriendHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);

@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class DbFriendManager {
 
-    static private DbFriendManager dbFriendManager = new DbFriendManager();
+    static private DbFriendManager dbFriendManager;
     DbFriendHelper dbFriendHelper = new DbFriendHelper(MainApplication.getContext());
 
     //设为静态方便处理
