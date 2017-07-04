@@ -35,12 +35,12 @@ public class DbFriendHelper extends SQLiteOpenHelper {
 
     private static final String FRIENDLIST_TABLE_CREATE = "CREATE TABLE "
             + FRIENDLIST_TABLE_NAME + " ("
-            + FRIENDLIST_COLUMN_FRIEND_ID + " TEXT, "
+            + FRIENDLIST_COLUMN_FRIEND_STATUS + " TEXT, "
             + FRIENDLIST_COLUMN_FRIEND_PIC_URL + " TEXT, "
             + FRIENDLIST_COLUMN_FRIEND_PIC_SD_URL + " TEXT, "
             + FRIENDLIST_COLUMN_FRIEND_NAME + " TEXT, "
             + FRIENDLIST_COLUMN_FRIEND_DESCRIPTION + " TEXT, "
-            + FRIENDLIST_COLUMN_FRIEND_STATUS + " TEXT PRIMARY KEY);";
+            + FRIENDLIST_COLUMN_FRIEND_ID + " TEXT PRIMARY KEY);";
 
 
     public DbFriendHelper(Context context) {
@@ -51,12 +51,13 @@ public class DbFriendHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(USERNAME_TABLE_CREATE);
+        db.execSQL(FRIENDLIST_TABLE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 6) {
-
-        }
+        db.execSQL("drop if table exists users");
+        db.execSQL("drop if table exists friendlist");
+        onCreate(db);
     }
 }

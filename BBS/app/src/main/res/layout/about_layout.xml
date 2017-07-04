@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/routemapbackId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00BFFF">
+
+        <ImageView
+            android:id="@+id/map_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/selector_mapback" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/aboutpic"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/routemapbackId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/temp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/abouttexts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:text="开发者:"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/abouttext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/abouttexts"
+            android:text="三木工作室"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

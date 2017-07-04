@@ -40,12 +40,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ease_open_icon.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ease_default_expression.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ease_default_expression.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ease_chat_press_speak_btn_normal.9.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ease_chat_press_speak_btn_normal.9.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ease_default_expression.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ease_default_expression.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ease_dot_emojicon_unselected.png",

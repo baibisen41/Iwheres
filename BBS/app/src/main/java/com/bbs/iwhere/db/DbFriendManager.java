@@ -37,21 +37,42 @@ public class DbFriendManager {
 
     }
 
-/*    synchronized public void saveContactList(List<EaseUser> contactList) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+    synchronized public void saveContactList(List<EaseUser> contactList) {
+        SQLiteDatabase db = dbFriendHelper.getWritableDatabase();
         if (db.isOpen()) {
-            db.delete(UserDao.TABLE_NAME, null, null);
+            db.delete(dbFriendHelper.TABLE_NAME, null, null);
             for (EaseUser user : contactList) {
                 ContentValues values = new ContentValues();
-                values.put(UserDao.COLUMN_NAME_ID, user.getUsername());
+                values.put(dbFriendHelper.COLUMN_NAME_ID, user.getUsername());
                 if (user.getNick() != null)
-                    values.put(UserDao.COLUMN_NAME_NICK, user.getNick());
+                    values.put(dbFriendHelper.COLUMN_NAME_NICK, user.getNick());
                 if (user.getAvatar() != null)
-                    values.put(UserDao.COLUMN_NAME_AVATAR, user.getAvatar());
-                db.replace(UserDao.TABLE_NAME, null, values);
+                    values.put(dbFriendHelper.COLUMN_NAME_AVATAR, user.getAvatar());
+                db.replace(dbFriendHelper.TABLE_NAME, null, values);
             }
         }
-    }*/
+    }
+
+    synchronized public void deleteContact(String username) {
+        SQLiteDatabase db = dbFriendHelper.getWritableDatabase();
+        if (db.isOpen()) {
+            db.delete(dbFriendHelper.TABLE_NAME, dbFriendHelper.COLUMN_NAME_ID + " = ?", new String[]{username});
+        }
+    }
+
+    public synchronized Integer saveUser(EaseUser user) {
+        SQLiteDatabase db = dbFriendHelper.getWritableDatabase();
+        int id = -1;
+        if (db.isOpen()) {
+            ContentValues values = new ContentValues();
+            values.put(dbFriendHelper.COLUMN_NAME_ID, user.getUsername());
+            values.put(dbFriendHelper.COLUMN_NAME_NICK, user.getNickname());
+            values.put(dbFriendHelper.COLUMN_NAME_AVATAR, user.getAvatar());
+            db.insert(dbFriendHelper.TABLE_NAME, null, values);
+            id = 0;
+        }
+        return id;
+    }
 
     synchronized public Map<String, EaseUser> getContactList() {
         SQLiteDatabase db = dbFriendHelper.getReadableDatabase();

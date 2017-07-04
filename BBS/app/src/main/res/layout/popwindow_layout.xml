@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/slidingmenucolor"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/addfirenditem"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="添加好友"
+        android:textColor="@color/cutTextview" />
+
+    <TextView
+        android:id="@+id/itemcut"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/cutTextview" />
+
+    <TextView
+        android:id="@+id/aboutitem"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="关于"
+        android:textColor="@color/cutTextview" />
+
+</LinearLayout>

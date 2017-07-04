@@ -2,6 +2,7 @@ package com.bbs.iwhere.service.LocationService;
 
 import android.util.Log;
 
+import com.bbs.iwhere.constants.AppConstants;
 import com.bbs.iwhere.model.FriendLcationModel;
 import com.bbs.iwhere.service.common.BaseService;
 import com.bbs.iwhere.util.JsonUtil;
@@ -21,7 +22,7 @@ public class LocationService extends BaseService {
     private String strlocation;
     private int[] locationData;
     private boolean friendStatus = false;//好友状态默认为false，如果false状态，address和showmap等都传入null值
-    private String url = BaseUrl + "/ShowFriendLocationServlet"; //发送url
+    private String url = AppConstants.LocationUrl; //发送url
 
 
     public void setLocationCallback(LocationCallback locationCallback) {
@@ -29,9 +30,9 @@ public class LocationService extends BaseService {
     }
 
     //真正开启发送请求
-    public void postFriendLocation(int userId) {
+    public void postFriendLocation(String userId) {
 
-        String strUrl = url + "?userId=" + String.valueOf(userId);
+        String strUrl = url + "?userid=" + userId;
         Log.e("LocationServiceUrl", strUrl);
         reqGetJson(strUrl, new GetUserLocationCallback());//只需要拉取经纬度数据包
 
@@ -53,16 +54,22 @@ public class LocationService extends BaseService {
 
     public void showUserLocation(String strjson) {
 
-        List<FriendLcationModel> friendLcationList = new JsonUtil().getJson(strjson, FriendLcationModel.class);
+        List<FriendLcationModel> friendLcationList = null;
+        try {
+            friendLcationList = new JsonUtil().getJson(strjson, FriendLcationModel.class);
+            locationCallback.showFriendLocationData(friendLcationList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //从数据库中取出sdUrl+name+status再加上服务器的回包
 
         // 接口回掉
-        locationCallback.showFriendPic(friendLcationList.get(0).getUserSdUrl());
-        locationCallback.showFriendName(friendLcationList.get(0).getUserName());
-        locationCallback.showFriendLocationStatus(friendLcationList.get(0).getUserStatus());
-        locationCallback.showFriendLocation(strlocation);//待修改
-        locationCallback.showFriendLocationData(locationData);//待修改
+//        locationCallback.showFriendPic(friendLcationList.get(0).getUserSdUrl());
+//        locationCallback.showFriendName(friendLcationList.get(0).getUserName());
+//        locationCallback.showFriendLocationStatus(friendLcationList.get(0).getUserStatus());
+//        locationCallback.showFriendLocation(strlocation);//待修改
+//        locationCallback.showFriendLocationData(locationData);//待修改
     }
 
 

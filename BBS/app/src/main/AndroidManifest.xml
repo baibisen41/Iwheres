@@ -84,7 +84,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".view.activity.AboutActivity"
+            android:theme="@style/Transparent"></activity>
+        <activity
             android:name=".view.activity.RoutePlanActivity"
+            android:theme="@style/Transparent"></activity>
+
+        <activity
+            android:name=".view.activity.NearbyDetailActivity"
             android:theme="@style/Transparent"></activity>
 
         <activity android:name=".view.activity.common.BaseActivity"></activity>

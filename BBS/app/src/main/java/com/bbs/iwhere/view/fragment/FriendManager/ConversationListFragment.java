@@ -38,9 +38,9 @@ public class ConversationListFragment extends EaseConversationListFragment {
     protected void initView() {
         super.initView();
         hideTitleBar();
-        View errorView = (LinearLayout) View.inflate(getActivity(), R.layout.em_chat_neterror_item, null);
+/*        View errorView = (LinearLayout) View.inflate(getActivity(), R.layout.em_chat_neterror_item, null);
         errorItemContainer.addView(errorView);
-        errorText = (TextView) errorView.findViewById(R.id.tv_connect_errormsg);
+        errorText = (TextView) errorView.findViewById(R.id.tv_connect_errormsg);*/
     }
 
     @Override

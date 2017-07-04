@@ -6,58 +6,41 @@ package com.bbs.iwhere.model;
 
 public class FriendLcationModel {
 
-    private int userId;
-    private String userSdUrl;
-    private String userName;
-    private String userStatus;
-    private double userLongitude;
-    private double userLatitude;
+    private String userid;
+    private String userlongitude;
+    private String userlatitude;
+    private String userstatus;
 
-    public int getUserId() {
-        return userId;
+
+    public String getUserid() {
+        return userid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public String getUserSdUrl() {
-        return userSdUrl;
+    public String getUserlongitude() {
+        return userlongitude;
     }
 
-    public void setUserSdUrl(String userSdUrl) {
-        this.userSdUrl = userSdUrl;
+    public void setUserlongitude(String userlongitude) {
+        this.userlongitude = userlongitude;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserlatitude() {
+        return userlatitude;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserlatitude(String userlatitude) {
+        this.userlatitude = userlatitude;
     }
 
-    public String getUserStatus() {
-        return userStatus;
+    public String getUserstatus() {
+        return userstatus;
     }
 
-    public void setUserStatus(String userStatus) {
-        this.userStatus = userStatus;
-    }
-
-    public double getUserLongitude() {
-        return userLongitude;
-    }
-
-    public void setUserLongitude(double userLongitude) {
-        this.userLongitude = userLongitude;
-    }
-
-    public double getUserLatitude() {
-        return userLatitude;
-    }
-
-    public void setUserLatitude(double userLatitude) {
-        this.userLatitude = userLatitude;
+    public void setUserstatus(String userstatus) {
+        this.userstatus = userstatus;
     }
 }

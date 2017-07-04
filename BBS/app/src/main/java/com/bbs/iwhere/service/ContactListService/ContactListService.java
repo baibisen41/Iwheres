@@ -17,5 +17,13 @@ public class ContactListService {
         return DbFriendManager.getInstance().getContactList();
     }
 
+    public int saveUser(EaseUser easeUser) {
+        return DbFriendManager.getInstance().saveUser(easeUser);
+    }
+
+    public void deleteUser(String username) {
+        DbFriendManager.getInstance().deleteContact(username);
+    }
+
 
 }

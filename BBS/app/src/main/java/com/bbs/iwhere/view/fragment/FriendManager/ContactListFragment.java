@@ -1,11 +1,15 @@
 package com.bbs.iwhere.view.fragment.FriendManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendManager;
@@ -15,6 +19,7 @@ import com.bbs.iwhere.view.activity.NewFriendActivity;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -28,11 +33,24 @@ public class ContactListFragment extends EaseContactListFragment implements View
     ContactListService getContactList = new ContactListService();
     private RelativeLayout newFriendLayout;
     private Button testButton;
+    private AlertDialog.Builder alertdlg;
+
+    @Override
+    public void refresh() {
+        Map<String, EaseUser> m = getContactList.getContactList();
+        if (m instanceof Hashtable<?, ?>) {
+            //noinspection unchecked
+            m = (Map<String, EaseUser>) ((Hashtable<String, EaseUser>) m).clone();
+        }
+        setContactsMap(m);
+        super.refresh();
+    }
 
     @Override
     protected void initView() {
         super.initView();
         hideTitleBar();
+        alertdlg = new AlertDialog.Builder(getActivity());
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.contact_list_layout, null);
         testButton = (Button) headerView.findViewById(R.id.testId);
         testButton.setOnClickListener(this);
@@ -40,7 +58,33 @@ public class ContactListFragment extends EaseContactListFragment implements View
         newFriendLayout.setOnClickListener(this);
         listView.addHeaderView(headerView);
         registerForContextMenu(listView);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                toBeProcessUser = (EaseUser) listView.getItemAtPosition(position);
+                toBeProcessUsername = toBeProcessUser.getUsername();
+                alertdlg.setMessage("确定删除该好友?");
+                alertdlg.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertdlg.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getContactList.deleteUser(toBeProcessUsername);
+                        contactList.remove(toBeProcessUser);
+                        contactListLayout.refresh();
+                        Toast.makeText(getActivity(), "已删除", Toast.LENGTH_LONG).show();
+                    }
+                });
+                alertdlg.show();
+                return true;
+            }
+        });
     }
+
 
     @Override
     protected void setUpView() {

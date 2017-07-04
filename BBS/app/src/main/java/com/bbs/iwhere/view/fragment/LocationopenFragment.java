@@ -49,6 +49,8 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     private LocationOpenService mLocationLocationOpenService = new LocationOpenService();
 
     private LatLng nearby_bus1_location;
+    private LatLng nearby_bus1_location1;
+    private LatLng nearby_bus1_location2;
     private double[] my_locationData = {0, 0};
     private double[] nearby_bus1_locationData = {0, 0};
 
@@ -79,7 +81,9 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         nearby_busdetail1 = findViewId(view, R.id.nearby_busdetailA);
         nearby_busdetail1.setOnClickListener(this);
         nearby_busdetail2 = findViewId(view, R.id.nearby_busdetailB);
+        nearby_busdetail2.setOnClickListener(this);
         nearby_busdetail3 = findViewId(view, R.id.nearby_busdetailC);
+        nearby_busdetail3.setOnClickListener(this);
         nearby_busdetail4 = findViewId(view, R.id.nearby_busdetailD);
         nearby_busdetail5 = findViewId(view, R.id.nearby_busdetailE);
         nearby_bus3 = findViewId(view, R.id.nearby_busdetailC);
@@ -101,13 +105,33 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                 break;
 
             case R.id.nearby_busdetailA:
-                Intent busIntent = new Intent(getActivity(), RoutePlanActivity.class);
+                Intent busIntentA = new Intent(getActivity(), RoutePlanActivity.class);
                 nearby_bus1_locationData[0] = nearby_bus1_location.latitude;
                 nearby_bus1_locationData[1] = nearby_bus1_location.longitude;
-                busIntent.putExtra("busType", "2");
-                busIntent.putExtra("busAData", nearby_bus1_locationData);
-                busIntent.putExtra("myData", my_locationData);
-                startActivity(busIntent);
+                busIntentA.putExtra("busType", "2");
+                busIntentA.putExtra("busAData", nearby_bus1_locationData);
+                busIntentA.putExtra("myData", my_locationData);
+                startActivity(busIntentA);
+                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+                break;
+            case R.id.nearby_busdetailB:
+                Intent busIntentB = new Intent(getActivity(), RoutePlanActivity.class);
+                nearby_bus1_locationData[0] = nearby_bus1_location1.latitude;
+                nearby_bus1_locationData[1] = nearby_bus1_location1.longitude;
+                busIntentB.putExtra("busType", "2");
+                busIntentB.putExtra("busAData", nearby_bus1_locationData);
+                busIntentB.putExtra("myData", my_locationData);
+                startActivity(busIntentB);
+                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+                break;
+            case R.id.nearby_busdetailC:
+                Intent busIntentC = new Intent(getActivity(), RoutePlanActivity.class);
+                nearby_bus1_locationData[0] = nearby_bus1_location2.latitude;
+                nearby_bus1_locationData[1] = nearby_bus1_location2.longitude;
+                busIntentC.putExtra("busType", "2");
+                busIntentC.putExtra("busAData", nearby_bus1_locationData);
+                busIntentC.putExtra("myData", my_locationData);
+                startActivity(busIntentC);
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
                 break;
         }
@@ -186,7 +210,8 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
             case 1:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);
                 nearby_busdetail1.setText(poiResult.getAllPoi().get(0).address);
-
+                nearby_bus1_location = poiResult.getAllPoi().get(0).location;
+                Log.e("1111", String.valueOf(nearby_bus1_location.longitude));
                 break;
             case 2:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);
@@ -194,7 +219,8 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                 nearby_bus2.setText(poiResult.getAllPoi().get(1).name);
                 nearby_busdetail2.setText(poiResult.getAllPoi().get(1).address);
                 nearby_bus1_location = poiResult.getAllPoi().get(0).location;
-                Log.e("1111", String.valueOf(nearby_bus1_location.longitude));
+                nearby_bus1_location1 = poiResult.getAllPoi().get(1).location;
+                Log.e("222", String.valueOf(nearby_bus1_location.longitude));
                 break;
             case 3:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);
@@ -203,6 +229,9 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
                 nearby_busdetail2.setText(poiResult.getAllPoi().get(1).address);
                 nearby_bus3.setText(poiResult.getAllPoi().get(2).name);
                 nearby_busdetail3.setText(poiResult.getAllPoi().get(2).address);
+                nearby_bus1_location = poiResult.getAllPoi().get(0).location;
+                nearby_bus1_location1 = poiResult.getAllPoi().get(1).location;
+                nearby_bus1_location2 = poiResult.getAllPoi().get(2).location;
                 break;
             case 4:
                 nearby_bus1.setText(poiResult.getAllPoi().get(0).name);

@@ -1,12 +1,17 @@
 package com.bbs.iwhere.view.activity;
 
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.view.fragment.LeftmenuFragment;
@@ -16,8 +21,11 @@ import com.bbs.slidingmenu.app.SlidingFragmentActivity;
 
 public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
 
+    private TextView addItemPop;
+    private TextView aboutItemPop;
     private ImageView titleLeftBt;
     private ImageView titleRightBt;
+    private PopupWindow popupWindow;
     private Fragment leftFragment;
     private Fragment currentFragment = null;
     protected SlidingMenu rightLeftSlidingMenu;
@@ -36,6 +44,24 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         titleLeftBt.setOnClickListener(this);
         titleRightBt = (ImageView) findViewById(R.id.rightbutton);
         titleRightBt.setOnClickListener(this);
+    }
+
+    private void initPop() {
+        View popupView = MainActivity.this.getLayoutInflater().inflate(R.layout.popwindow_layout, null);
+
+        addItemPop = (TextView) popupView.findViewById(R.id.addfirenditem);
+        addItemPop.setOnClickListener(this);
+        aboutItemPop = (TextView) popupView.findViewById(R.id.aboutitem);
+        aboutItemPop.setOnClickListener(this);
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
+        popupWindow = new PopupWindow(popupView);
+
+        popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setOutsideTouchable(true);// 点击屏幕任意处消失
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());// 点击屏幕任意处消失
+        popupWindow.setFocusable(true);// 点击按钮消失
+        popupWindow.showAsDropDown(titleRightBt);
     }
 
     private void initSlidingMenu() {
@@ -77,7 +103,15 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
                 rightLeftSlidingMenu.showMenu();
                 break;
             case R.id.rightbutton:
-
+                initPop();
+                break;
+            case R.id.addfirenditem:
+                startActivity(new Intent(this, NewFriendActivity.class));
+                overridePendingTransition(R.anim.in_to_left, 0);
+                break;
+            case R.id.aboutitem:
+                startActivity(new Intent(this, AboutActivity.class));
+                overridePendingTransition(R.anim.in_to_left, 0);
                 break;
             default:
                 break;

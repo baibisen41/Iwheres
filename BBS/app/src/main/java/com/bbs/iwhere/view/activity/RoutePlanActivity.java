@@ -76,6 +76,7 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
 
     private LatLng stLoc;
     private LatLng enLoc;
+    //模拟数据
     double startNodeLatitude = 39.085994;
     double startNodeLongitude = 121.985379;
     double endNodeLatitude = 38.887686;
@@ -252,7 +253,7 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
 
     @Override
     public void onGetTransitRouteResult(TransitRouteResult result) {
-
+        //公交车
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             Toast.makeText(RoutePlanActivity.this, "抱歉，未找到结果", Toast.LENGTH_SHORT).show();
         }

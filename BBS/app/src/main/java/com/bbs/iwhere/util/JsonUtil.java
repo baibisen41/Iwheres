@@ -1,8 +1,15 @@
 package com.bbs.iwhere.util;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +20,22 @@ public class JsonUtil {
 
     private Gson gson = new Gson();
 
-    public <T> List<T> getJson(String json, Class<T> tClass) {
-        List<T> jsonList = gson.fromJson(json, new TypeToken<List<T>>() {
-        }.getType());
+/*    public <T> List<T> getJson(String json, Class<T> clazz) {
+        Type type = new TypeToken<List<T>>() {
+        }.getType();
+        List<T> jsonList = gson.fromJson(json, type);
         return jsonList;
+    }*/
+
+    public static <T> List<T> getJson(String json, Class<T> clazz) throws Exception {
+        List<T> lst = new ArrayList<T>();
+        JsonArray array = new JsonParser().parse(json).getAsJsonArray();
+        for (final JsonElement elem : array) {
+            lst.add(new Gson().fromJson(elem, clazz));
+        }
+        return lst;
     }
+
 
     public <T> String postJson(T object) {
         return gson.toJson(object);

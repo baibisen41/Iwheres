@@ -60,12 +60,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_9.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_to_group_details_normal.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_to_group_details_normal.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_chat_face_normal.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chat_face_normal.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_to_group_details_normal.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_to_group_details_normal.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_23.png",
@@ -336,12 +336,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_mm_title_back.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_mm_title_back.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_dx_checkbox_on.png",
@@ -384,12 +384,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chatto_voice_playing_f3.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_search_clear_normal.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_search_clear_normal.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_chatting_setmode_voice_btn_pressed.png",

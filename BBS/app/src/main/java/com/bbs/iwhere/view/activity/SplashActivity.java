@@ -39,7 +39,7 @@ public class SplashActivity extends Activity {
             switch (msg.what) {
                 case FRIENDLIST_ERROR:
                     //显示一张提示失败的图片
-                    Toast.makeText(SplashActivity.this, "网络状况不好。。。", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(SplashActivity.this, "网络状况不好。。。", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     SplashActivity.this.finish();
                     break;
@@ -67,13 +67,18 @@ public class SplashActivity extends Activity {
                 @Override
                 public void run() {
 
+//                    try {
+//                        Thread.sleep(3000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+                    boolean isDownloadFinish = splashService.pullFriendList();
+//                    boolean isDownloadFinish = true;
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    //boolean isDownloadFinish = splashService.pullFriendList();
-                    boolean isDownloadFinish = true;
                     if (isDownloadFinish == true) {
                         Message message = Message.obtain();
                         message.what = 1;
@@ -85,6 +90,7 @@ public class SplashActivity extends Activity {
                         handler.sendMessage(message);
 
                     }
+
                 }
             }).start();
         } else {

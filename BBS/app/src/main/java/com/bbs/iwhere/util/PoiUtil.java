@@ -15,7 +15,7 @@ public class PoiUtil {
     private PoiSearch poiSearch;
 
     public void startPoi(double poiX, double poiY) {
-        poiSearch.searchNearby(new PoiNearbySearchOption().keyword("公交车").location(new LatLng(poiX, poiY)).radius(300));
+        poiSearch.searchNearby(new PoiNearbySearchOption().keyword("公交车").location(new LatLng(poiX, poiY)).radius(500));
     }
 
     public void stopPoi() {

@@ -328,12 +328,12 @@
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ee_7.png"
     },
     {
-        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f1.png",
-        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_chatfrom_voice_playing_f1.png"
-    },
-    {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_31.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ee_31.png"
+    },
+    {
+        "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f1.png",
+        "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\src\\main\\res\\drawable-hdpi\\ease_chatfrom_voice_playing_f1.png"
     },
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_4.png",

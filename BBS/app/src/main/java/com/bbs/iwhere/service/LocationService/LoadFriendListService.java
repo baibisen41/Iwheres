@@ -1,5 +1,6 @@
 package com.bbs.iwhere.service.LocationService;
 
+import com.bbs.iwhere.db.DbFriendListManager;
 import com.bbs.iwhere.model.FriendListModel;
 import com.bbs.iwhere.service.common.BaseService;
 import com.bbs.iwhere.util.JsonUtil;
@@ -29,7 +30,7 @@ public class LoadFriendListService extends BaseService {
         this.loadFriendListCallback = loadFriendListCallback;
     }
 
-    //直接发送请求 -> 返回 userId + status
+/*    //直接发送请求 -> 返回 userId + status
     public void loadFriendList() {
         reqGetJson(url, new MyStringCallback());
     }
@@ -46,14 +47,17 @@ public class LoadFriendListService extends BaseService {
         public void onResponse(String response, int id) {
             saveDbOption(response);
         }
-    }
+    }*/
 
     //将id+status存入数据库
-    public void saveDbOption(String strjson) {
-        List<FriendListModel> friendlist = new JsonUtil().getJson(strjson, FriendListModel.class);//id+name+status
-        loadFriendListCallback.showFriendList(friendlist);
+    public void getFriendlist() {
+        List<FriendListModel> friendlist = null;//id+name+status
+        friendlist = DbFriendListManager.getInstance().getFriendList();
+        try {
+//            friendlist = new JsonUtil().getJson(strjson, FriendListModel.class);
+            loadFriendListCallback.showFriendList(friendlist);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-
-
 }

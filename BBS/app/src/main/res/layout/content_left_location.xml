@@ -64,7 +64,6 @@
             android:layout_marginLeft="35dp"
             android:layout_toRightOf="@id/friendpic"
             android:gravity="center_vertical"
-            android:text="穿41号的司机球迷"
             android:textColor="#000000"
             android:textSize="16dp" />
 
@@ -136,11 +135,15 @@
 
     <TextView
         android:id="@+id/select_friend_button"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:background="@color/cutline" />
+        android:background="@color/colorAccent"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="选择好友"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     private View friendmanager;
     private View setting;
     private View usernamePic;
+    private View nearbyFriend;
     private Fragment itemFragment = null;
 
     @Override
@@ -40,6 +41,8 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
         location_open.setOnClickListener(this);
         location = view.findViewById(R.id.location);
         location.setOnClickListener(this);
+        nearbyFriend = view.findViewById(R.id.nearby);
+        nearbyFriend.setOnClickListener(this);
         friendmanager = view.findViewById(R.id.friend_manager);
         friendmanager.setOnClickListener(this);
         setting = view.findViewById(R.id.setting);
@@ -62,6 +65,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 itemFragment = new LocationopenFragment();
                 location_open.setSelected(true);
                 location.setSelected(false);
+                nearbyFriend.setSelected(false);
                 friendmanager.setSelected(false);
                 setting.setSelected(false);
                 break;
@@ -69,6 +73,15 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 itemFragment = new LocationFragment();
                 location_open.setSelected(false);
                 location.setSelected(true);
+                nearbyFriend.setSelected(false);
+                friendmanager.setSelected(false);
+                setting.setSelected(false);
+                break;
+            case R.id.nearby:
+                itemFragment = new NearbyFragment();
+                location_open.setSelected(false);
+                location.setSelected(false);
+                nearbyFriend.setSelected(true);
                 friendmanager.setSelected(false);
                 setting.setSelected(false);
                 break;
@@ -77,6 +90,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 itemFragment = new FriendFragment();
                 location_open.setSelected(false);
                 location.setSelected(false);
+                nearbyFriend.setSelected(false);
                 friendmanager.setSelected(true);
                 setting.setSelected(false);
                 break;
@@ -84,6 +98,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
                 itemFragment = new SettingFragment();
                 location_open.setSelected(false);
                 location.setSelected(false);
+                nearbyFriend.setSelected(false);
                 friendmanager.setSelected(false);
                 setting.setSelected(true);
                 break;

@@ -2,6 +2,7 @@ package com.bbs.iwhere.view.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.service.ContactListService.ContactListService;
+import com.bbs.iwhere.view.fragment.FriendManager.ContactListFragment;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 
 /**
@@ -32,6 +35,7 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
     private RelativeLayout showSearchFriend;
     private String toAddUsername;
     private ProgressDialog progressDialog;
+    private EaseUser easeUser;
 
     ContactListService dbFriendModel = new ContactListService();
 
@@ -71,13 +75,19 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
         if (TextUtils.isEmpty(strName)) {
             new EaseAlertDialog(this, R.string.Please_enter_a_username).show();
             return;
-        } else {
+        } else if (TextUtils.equals(strName, "sxp") || TextUtils.equals(strName, "lyq")) {
 
             // TODO you can search the user from your app server here.
 
             //show the userame and add button if user exist
             showSearchFriend.setVisibility(View.VISIBLE);
             nameText.setText(toAddUsername);
+            easeUser = new EaseUser(toAddUsername);
+            easeUser.setNickname(toAddUsername);
+//            easeUser.setAvatar();
+        } else {
+            new EaseAlertDialog(this, "该用户未注册").show();
+            return;
         }
 
     }
@@ -111,12 +121,14 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
                 try {
                     //demo use a hardcode reason here, you need let user to input if you like
                     String s = getResources().getString(R.string.Add_a_friend);
-                    EMClient.getInstance().contactManager().addContact(toAddUsername, s);
+//                    EMClient.getInstance().contactManager().addContact(toAddUsername, s);
+                    dbFriendModel.saveUser(easeUser);
                     runOnUiThread(new Runnable() {
                         public void run() {
                             progressDialog.dismiss();
                             String s1 = getResources().getString(R.string.send_successful);
                             Toast.makeText(getApplicationContext(), s1, Toast.LENGTH_LONG).show();
+
                         }
                     });
                 } catch (final Exception e) {
