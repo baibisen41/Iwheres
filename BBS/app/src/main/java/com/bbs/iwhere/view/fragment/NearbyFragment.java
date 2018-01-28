@@ -21,6 +21,7 @@ import com.bbs.iwhere.db.DbFriendListManager;
 import com.bbs.iwhere.model.FriendListModel;
 import com.bbs.iwhere.view.activity.NearbyDetailActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
+import com.bbs.okhttp.utils.Exceptions;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -53,7 +54,7 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
                         progressBar.setVisibility(View.GONE);
                         imageView1.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendListModelList.get(0).getPicsdurl())));
                         imageView2.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendListModelList.get(1).getPicsdurl())));
-                    } catch (FileNotFoundException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     relativeLayout1.setVisibility(View.VISIBLE);

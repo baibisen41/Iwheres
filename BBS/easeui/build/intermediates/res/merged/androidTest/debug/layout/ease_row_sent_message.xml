@@ -62,6 +62,7 @@
             android:layout_toLeftOf="@id/iv_userhead"
             android:text="xxx" /> -->
 
+        <!--暂时屏蔽掉失败叹号-->
         <ImageView
             android:id="@+id/msg_status"
             android:layout_width="wrap_content"
@@ -69,7 +70,6 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/bubble"
             android:clickable="true"
-            android:src="@drawable/ease_msg_state_failed_resend"
             android:visibility="gone" />
 
         <TextView

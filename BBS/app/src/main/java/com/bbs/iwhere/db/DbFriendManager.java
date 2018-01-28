@@ -21,6 +21,9 @@ public class DbFriendManager {
 
     static private DbFriendManager dbFriendManager;
     DbFriendHelper dbFriendHelper = new DbFriendHelper(MainApplication.getContext());
+    private boolean isSyncingContactInfosWithServer = false;
+
+    private EaseUser currentUser;
 
     //设为静态方便处理
     public static synchronized DbFriendManager getInstance() {
@@ -70,6 +73,7 @@ public class DbFriendManager {
             values.put(dbFriendHelper.COLUMN_NAME_AVATAR, user.getAvatar());
             db.insert(dbFriendHelper.TABLE_NAME, null, values);
             id = 0;
+            Log.e("saveUser", "save successful");
         }
         return id;
     }
@@ -83,6 +87,7 @@ public class DbFriendManager {
                 String username = cursor.getString(cursor.getColumnIndex("username"));
                 String nick = cursor.getString(cursor.getColumnIndex("nick"));
                 String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
+                Log.e("nick", nick);
                 EaseUser user = new EaseUser(username);
                 user.setNick(nick);
                 user.setAvatar(avatar);
@@ -96,6 +101,20 @@ public class DbFriendManager {
             cursor.close();
         }
         return users;
+    }
+
+    public void setCurrentUserName(String username) {
+        PreferenceManager.getInstance().setCurrentUserName(username);
+    }
+
+    public String getCurrentUsernName() {
+        return PreferenceManager.getInstance().getCurrentUsername();
+    }
+
+    public synchronized void reset() {
+        isSyncingContactInfosWithServer = false;
+        currentUser = null;
+        PreferenceManager.getInstance().removeCurrentUserInfo();
     }
 
 }

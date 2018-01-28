@@ -65,7 +65,8 @@ public class DbFriendListManager {
             values.put(dbFriendHelper.FRIENDLIST_COLUMN_FRIEND_NAME, friendList.getUsername());
             values.put(dbFriendHelper.FRIENDLIST_COLUMN_FRIEND_DESCRIPTION, friendList.getUserdescription());
             values.put(dbFriendHelper.FRIENDLIST_COLUMN_FRIEND_STATUS, friendList.getUserstatus());
-            db.insert(dbFriendHelper.FRIENDLIST_TABLE_NAME, null, values);
+            long i = db.insert(dbFriendHelper.FRIENDLIST_TABLE_NAME, null, values);
+            Log.e("result", String.valueOf(i));
             id = 0;
         }
         return id;
@@ -95,5 +96,16 @@ public class DbFriendListManager {
             cursor.close();
         }
         return friendListModelList;
+    }
+
+    public static void main(String[] args) {
+        FriendListModel friendListModel = new FriendListModel();
+        friendListModel.setUserid("2013082401");
+        friendListModel.setPicurl("https://i2.hoopchina.com.cn/blogfile/201801/21/BbsImg151653803355236_90844929625935_567x460.png?x-oss-process=image/resize,w_800/format,webp");
+//        friendListModel.setPicsdurl("");
+        friendListModel.setUsername("bbs");
+        friendListModel.setUserdescription("泰伦卢");
+        friendListModel.setUserstatus("1");
+        DbFriendListManager.getInstance().saveMessage(friendListModel);
     }
 }

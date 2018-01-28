@@ -23,6 +23,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -99,6 +100,10 @@
         <activity android:name=".view.activity.ChatActivity"></activity>
 
         <activity android:name=".view.activity.NewFriendActivity"></activity>
+
+        <activity android:name=".view.activity.LoginActivity"></activity>
+
+        <activity android:name=".view.activity.RegisterActivity"></activity>
 
         <service
             android:name="com.baidu.location.f"

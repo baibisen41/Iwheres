@@ -1,5 +1,6 @@
 package com.bbs.iwhere.view.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -20,7 +22,11 @@ import android.widget.Toast;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendListManager;
+import com.bbs.iwhere.db.MainHelper;
 import com.bbs.iwhere.view.activity.AboutActivity;
+import com.bbs.iwhere.view.activity.LoginActivity;
+import com.bbs.iwhere.view.activity.MainActivity;
+import com.hyphenate.EMCallBack;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,6 +43,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private ProgressBar progressBar;
     private RelativeLayout cleanlayout;
     private RelativeLayout aboutlayout;
+    private Button outLogin;
 
     private Handler handler = new Handler() {
         @Override
@@ -69,6 +76,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         cleanlayout.setOnClickListener(this);
         aboutlayout = (RelativeLayout) view.findViewById(R.id.aboutitem);
         aboutlayout.setOnClickListener(this);
+        outLogin = (Button) view.findViewById(R.id.outLogin);
+        outLogin.setOnClickListener(this);
         return view;
     }
 
@@ -101,8 +110,53 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
             case R.id.aboutitem:
                 startActivity(new Intent(getActivity(), AboutActivity.class));
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+                break;
+            case R.id.outLogin:
+                logout();
+                break;
             default:
                 break;
         }
+    }
+
+    void logout() {
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        String st = getResources().getString(R.string.Are_logged_out);
+        pd.setMessage(st);
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+        MainHelper.getInstance().logout(true, new EMCallBack() {
+
+            @Override
+            public void onSuccess() {
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        pd.dismiss();
+                        // show login screen
+                        ((MainActivity) getActivity()).finish();
+                        startActivity(new Intent(getActivity(), LoginActivity.class));
+
+                    }
+                });
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                getActivity().runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        pd.dismiss();
+                        Toast.makeText(getActivity(), "unbind devicetokens failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 }

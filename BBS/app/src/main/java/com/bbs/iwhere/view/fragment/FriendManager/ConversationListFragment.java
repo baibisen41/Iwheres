@@ -1,9 +1,14 @@
 package com.bbs.iwhere.view.fragment.FriendManager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bbs.iwhere.R;
+import com.bbs.iwhere.constants.AppConstants;
 import com.bbs.iwhere.view.activity.ChatActivity;
 import com.bbs.iwhere.view.activity.MainActivity;
 import com.hyphenate.chat.EMClient;
@@ -33,6 +39,14 @@ import com.hyphenate.util.NetUtils;
 public class ConversationListFragment extends EaseConversationListFragment {
 
     private TextView errorText;
+    private BroadcastReceiver broadcastReceiver;
+    private LocalBroadcastManager broadcastManager;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        registerBroadcastReceiver();
+    }
 
     @Override
     protected void initView() {
@@ -95,7 +109,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
                 return null;
             }
         });*/
-        super.setUpView();
+        //super.setUpView();
         //end of red packet code
     }
 
@@ -143,6 +157,36 @@ public class ConversationListFragment extends EaseConversationListFragment {
         // update unread count
 //        ((MainActivity) getActivity()).updateUnreadLabel();
         return true;
+    }
+
+    //此处接收来自MainHelper发来的接受好友广播，刷新好友列表
+    private void registerBroadcastReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity().getApplicationContext());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(AppConstants.ACTION_CONVERSATION_CHANAGED);
+
+        broadcastReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Log.e("ConversationFragment", "receive broadcast:" + intent.getAction());
+                refresh();
+                Log.e("ConversationFragment", "ConversationFragment refresh");
+
+            }
+        };
+        broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    private void unregisterBroadcastReceiver() {
+        broadcastManager.unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterBroadcastReceiver();
     }
 
 }

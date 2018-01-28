@@ -39,6 +39,10 @@ public class SplashService extends BaseService {
         this.splashCallback = splashCallback;
     }
 
+    /***
+     * 从服务端拉取好友列表
+     * @return
+     */
     public Boolean pullFriendList() {
         reqGetJson(url, new StringCallback() {
             @Override
@@ -55,9 +59,15 @@ public class SplashService extends BaseService {
         return isFinish;
     }
 
+    /**
+     * 解析好友列表写入数据库，并通过头像url下载图片
+     * @param response
+     * @return
+     */
     public Boolean finishFriendListJson(String response) {
         List<FriendListModel> friendListModelList = new ArrayList<FriendListModel>();
         try {
+            //解析数据
             friendListModelList = jsonUtil.getJson(response, FriendListModel.class);
         } catch (Exception e) {
             e.printStackTrace();

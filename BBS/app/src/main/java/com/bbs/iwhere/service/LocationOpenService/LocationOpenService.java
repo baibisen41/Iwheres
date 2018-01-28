@@ -45,6 +45,8 @@ public class LocationOpenService extends BaseService implements BDLocationListen
         userClose.setUserId(userId);
         userClose.setCurrentFlag(statusFlag);
         reqPostJson(url, mJsonUtil.postJson(userClose), new PostMyLocationData());
+        mLocationUtil.stopLocation(this);
+        Log.e("LocationOpenService","close location");
     }
 
     //使用接口回调传递数据

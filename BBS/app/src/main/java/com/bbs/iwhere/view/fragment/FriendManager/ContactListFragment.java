@@ -1,8 +1,17 @@
 package com.bbs.iwhere.view.fragment.FriendManager;
 
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +21,14 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bbs.iwhere.R;
+import com.bbs.iwhere.constants.AppConstants;
 import com.bbs.iwhere.db.DbFriendManager;
+import com.bbs.iwhere.db.MainHelper;
 import com.bbs.iwhere.service.ContactListService.ContactListService;
 import com.bbs.iwhere.view.activity.ChatActivity;
+import com.bbs.iwhere.view.activity.MainActivity;
 import com.bbs.iwhere.view.activity.NewFriendActivity;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
 
@@ -34,6 +47,14 @@ public class ContactListFragment extends EaseContactListFragment implements View
     private RelativeLayout newFriendLayout;
     private Button testButton;
     private AlertDialog.Builder alertdlg;
+    private BroadcastReceiver broadcastReceiver;
+    private LocalBroadcastManager broadcastManager;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        registerBroadcastReceiver();
+    }
 
     @Override
     public void refresh() {
@@ -42,6 +63,8 @@ public class ContactListFragment extends EaseContactListFragment implements View
             //noinspection unchecked
             m = (Map<String, EaseUser>) ((Hashtable<String, EaseUser>) m).clone();
         }
+        Log.e("contactListFragment", "refresh");
+        Log.e("contentMap", String.valueOf(m.size()));
         setContactsMap(m);
         super.refresh();
     }
@@ -73,10 +96,11 @@ public class ContactListFragment extends EaseContactListFragment implements View
                 alertdlg.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getContactList.deleteUser(toBeProcessUsername);
-                        contactList.remove(toBeProcessUser);
-                        contactListLayout.refresh();
-                        Toast.makeText(getActivity(), "已删除", Toast.LENGTH_LONG).show();
+                        deleteContact(toBeProcessUser);
+//                        getContactList.deleteUser(toBeProcessUsername);
+//                        contactList.remove(toBeProcessUser);
+//                        contactListLayout.refresh();
+//                        Toast.makeText(getActivity(), "已删除", Toast.LENGTH_LONG).show();
                     }
                 });
                 alertdlg.show();
@@ -122,5 +146,75 @@ public class ContactListFragment extends EaseContactListFragment implements View
                 new DbFriendManager().testDB();
                 break;
         }
+    }
+
+    public void deleteContact(final EaseUser tobeDeleteUser) {
+        String st1 = getResources().getString(R.string.deleting);
+        final String st2 = getResources().getString(R.string.Delete_failed);
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage(st1);
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    EMClient.getInstance().contactManager().deleteContact(tobeDeleteUser.getUsername());
+                    // remove user from memory and database
+                    getContactList.deleteUser(toBeProcessUsername);
+                    Log.e("ContactListFragment", "删除成功");
+//                    UserDao dao = new UserDao(getActivity());
+//                    dao.deleteContact(tobeDeleteUser.getUsername());
+//                    MainHelper.getInstance().getContactList().remove(tobeDeleteUser.getUsername());
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            contactList.remove(tobeDeleteUser);
+                            contactListLayout.refresh();
+                            Toast.makeText(getActivity(), "已删除", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (final Exception e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            Toast.makeText(getActivity(), st2 + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+            }
+        }).start();
+
+    }
+
+    //此处接收来自MainHelper发来的接受好友广播，刷新好友列表
+    private void registerBroadcastReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity().getApplicationContext());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(AppConstants.ACTION_CONTACT_CHANAGED);
+
+        broadcastReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Log.e("ContactListFragment", "receive broadcast:" + intent.getAction());
+                refresh();
+                Log.e("ContactListFragment", "contactFragment refresh");
+
+            }
+        };
+        broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    private void unregisterBroadcastReceiver() {
+        broadcastManager.unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterBroadcastReceiver();
     }
 }

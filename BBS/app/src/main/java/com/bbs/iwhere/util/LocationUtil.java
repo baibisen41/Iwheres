@@ -25,14 +25,6 @@ public class LocationUtil {
         locationClient.unRegisterLocationListener(bdLocationListener);
     }
 
-    public void getLocationData(Context context, BDLocationListener bdLocationListener) {
-        locationClient = new LocationClient(context);
-        locationClient.registerLocationListener(bdLocationListener);
-        locationOption();
-        locationClient.setLocOption(locationClientOption);
-        locationClient.start();
-    }
-
     public void locationOption() {
         locationClientOption = new LocationClientOption();
         locationClientOption.setOpenGps(true);
@@ -40,5 +32,13 @@ public class LocationUtil {
         locationClientOption.setScanSpan(5000);
         locationClientOption.setIsNeedAddress(true);
         locationClientOption.setAddrType("all");
+    }
+
+    public void getLocationData(Context context, BDLocationListener bdLocationListener) {
+        locationClient = new LocationClient(context);
+        locationClient.registerLocationListener(bdLocationListener);
+        locationOption();
+        locationClient.setLocOption(locationClientOption);
+        locationClient.start();
     }
 }

@@ -6,7 +6,7 @@ package com.bbs.iwhere.constants;
 
 public interface AppConstants {
 
-    public String BaseUrl = "http://192.168.191.1:8080/IwhereServer";
+    public String BaseUrl = "http://192.168.1.103:8080/IwhereServer";
 
     public String SplashPullUrl = BaseUrl + "/LoadFriendListServlet";
 
@@ -14,5 +14,8 @@ public interface AppConstants {
 
     public String LocationUrl = BaseUrl + "/FriendLocationServlet";
 
+    public static final String ACTION_CONTACT_CHANAGED = "action_contact_changed";
+
+    public static final String ACTION_CONVERSATION_CHANAGED = "action_conversation_changed";
 
 }

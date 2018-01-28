@@ -129,7 +129,7 @@ public final class EaseUI {
 
         EMOptions options = new EMOptions();
         // change to need confirm contact invitation
-        options.setAcceptInvitationAlways(false);
+        //options.setAcceptInvitationAlways(false);
         // set if need read ack
         options.setRequireAck(true);
         // set if need delivery ack

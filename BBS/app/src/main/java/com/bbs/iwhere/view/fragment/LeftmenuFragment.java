@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bbs.iwhere.R;
+import com.bbs.iwhere.db.MainHelper;
 import com.bbs.iwhere.view.activity.MainActivity;
 import com.bbs.iwhere.view.activity.MeSettingActivity;
 import com.bbs.iwhere.view.fragment.FriendManager.FriendFragment;
@@ -25,6 +27,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     private View usernamePic;
     private View nearbyFriend;
     private Fragment itemFragment = null;
+    private TextView username;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_left_slidingmenu, container, false);
+        username = (TextView) view.findViewById(R.id.username);
+        username.setText(MainHelper.getInstance().getCurrentUsernName());
         usernamePic = view.findViewById(R.id.usernamePic);
         usernamePic.setOnClickListener(this);
         location_open = view.findViewById(R.id.location_open);

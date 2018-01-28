@@ -2,5 +2,9 @@
     {
         "merged": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
         "source": "D:\\android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\bbs-android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\bbs-android-workspace\\Iwheres\\BBS\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
     }
 ]

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bbs.iwhere.R;
+import com.bbs.iwhere.db.MainHelper;
 import com.bbs.iwhere.service.SplashService.SplashCallback;
 import com.bbs.iwhere.service.SplashService.SplashService;
 import com.bbs.iwhere.util.NetworkUtil;
@@ -40,11 +41,13 @@ public class SplashActivity extends Activity {
                 case FRIENDLIST_ERROR:
                     //显示一张提示失败的图片
 //                    Toast.makeText(SplashActivity.this, "网络状况不好。。。", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    gotoMain();
                     SplashActivity.this.finish();
                     break;
                 case FRIENDLIST_FINISH:
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    gotoMain();
                     SplashActivity.this.finish();
                     break;
                 default:
@@ -54,12 +57,21 @@ public class SplashActivity extends Activity {
         }
     };
 
+    private void gotoMain() {
+        if (MainHelper.getInstance().isLoggedIn()) {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        } else {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ImageView imageView = (ImageView) findViewById(R.id.loading_layout);
         TextView netError = (TextView) findViewById(R.id.net_error);
+        MainHelper.getInstance().initHandler(this.getMainLooper());
 
         if (networkUtil.isNetworkConnected(getApplicationContext()) == true) {
 

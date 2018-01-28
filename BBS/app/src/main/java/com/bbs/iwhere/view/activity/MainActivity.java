@@ -1,10 +1,17 @@
 package com.bbs.iwhere.view.activity;
 
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,12 +19,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bbs.iwhere.R;
+import com.bbs.iwhere.constants.AppConstants;
+import com.bbs.iwhere.db.MainHelper;
+import com.bbs.iwhere.view.fragment.FriendManager.ContactListFragment;
+import com.bbs.iwhere.view.fragment.FriendManager.ConversationListFragment;
+import com.bbs.iwhere.view.fragment.FriendManager.FriendFragment;
 import com.bbs.iwhere.view.fragment.LeftmenuFragment;
 import com.bbs.iwhere.view.fragment.LocationopenFragment;
 import com.bbs.slidingmenu.SlidingMenu;
 import com.bbs.slidingmenu.app.SlidingFragmentActivity;
+import com.hyphenate.EMContactListener;
+import com.hyphenate.EMMessageListener;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMCmdMessageBody;
+import com.hyphenate.chat.EMContactManager;
+import com.hyphenate.chat.EMMessage;
+
+import java.util.List;
 
 public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
 
@@ -29,6 +50,8 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     private Fragment leftFragment;
     private Fragment currentFragment = null;
     protected SlidingMenu rightLeftSlidingMenu;
+    private boolean isFirst = true;
+    private LocalBroadcastManager broadcastManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +59,8 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         initSlidingMenu();
         setContentView(R.layout.activity_main);
         initView();
-
+//        EMClient.getInstance().contactManager().setContactListener(new MyContactListener());
+        broadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
     }
 
     private void initView() {
@@ -44,6 +68,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         titleLeftBt.setOnClickListener(this);
         titleRightBt = (ImageView) findViewById(R.id.rightbutton);
         titleRightBt.setOnClickListener(this);
+        if (isFirst) {
+            switchFragment(new LocationopenFragment());
+//            currentFragment = new LocationopenFragment();
+            isFirst = false;
+            Log.e("isFirst:", String.valueOf(isFirst));
+        }
     }
 
     private void initPop() {
@@ -68,8 +98,10 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         setBehindContentView(R.layout.main_left_layout);
         FragmentTransaction leftFragmentTransaction = getSupportFragmentManager().beginTransaction();
         leftFragment = new LeftmenuFragment();
-        leftFragmentTransaction.replace(R.id.main_left_fragment, leftFragment);
-        leftFragmentTransaction.commit();
+        leftFragmentTransaction.replace(R.id.main_left_fragment, leftFragment).commit();
+//        leftFragmentTransaction.replace(R.id.default_frame, new LocationopenFragment());
+//        leftFragmentTransaction.commit();
+//        currentFragment = new LocationopenFragment();
 
         rightLeftSlidingMenu = getSlidingMenu();
         rightLeftSlidingMenu.setMode(SlidingMenu.LEFT);// 设置是左滑还是右滑，还是左右都可以滑
@@ -83,6 +115,11 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EMClient.getInstance().chatManager().addMessageListener(messageListener);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -125,8 +162,10 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             if (!fragment.isAdded()) {
                 if (currentFragment != null) {
                     fragmentTransaction.hide(currentFragment).add(R.id.default_frame, fragment).commit();
+                    Log.e("bbs", "currentFragment not null");
                 } else {
                     fragmentTransaction.add(R.id.default_frame, fragment).commit();
+                    Log.e("bbs", "currentFragment null");
                 }
             } else {
                 fragmentTransaction.hide(currentFragment).show(fragment).commit();
@@ -134,5 +173,37 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             currentFragment = fragment;
         }
         showContent();
+    }
+
+    EMMessageListener messageListener = new EMMessageListener() {
+
+        @Override
+        public void onMessageReceived(List<EMMessage> messages) {
+            // notify new message
+            for (EMMessage message : messages) {
+                MainHelper.getInstance().getNotifier().onNewMsg(message);
+            }
+            broadcastManager.sendBroadcast(new Intent(AppConstants.ACTION_CONVERSATION_CHANAGED));
+        }
+
+        @Override
+        public void onCmdMessageReceived(List<EMMessage> messages) {
+        }
+
+        @Override
+        public void onMessageRead(List<EMMessage> messages) {
+        }
+
+        @Override
+        public void onMessageDelivered(List<EMMessage> message) {
+        }
+
+        @Override
+        public void onMessageChanged(EMMessage message, Object change) {}
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
