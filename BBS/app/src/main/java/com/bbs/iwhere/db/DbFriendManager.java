@@ -117,4 +117,12 @@ public class DbFriendManager {
         PreferenceManager.getInstance().removeCurrentUserInfo();
     }
 
+    public void setContactSynced(boolean synced){
+        PreferenceManager.getInstance().setContactSynced(synced);
+    }
+
+    public boolean isContactSynced(){
+        return PreferenceManager.getInstance().isContactSynced();
+    }
+
 }

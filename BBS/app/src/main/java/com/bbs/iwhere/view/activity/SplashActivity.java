@@ -59,6 +59,7 @@ public class SplashActivity extends Activity {
 
     private void gotoMain() {
         if (MainHelper.getInstance().isLoggedIn()) {
+            MainHelper.getInstance().setGlobalListeners();
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
         } else {
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));

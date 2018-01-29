@@ -162,7 +162,7 @@ public class LoginActivity extends BaseActivity {
 				// ** manually load all local groups and conversation
 			    EMClient.getInstance().groupManager().loadAllGroups();
 			    EMClient.getInstance().chatManager().loadAllConversations();
-
+				MainHelper.getInstance().setGlobalListeners();
 			    // update current user's display name for APNs
 				boolean updatenick = EMClient.getInstance().pushManager().updatePushNickname(
 						MainApplication.currentUserNick.trim());

@@ -254,11 +254,15 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         nearby_bus3.setText("");
         nearby_bus4.setText("");
         nearby_bus5.setText("");
+        nearby_bus6.setText("");
+        nearby_bus7.setText("");
         nearby_busdetail1.setText("");
         nearby_busdetail2.setText("");
         nearby_busdetail3.setText("");
         nearby_busdetail4.setText("");
         nearby_busdetail5.setText("");
+        nearby_busdetail6.setText("");
+        nearby_busdetail7.setText("");
     }
 
 

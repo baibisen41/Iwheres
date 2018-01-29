@@ -31,6 +31,7 @@ import com.bbs.iwhere.view.activity.NewFriendActivity;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
+import com.hyphenate.util.EMLog;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -133,6 +134,8 @@ public class ContactListFragment extends EaseContactListFragment implements View
                 }
             }
         });
+//        contactSyncListener = new ContactSyncListener();
+//        MainHelper.getInstance().addSyncContactListener(contactSyncListener);
     }
 
     @Override

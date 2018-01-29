@@ -92,4 +92,13 @@ public class PreferenceManager {
         editor.apply();
     }
 
+    public void setContactSynced(boolean synced){
+        editor.putBoolean(SHARED_KEY_SETTING_CONTACT_SYNCED, synced);
+        editor.apply();
+    }
+
+    public boolean isContactSynced(){
+        return mSharedPreferences.getBoolean(SHARED_KEY_SETTING_CONTACT_SYNCED, false);
+    }
+
 }
