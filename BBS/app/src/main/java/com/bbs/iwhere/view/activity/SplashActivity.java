@@ -38,13 +38,13 @@ public class SplashActivity extends Activity {
         public void handleMessage(Message msg) {
 
             switch (msg.what) {
-                case FRIENDLIST_ERROR:
-                    //显示一张提示失败的图片
+//                case FRIENDLIST_ERROR:
+//                    //显示一张提示失败的图片
 //                    Toast.makeText(SplashActivity.this, "网络状况不好。。。", Toast.LENGTH_LONG).show();
 //                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    gotoMain();
-                    SplashActivity.this.finish();
-                    break;
+//                    gotoMain();
+//                    SplashActivity.this.finish();
+//                    break;
                 case FRIENDLIST_FINISH:
 //                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     gotoMain();
@@ -85,25 +85,28 @@ public class SplashActivity extends Activity {
 //                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }
-                    boolean isDownloadFinish = splashService.pullFriendList();
+//                    boolean isDownloadFinish = splashService.pullFriendList();
 //                    boolean isDownloadFinish = true;
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (isDownloadFinish == true) {
-                        Message message = Message.obtain();
-                        message.what = 1;
-                        handler.sendMessage(message);
-
-                    } else {
-                        Message message = Message.obtain();
-                        message.what = 0;
-                        handler.sendMessage(message);
-
-                    }
-
+//                    if (isDownloadFinish == true) {
+//                        Message message = Message.obtain();
+//                        message.what = 1;
+//                        handler.sendMessage(message);
+//
+//                    } else {
+//                        Message message = Message.obtain();
+//                        message.what = 0;
+//                        handler.sendMessage(message);
+//
+//                    }
+                    //拉取好友逻辑修改，不走自己的后台
+                    Message message = Message.obtain();
+                    message.what = 1;
+                    handler.sendMessage(message);
                 }
             }).start();
         } else {

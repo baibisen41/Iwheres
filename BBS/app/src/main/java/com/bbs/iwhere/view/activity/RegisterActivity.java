@@ -79,10 +79,10 @@ public class RegisterActivity extends BaseActivity {
                             public void run() {
                                 if (!RegisterActivity.this.isFinishing())
                                     pd.dismiss();
-                                int errorCode=e.getErrorCode();
-                                if(errorCode== EMError.NETWORK_ERROR){
+                                int errorCode = e.getErrorCode();
+                                if (errorCode == EMError.NETWORK_ERROR) {
                                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.network_anomalies), Toast.LENGTH_SHORT).show();
-                                }else if(errorCode == EMError.USER_ALREADY_EXIST){
+                                } else if (errorCode == EMError.USER_ALREADY_EXIST) {
                                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.User_already_exists), Toast.LENGTH_SHORT).show();
                                 }
 /*                                else if(errorCode == EMError.USER_AUTHENTICATION_FAILED){

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendListManager;
+import com.bbs.iwhere.db.DbFriendManager;
 import com.bbs.iwhere.model.FriendLcationModel;
 import com.bbs.iwhere.model.FriendListModel;
 import com.bbs.iwhere.service.LocationService.LocationCallback;
@@ -25,11 +26,13 @@ import com.bbs.iwhere.service.LocationService.LocationService;
 import com.bbs.iwhere.view.activity.LocationShowActivity;
 import com.bbs.iwhere.view.activity.RoutePlanActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
+import com.hyphenate.easeui.domain.EaseUser;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -49,14 +52,18 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
     //    private double[] friendLocation = {39.085994, 121.985379};//从服务器拉取的定位数据包
     private double[] friendLocation;
     private AlertDialog.Builder selectFriendDialog;
-    private List<FriendListModel> friendlist = new ArrayList<>();
+    //    private List<FriendListModel> friendlist = new ArrayList<>();
     private LocationService locationLocationService = new LocationService();
+    private Map<String, EaseUser> friendMap;
+    private List<EaseUser> easeUsers;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        new LoadFriendListService().getFriendlist();
-        friendlist = DbFriendListManager.getInstance().getFriendList();
+//        friendlist = DbFriendListManager.getInstance().getFriendList();
+        friendMap = DbFriendManager.getInstance().getContactList();
+        easeUsers = new ArrayList<EaseUser>(friendMap.values());
     }
 
     @Nullable
@@ -93,7 +100,7 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
     }
 
     //弹出好友列表dialog
-    public void friendListDialog(final List<FriendListModel> friendLists) {
+    public void friendListDialog(final List<EaseUser> friendLists) {
 
         selectFriendDialog = new AlertDialog.Builder(getActivity());
         selectFriendDialog.setTitle("请选择好友");
@@ -103,19 +110,16 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getActivity(), "已点击", Toast.LENGTH_LONG).show();
                 //     int userId = 0;//模拟
-                Log.e("testWhich", friendLists.get(which).getUserid());
-                locationLocationService.postFriendLocation(friendLists.get(which).getUserid());//发送选择好友定位请求
+                //Log.e("testWhich", friendLists.get(which).getUserid());
+                locationLocationService.postFriendLocation(friendLists.get(which).getUsername());//发送选择好友定位请求
                 showFriendLocation();
-                try {
-                    showMapButton.setEnabled(true);
-                    showWayButton.setEnabled(true);
-                    friendpic.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendLists.get(which).getPicsdurl())));
-                    friendname.setText(friendLists.get(which).getUsername());
-                    friendStatus.setVisibility(View.VISIBLE);
-                    friendLocationAddress.setVisibility(View.VISIBLE);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                showMapButton.setEnabled(true);
+                showWayButton.setEnabled(true);
+                //friendpic.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendLists.get(which).getPicsdurl())));
+                friendpic.setImageResource(R.mipmap.ic_launcher);
+                friendname.setText(friendLists.get(which).getNick());
+                friendStatus.setVisibility(View.VISIBLE);
+                friendLocationAddress.setVisibility(View.VISIBLE);
             }
         });
         selectFriendDialog.show();
@@ -124,10 +128,10 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
     //好友列表dialog适配器
     public class SelectFriendDialogAdapter extends BaseAdapter {
 
-        private List<FriendListModel> dataList;
+        private List<EaseUser> dataList;
         private LayoutInflater layoutInflater;
 
-        public SelectFriendDialogAdapter(Context mContext, List<FriendListModel> dataList) {
+        public SelectFriendDialogAdapter(Context mContext, List<EaseUser> dataList) {
             layoutInflater = LayoutInflater.from(mContext);
             this.dataList = dataList;
         }
@@ -159,14 +163,10 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            Log.e("loationPicture", dataList.get(position).getPicsdurl());
-            try {
-                viewHolder.friendPic.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(dataList.get(position).getPicsdurl())));
-                viewHolder.friendName.setText(dataList.get(position).getUsername());
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            //Log.e("loationPicture", dataList.get(position).getPicsdurl());
+            //viewHolder.friendPic.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(dataList.get(position).getPicsdurl())));
+            viewHolder.friendPic.setImageResource(R.mipmap.ic_launcher);
+            viewHolder.friendName.setText(dataList.get(position).getUsername());
 
             return convertView;
         }
@@ -185,9 +185,9 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void showFriendLocationData(List<FriendLcationModel> friendLcationModelList) {
                 double longitude = Double.valueOf(friendLcationModelList.get(0).getUserlongitude());
-                Log.e("testlo",String.valueOf(longitude));
+                Log.e("testlo", String.valueOf(longitude));
                 double latitude = Double.valueOf(friendLcationModelList.get(0).getUserlatitude());
-                Log.e("testla",String.valueOf(latitude));
+                Log.e("testla", String.valueOf(latitude));
                 friendLocation = new double[]{longitude, latitude};
             }
         });
@@ -222,7 +222,7 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
                 getActivity().overridePendingTransition(R.anim.in_to_left, 0);
                 break;
             case R.id.select_friend_button:
-                friendListDialog(friendlist);
+                friendListDialog(easeUsers);
                 break;
             default:
                 break;

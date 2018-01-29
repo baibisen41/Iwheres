@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\bbs-android-workspace\Iwheres\BBS\easeui\src\main\assets"/><source path="D:\bbs-android-workspace\Iwheres\BBS\easeui\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\bbs-android-workspace\Iwheres\BBS\easeui\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\bbs-android-workspace\Iwhere-master\Iwheres\BBS\easeui\src\main\assets"/><source path="D:\bbs-android-workspace\Iwhere-master\Iwheres\BBS\easeui\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\bbs-android-workspace\Iwhere-master\Iwheres\BBS\easeui\src\debug\assets"/></dataSet></merger>
