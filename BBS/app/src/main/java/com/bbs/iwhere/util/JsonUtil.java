@@ -1,6 +1,7 @@
 package com.bbs.iwhere.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -38,6 +39,7 @@ public class JsonUtil {
 
 
     public <T> String postJson(T object) {
+        Log.e("JsonUtil", gson.toJson(object));
         return gson.toJson(object);
     }
 }

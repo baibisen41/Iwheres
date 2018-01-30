@@ -151,13 +151,14 @@ public class RoutePlanActivity extends Activity implements OnGetRoutePlanResultL
         // 设置起终点信息，对于tranist search 来说，城市名无意义
 
         // 实际使用中请对起点终点城市进行正确的设定
-        if (v.getId() == R.id.mass) {
-            PlanNode stMassNode = PlanNode.withCityNameAndPlaceName("北京", "天安门");
-            PlanNode enMassNode = PlanNode.withCityNameAndPlaceName("上海", "东方明珠");
-
-            mSearch.masstransitSearch(new MassTransitRoutePlanOption().from(stMassNode).to(enMassNode));
-            nowSearchType = 0;
-        } else if (v.getId() == R.id.drive) {
+//        if (v.getId() == R.id.mass) {
+//            PlanNode stMassNode = PlanNode.withCityNameAndPlaceName("北京", "天安门");
+//            PlanNode enMassNode = PlanNode.withCityNameAndPlaceName("上海", "东方明珠");
+//
+//            mSearch.masstransitSearch(new MassTransitRoutePlanOption().from(stMassNode).to(enMassNode));
+//            nowSearchType = 0;
+//        } else
+        if (v.getId() == R.id.drive) {
             mSearch.drivingSearch((new DrivingRoutePlanOption())
                     .from(stNode).to(enNode));
             nowSearchType = 1;

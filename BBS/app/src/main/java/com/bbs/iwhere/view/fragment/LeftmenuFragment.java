@@ -41,7 +41,7 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
         username = (TextView) view.findViewById(R.id.username);
         username.setText(MainHelper.getInstance().getCurrentUsernName());
         usernamePic = view.findViewById(R.id.usernamePic);
-        usernamePic.setOnClickListener(this);
+//        usernamePic.setOnClickListener(this);
         location_open = view.findViewById(R.id.location_open);
         location_open.setOnClickListener(this);
         location = view.findViewById(R.id.location);
@@ -61,10 +61,10 @@ public class LeftmenuFragment extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
 
-            case R.id.usernamePic:
-                startActivity(new Intent(getActivity(), MeSettingActivity.class));
-                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
-                break;
+//            case R.id.usernamePic:
+//                startActivity(new Intent(getActivity(), MeSettingActivity.class));
+//                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+//                break;
 
             case R.id.location_open:
                 itemFragment = new LocationopenFragment();

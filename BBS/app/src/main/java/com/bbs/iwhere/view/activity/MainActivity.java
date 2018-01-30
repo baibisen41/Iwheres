@@ -37,6 +37,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMContactManager;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.util.EMLog;
 
 import java.util.List;
 
@@ -52,14 +53,35 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     protected SlidingMenu rightLeftSlidingMenu;
     private boolean isFirst = true;
     private LocalBroadcastManager broadcastManager;
+    private boolean isExceptionDialogShow = false;
+    private android.app.AlertDialog.Builder exceptionBuilder;
+    public boolean isConflict = false;
+    private boolean isCurrentAccountRemoved = false;
+
+    public boolean getCurrentAccountRemoved() {
+        return isCurrentAccountRemoved;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null && savedInstanceState.getBoolean(AppConstants.ACCOUNT_REMOVED, false)) {
+            MainHelper.getInstance().logout(false, null);
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+            return;
+        } else if (savedInstanceState != null && savedInstanceState.getBoolean("isConflict", false)) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+            return;
+        }
+
         initSlidingMenu();
         setContentView(R.layout.activity_main);
         initView();
 //        EMClient.getInstance().contactManager().setContactListener(new MyContactListener());
+        showExceptionDialogFromIntent(getIntent());
         broadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
     }
 
@@ -155,6 +177,13 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("isConflict", isConflict);
+        outState.putBoolean(AppConstants.ACCOUNT_REMOVED, isCurrentAccountRemoved);
+        super.onSaveInstanceState(outState);
+    }
+
     public void switchFragment(Fragment fragment) {
         //优化选项卡切换   先判断当前fragment是否为空，如果不为空，判断新fragment是否被添加过，如果没有添加，直接add进来
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -199,11 +228,72 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         }
 
         @Override
-        public void onMessageChanged(EMMessage message, Object change) {}
+        public void onMessageChanged(EMMessage message, Object change) {
+        }
     };
+
+    private int getExceptionMessageId(String exceptionType) {
+        if (exceptionType.equals(AppConstants.ACCOUNT_CONFLICT)) {
+            return R.string.connect_conflict;
+        } else if (exceptionType.equals(AppConstants.ACCOUNT_REMOVED)) {
+            return R.string.em_user_remove;
+        } else if (exceptionType.equals(AppConstants.ACCOUNT_FORBIDDEN)) {
+            return R.string.user_forbidden;
+        }
+        return R.string.Network_error;
+    }
+
+    private void showExceptionDialog(String exceptionType) {
+        isExceptionDialogShow = true;
+        MainHelper.getInstance().logout(false, null);
+        String st = getResources().getString(R.string.Logoff_notification);
+        if (!MainActivity.this.isFinishing()) {
+            // clear up global variables
+            try {
+                if (exceptionBuilder == null)
+                    exceptionBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                exceptionBuilder.setTitle(st);
+                exceptionBuilder.setMessage(getExceptionMessageId(exceptionType));
+                exceptionBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        exceptionBuilder = null;
+                        isExceptionDialogShow = false;
+                        finish();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+                exceptionBuilder.setCancelable(false);
+                exceptionBuilder.create().show();
+                isConflict = true;
+            } catch (Exception e) {
+                EMLog.e("MainActivity", "---------color conflictBuilder error" + e.getMessage());
+            }
+        }
+    }
+
+    private void showExceptionDialogFromIntent(Intent intent) {
+        EMLog.e("MainActivity", "showExceptionDialogFromIntent");
+        if (!isExceptionDialogShow && intent.getBooleanExtra(AppConstants.ACCOUNT_CONFLICT, false)) {
+            showExceptionDialog(AppConstants.ACCOUNT_CONFLICT);
+        } else if (!isExceptionDialogShow && intent.getBooleanExtra(AppConstants.ACCOUNT_REMOVED, false)) {
+            showExceptionDialog(AppConstants.ACCOUNT_REMOVED);
+        } else if (!isExceptionDialogShow && intent.getBooleanExtra(AppConstants.ACCOUNT_FORBIDDEN, false)) {
+            showExceptionDialog(AppConstants.ACCOUNT_FORBIDDEN);
+        }
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (exceptionBuilder != null) {
+            exceptionBuilder.create().dismiss();
+            exceptionBuilder = null;
+            isExceptionDialogShow = false;
+        }
     }
 }

@@ -46,7 +46,7 @@ public class LocationOpenService extends BaseService implements BDLocationListen
         userClose.setCurrentFlag(statusFlag);
         reqPostJson(url, mJsonUtil.postJson(userClose), new PostMyLocationData());
         mLocationUtil.stopLocation(this);
-        Log.e("LocationOpenService","close location");
+        Log.e("LocationOpenService", "close location");
     }
 
     //使用接口回调传递数据
@@ -72,7 +72,9 @@ public class LocationOpenService extends BaseService implements BDLocationListen
             user.setLongitude(bdLocation.getLongitude());
             user.setLatitude(bdLocation.getLatitude());
             user.setCurrentFlag(statusFlag);
+            ////将我的定位信息发送到后台
             reqPostJson(url, mJsonUtil.postJson(user), new PostMyLocationData());//转化成json，并发送
+            ////////////////////////////
 //                firstLocation = false;
 //            }
             saveLatitude = bdLocation.getLatitude();

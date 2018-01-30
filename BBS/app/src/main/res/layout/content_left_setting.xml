@@ -163,12 +163,12 @@
 
         <ImageView
             android:id="@+id/settingpic"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_above="@+id/outLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
-            android:src="@mipmap/temp" />
+            android:src="@mipmap/login_logo2" />
     </RelativeLayout>
 
 </LinearLayout>

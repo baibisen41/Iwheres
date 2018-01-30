@@ -3,25 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eff2f6"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_weight="3">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_launcher" />
+            android:src="@mipmap/login_logo2" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_weight="4">
 
         <RelativeLayout
             android:id="@+id/rl_username"
@@ -29,7 +29,7 @@
             android:layout_height="54dp"
             android:layout_marginLeft="28dp"
             android:layout_marginRight="28dp"
-            android:background="#fff" >
+            android:background="#fff">
 
             <ImageView
                 android:id="@+id/iv_username"
@@ -61,7 +61,7 @@
             android:layout_marginLeft="28dp"
             android:layout_marginRight="28dp"
             android:layout_marginTop="10dp"
-            android:background="#fff" >
+            android:background="#fff">
 
             <ImageView
                 android:id="@+id/iv_password"
@@ -79,11 +79,11 @@
                 android:layout_centerVertical="true"
                 android:background="@null"
                 android:hint="@string/password"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
-                android:textSize="18sp"
-                android:imeOptions="actionDone"/>
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -94,7 +94,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:layout_width="0dp"
@@ -143,7 +143,6 @@
                 android:layout_marginRight="28dip"
                 android:onClick="serviceCheck"
                 android:padding="2dip"
-                android:text="@string/sdk_service_check"
                 android:textSize="16sp" />
         </RelativeLayout>
 

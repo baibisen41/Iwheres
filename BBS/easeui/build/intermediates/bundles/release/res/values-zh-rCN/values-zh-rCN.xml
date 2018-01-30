@@ -180,6 +180,7 @@
     <string name="dl_waiting">请等待……</string>
     <string name="downwaiting">正在下载文件请稍后</string>
     <string name="dynamic_expression">[动态表情]</string>
+    <string name="em_user_remove">此用户已被移除</string>
     <string name="error_send_invalid_content">你发送了不合法的消息内容</string>
     <string name="error_send_not_in_the_group">你已经不在此群了</string>
     <string name="exit_group">退出</string>
@@ -291,6 +292,7 @@
     <string name="update_groups">更新群聊</string>
     <string name="update_groups_failed">更新群聊失败</string>
     <string name="user_card">名片</string>
+    <string name="user_forbidden">用户被服务器限制连接</string>
     <string name="user_name">用户名</string>
     <string name="video">[视频]</string>
     <string name="video_call">[视频通话]</string>

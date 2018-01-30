@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.baidu.mapapi.map.Text;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendListManager;
 import com.bbs.iwhere.model.FriendListModel;
@@ -36,12 +37,13 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
 
     private final static int PROGRESSGONE = 1;
 
-    List<FriendListModel> friendListModelList = new ArrayList<>();
+    //    List<FriendListModel> friendListModelList = new ArrayList<>();
     private ProgressBar progressBar;
-    private RelativeLayout relativeLayout1;
-    private RelativeLayout relativeLayout2;
-    private ImageView imageView1;
-    private ImageView imageView2;
+    private ImageView no_friend_pic;
+    private TextView find_friend_text;
+//    private RelativeLayout relativeLayout2;
+//    private ImageView imageView1;
+//    private ImageView imageView2;
 
     private View view;
 
@@ -52,13 +54,14 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
                 case PROGRESSGONE:
                     try {
                         progressBar.setVisibility(View.GONE);
-                        imageView1.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendListModelList.get(0).getPicsdurl())));
-                        imageView2.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendListModelList.get(1).getPicsdurl())));
+                        no_friend_pic.setVisibility(View.VISIBLE);
+                        find_friend_text.setText(R.string.nearby_no_friend);
+//                        imageView1.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendListModelList.get(0).getPicsdurl())));
+//                        imageView2.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendListModelList.get(1).getPicsdurl())));
+//                    relativeLayout2.setVisibility(View.VISIBLE);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    relativeLayout2.setVisibility(View.VISIBLE);
                     break;
                 default:
                     break;
@@ -83,14 +86,16 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
     public void initView() {
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
-        relativeLayout1 = (RelativeLayout) view.findViewById(R.id.nearby_user1);
-        relativeLayout1.setOnClickListener(this);
-        relativeLayout1.setVisibility(View.GONE);
-        relativeLayout2 = (RelativeLayout) view.findViewById(R.id.nearby_user2);
-        relativeLayout2.setOnClickListener(this);
-        relativeLayout2.setVisibility(View.GONE);
-        imageView1 = (ImageView) view.findViewById(R.id.nearby_pic1);
-        imageView2 = (ImageView) view.findViewById(R.id.nearby_pic2);
+        no_friend_pic = (ImageView) view.findViewById(R.id.no_friend_image);
+        no_friend_pic.setVisibility(View.GONE);
+        find_friend_text = (TextView) view.findViewById(R.id.find_friend_text);
+        find_friend_text.setVisibility(View.VISIBLE);
+//        relativeLayout1.setOnClickListener(this);
+//        relativeLayout2 = (RelativeLayout) view.findViewById(R.id.nearby_user2);
+//        relativeLayout2.setOnClickListener(this);
+//        relativeLayout2.setVisibility(View.GONE);
+//        imageView1 = (ImageView) view.findViewById(R.id.nearby_pic1);
+//        imageView2 = (ImageView) view.findViewById(R.id.nearby_pic2);
     }
 
     private void keepTime() {
@@ -98,7 +103,7 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
                 try {
-                    friendListModelList = DbFriendListManager.getInstance().getFriendList();
+                    //friendListModelList = DbFriendListManager.getInstance().getFriendList();
                     Thread.sleep(3000);
                     Message message = Message.obtain();
                     message.what = 1;
@@ -112,23 +117,23 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.nearby_user1:
-                Intent intent = new Intent(getActivity(), NearbyDetailActivity.class);
-                intent.putExtra("userpic", friendListModelList.get(0).getPicsdurl());
-                intent.putExtra("username", friendListModelList.get(0).getUsername());
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
-                break;
-            case R.id.nearby_user2:
-                Intent intent1 = new Intent(getActivity(), NearbyDetailActivity.class);
-                intent1.putExtra("userpic", friendListModelList.get(1).getPicsdurl());
-                intent1.putExtra("username", friendListModelList.get(1).getUsername());
-                startActivity(intent1);
-                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
-                break;
-            default:
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.nearby_user1:
+//                Intent intent = new Intent(getActivity(), NearbyDetailActivity.class);
+//                intent.putExtra("userpic", friendListModelList.get(0).getPicsdurl());
+//                intent.putExtra("username", friendListModelList.get(0).getUsername());
+//                startActivity(intent);
+//                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+//                break;
+//            case R.id.nearby_user2:
+//                Intent intent1 = new Intent(getActivity(), NearbyDetailActivity.class);
+//                intent1.putExtra("userpic", friendListModelList.get(1).getPicsdurl());
+//                intent1.putExtra("username", friendListModelList.get(1).getUsername());
+//                startActivity(intent1);
+//                getActivity().overridePendingTransition(R.anim.in_to_left, 0);
+//                break;
+//            default:
+//                break;
+//        }
     }
 }

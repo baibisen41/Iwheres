@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BBS</string>
+    <string name="app_name">Iwhere</string>
     <string name="item_username">穿41号的司机球迷</string>
     <string name="item_school">大连民族大学</string>
     <string name="item_location">好友定位</string>
@@ -30,6 +30,8 @@
     <string name="show_mylocation">显示我的位置</string>
     <string name="str_nearbybuild">离我最近的标志物</string>
     <string name="user_already_in_contactlist">好友已存在</string>
+    <string name="nearby_no_friend">啊哦，附近没有小伙伴，换个地方试试</string>
+    <string name="nearby_find_friend">正在搜索附近的小伙伴</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

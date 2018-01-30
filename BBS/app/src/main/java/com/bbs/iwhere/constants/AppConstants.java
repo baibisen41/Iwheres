@@ -14,8 +14,16 @@ public interface AppConstants {
 
     public String LocationUrl = BaseUrl + "/FriendLocationServlet";
 
+    public String registerUrl = BaseUrl + "/RegisterServlet";
+
+    public String searchUrl = BaseUrl + "/SearchServlet";
+
     public static final String ACTION_CONTACT_CHANAGED = "action_contact_changed";
 
     public static final String ACTION_CONVERSATION_CHANAGED = "action_conversation_changed";
+
+    public static final String ACCOUNT_REMOVED = "account_removed";
+    public static final String ACCOUNT_CONFLICT = "conflict";
+    public static final String ACCOUNT_FORBIDDEN = "user_forbidden";
 
 }

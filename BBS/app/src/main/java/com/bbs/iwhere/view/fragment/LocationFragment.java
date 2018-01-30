@@ -111,8 +111,10 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
                 Toast.makeText(getActivity(), "已点击", Toast.LENGTH_LONG).show();
                 //     int userId = 0;//模拟
                 //Log.e("testWhich", friendLists.get(which).getUserid());
+                //////////拉取好友定位信息
                 locationLocationService.postFriendLocation(friendLists.get(which).getUsername());//发送选择好友定位请求
-                showFriendLocation();
+                showFriendLocation();//显示结果
+                ///////////////////////////
                 showMapButton.setEnabled(true);
                 showWayButton.setEnabled(true);
                 //friendpic.setImageBitmap(BitmapFactory.decodeStream(new FileInputStream(friendLists.get(which).getPicsdurl())));

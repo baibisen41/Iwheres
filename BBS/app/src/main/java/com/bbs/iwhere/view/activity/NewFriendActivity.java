@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.service.ContactListService.ContactListService;
+import com.bbs.iwhere.service.SearchService.SearchFriendCallback;
+import com.bbs.iwhere.service.SearchService.SearchFriendService;
 import com.bbs.iwhere.view.fragment.FriendManager.ContactListFragment;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -36,6 +38,7 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
     private String toAddUsername;
     private ProgressDialog progressDialog;
     private EaseUser easeUser;
+    private SearchFriendService searchFriendService = new SearchFriendService();
 
     ContactListService dbFriendModel = new ContactListService();
 
@@ -75,24 +78,42 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
         if (TextUtils.isEmpty(strName)) {
             new EaseAlertDialog(this, R.string.Please_enter_a_username).show();
             return;
-        }
-        else if (TextUtils.equals(strName, "sxp") || TextUtils.equals(strName, "lyq")) {
-
-            //show the userame and add button if user exist
-            showSearchFriend.setVisibility(View.VISIBLE);
-            nameText.setText(toAddUsername);
-            easeUser = new EaseUser(toAddUsername);
-            easeUser.setNickname(toAddUsername);
-//            easeUser.setAvatar();
         } else {
 //            new EaseAlertDialog(this, "该用户未注册").show();
 //            return;
+
+             // 此处注意跟后台联调时再启用该方法
+//            searchFriendService.searchFriendHandler(toAddUsername);
+//            showSearchResults();
+            /////////////////////////////////////////////////////
+
+            //此处为测试方法，为了保证前期不会因为后台问题导致搜索不出用户，如果跟后台联调后注释掉这部分
             showSearchFriend.setVisibility(View.VISIBLE);
             nameText.setText(toAddUsername);
             easeUser = new EaseUser(toAddUsername);
             easeUser.setNickname(toAddUsername);
+            //////////////////////////////////////////////////////////////////////////////////////////////
         }
 
+    }
+
+    private void showSearchResults() {
+        searchFriendService.setSearchFriendCallback(new SearchFriendCallback() {
+            @Override
+            public void showSearchResult(String isExit) {
+                if (isExit.equals("0")) {
+                    //代表不存在,未注册
+                    new EaseAlertDialog(NewFriendActivity.this, "该用户未注册").show();
+                    return;
+                } else if (isExit.equals("1")) {
+                    //代表存在
+                    showSearchFriend.setVisibility(View.VISIBLE);
+                    nameText.setText(toAddUsername);
+                    easeUser = new EaseUser(toAddUsername);
+                    easeUser.setNickname(toAddUsername);
+                }
+            }
+        });
     }
 
     /**

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.bbs.iwhere.constants.AppConstants;
 import com.bbs.iwhere.service.ContactListService.ContactListService;
+import com.bbs.iwhere.view.activity.LoginActivity;
+import com.bbs.iwhere.view.activity.MainActivity;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMContactListener;
@@ -99,6 +101,13 @@ public class MainHelper {
             @Override
             public void onDisconnected(int error) {
                 EMLog.d("global listener", "onDisconnect" + error);
+                if (error == EMError.USER_REMOVED) {
+                    onUserException(AppConstants.ACCOUNT_REMOVED);
+                } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                    onUserException(AppConstants.ACCOUNT_CONFLICT);
+                } else if (error == EMError.SERVER_SERVICE_RESTRICTED) {
+                    onUserException(AppConstants.ACCOUNT_FORBIDDEN);
+                }
             }
 
             @Override
@@ -116,6 +125,15 @@ public class MainHelper {
         };
 
         EMClient.getInstance().addConnectionListener(connectionListener);
+    }
+
+    protected void onUserException(String exception) {
+        EMLog.e(TAG, "onUserException: " + exception);
+        Log.e(TAG, "disConnect:" + exception);
+        Intent intent = new Intent(contexts, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(exception, true);
+        contexts.startActivity(intent);
     }
 
     public boolean isLoggedIn() {

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.MainHelper;
+import com.bbs.iwhere.service.RegisterService;
 import com.bbs.iwhere.view.activity.common.BaseActivity;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
@@ -64,6 +65,9 @@ public class RegisterActivity extends BaseActivity {
                     try {
                         // call method in SDK
                         EMClient.getInstance().createAccount(username, pwd);
+                        //////此处同步到我的后台中
+                        new RegisterService().syncUserInformation(username, pwd);
+                        ///////////////////////
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 if (!RegisterActivity.this.isFinishing())
