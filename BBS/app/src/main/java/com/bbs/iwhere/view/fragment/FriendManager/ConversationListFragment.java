@@ -119,7 +119,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
         if (NetUtils.hasNetwork(getActivity())) {
 //            errorText.setText(R.string.can_not_connect_chat_server_connection);
         } else {
-            errorText.setText(R.string.the_current_network);
+//            errorText.setText(R.string.the_current_network);
         }
     }
 

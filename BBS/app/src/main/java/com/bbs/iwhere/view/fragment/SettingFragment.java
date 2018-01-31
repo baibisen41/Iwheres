@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout cleanlayout;
     private RelativeLayout aboutlayout;
     private Button outLogin;
+    private RelativeLayout logout_layout;
 
     private Handler handler = new Handler() {
         @Override
@@ -78,7 +80,25 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         aboutlayout.setOnClickListener(this);
         outLogin = (Button) view.findViewById(R.id.outLogin);
         outLogin.setOnClickListener(this);
+        logout_layout = (RelativeLayout) view.findViewById(R.id.logout_layout);
+        matchNavigationBar();
         return view;
+    }
+
+    //适配华为底部导航栏的问题
+    public void matchNavigationBar() {
+        boolean isNavigationBarExit = false;
+
+        if (getActivity() != null) {
+            MainActivity main = (MainActivity) getActivity();
+
+            isNavigationBarExit = main.checkDeviceHasNavigationBar(getActivity().getApplicationContext());
+            if (isNavigationBarExit) {
+                int height = main.getNavigationBarHeight(getActivity().getApplicationContext());
+                Log.e("SettingFragment", "navigationBar height:" + height);
+                logout_layout.setPadding(8, 4, 8, height);
+            }
+        }
     }
 
     private void cleanTime() {

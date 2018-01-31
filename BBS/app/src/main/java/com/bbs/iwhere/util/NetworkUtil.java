@@ -26,4 +26,20 @@ public class NetworkUtil {
         return isConnected;
     }
 
+    //判断网络是否可用
+    public static boolean isNetSupport(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm == null)
+            return false;
+        try {
+            NetworkInfo info = cm.getActiveNetworkInfo();
+            if (info != null && info.isConnected()) {
+                return true;
+            }
+        } catch (Exception e) {
+            Log.e("NetworkUtil", "isNetSupport: " + e.toString());
+        }
+        return false;
+    }
+
 }

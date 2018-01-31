@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -39,6 +41,7 @@ import com.hyphenate.chat.EMContactManager;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.util.EMLog;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
@@ -57,6 +60,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     private android.app.AlertDialog.Builder exceptionBuilder;
     public boolean isConflict = false;
     private boolean isCurrentAccountRemoved = false;
+    private DisplayMetrics mDisplayMetrics = new DisplayMetrics();
 
     public boolean getCurrentAccountRemoved() {
         return isCurrentAccountRemoved;
@@ -285,6 +289,54 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         } else if (!isExceptionDialogShow && intent.getBooleanExtra(AppConstants.ACCOUNT_FORBIDDEN, false)) {
             showExceptionDialog(AppConstants.ACCOUNT_FORBIDDEN);
         }
+    }
+
+    //获取导航栏的高度
+    public int getNavigationBarHeight(Context context) {
+        int result = (int) (mDisplayMetrics.density * 48 + 0.5);//虚拟导航栏默认高度
+        try {
+            Resources resources = context.getResources();
+            int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = resources.getDimensionPixelSize(resourceId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Log.e("MainActivity", "getNavigationBarHeight = " + result);
+        return result;
+    }
+
+
+    //获取是否存在NavigationBar
+    public boolean checkDeviceHasNavigationBar(Context context) {
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+            Log.e("MainActivity", "hasNavigationBar one = " + hasNavigationBar);
+        }
+
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            m.setAccessible(true);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            Log.e("MainActivity", "navBarOverride =  " + navBarOverride);
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+        Log.e("MainActivity", "hasNavigationBar two = " + hasNavigationBar);
+
+        return hasNavigationBar;
     }
 
     @Override

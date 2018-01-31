@@ -18,6 +18,7 @@ import com.bbs.iwhere.R;
 import com.bbs.iwhere.service.ContactListService.ContactListService;
 import com.bbs.iwhere.service.SearchService.SearchFriendCallback;
 import com.bbs.iwhere.service.SearchService.SearchFriendService;
+import com.bbs.iwhere.util.NetworkUtil;
 import com.bbs.iwhere.view.fragment.FriendManager.ContactListFragment;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -70,6 +71,12 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
      * @param
      */
     public void searchContact() {
+
+        if (!NetworkUtil.isNetSupport(getApplicationContext())) {
+            Toast.makeText(this, R.string.no_net_error, Toast.LENGTH_LONG).show();
+            return;
+        }
+
         String strName = editText.getText().toString();
         Log.e("bbs", strName);
 //        String saveText = searchBtn.getText().toString();
@@ -82,7 +89,7 @@ public class NewFriendActivity extends Activity implements View.OnClickListener 
 //            new EaseAlertDialog(this, "该用户未注册").show();
 //            return;
 
-             // 此处注意跟后台联调时再启用该方法
+            // 此处注意跟后台联调时再启用该方法
 //            searchFriendService.searchFriendHandler(toAddUsername);
 //            showSearchResults();
             /////////////////////////////////////////////////////

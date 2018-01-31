@@ -15,6 +15,7 @@ import com.bbs.iwhere.model.UserModel;
 import com.bbs.iwhere.service.common.BaseService;
 import com.bbs.iwhere.util.JsonUtil;
 import com.bbs.iwhere.util.LocationUtil;
+import com.bbs.iwhere.util.NetworkUtil;
 import com.bbs.iwhere.util.PoiUtil;
 import com.bbs.okhttp.callback.StringCallback;
 
@@ -60,7 +61,7 @@ public class LocationOpenService extends BaseService implements BDLocationListen
 
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
-        Log.e("testlocationstr", bdLocation.getAddrStr());
+//        Log.e("testlocationstr", bdLocation.getAddrStr());
         if (bdLocation.getLatitude() != saveLatitude && bdLocation.getLongitude() != saveLongitude) {
             locationOpenCallback.showUserLocation(bdLocation.getAddrStr());
             locationOpenCallback.showUserData(bdLocation.getLatitude(), bdLocation.getLongitude());

@@ -18,7 +18,9 @@ import com.baidu.mapapi.search.poi.PoiResult;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.service.LocationOpenService.LocationOpenCallback;
 import com.bbs.iwhere.service.LocationOpenService.LocationOpenService;
+import com.bbs.iwhere.util.NetworkUtil;
 import com.bbs.iwhere.view.activity.LocationShowActivity;
+import com.bbs.iwhere.view.activity.MainActivity;
 import com.bbs.iwhere.view.activity.RoutePlanActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 
@@ -112,6 +114,16 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden == true) {
+            Log.e("LocationOpen", "hidden=" + hidden);
+        } else {
+            Log.e("LocationOpen", "hidden=" + hidden);
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.show_switch:
@@ -200,7 +212,17 @@ public class LocationopenFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e("LocationOpen", "onResume");
+    }
+
     private void statusOnorClose() {
+        if (!NetworkUtil.isNetSupport(getActivity().getApplicationContext())) {
+            Toast.makeText(getActivity(), R.string.no_net_error, Toast.LENGTH_LONG).show();
+            return;
+        }
         if (bstatusOnorClose == false) {
             bstatusOnorClose = true;
             statusSwitch.setImageResource(R.mipmap.switch_pressed);

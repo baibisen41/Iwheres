@@ -31,7 +31,6 @@ public class SplashActivity extends Activity {
     private static final int FRIENDLIST_FINISH = 1;
 
     SplashService splashService = new SplashService();
-    NetworkUtil networkUtil = new NetworkUtil();
 
     Handler handler = new Handler() {
         @Override
@@ -74,7 +73,7 @@ public class SplashActivity extends Activity {
         TextView netError = (TextView) findViewById(R.id.net_error);
         MainHelper.getInstance().initHandler(this.getMainLooper());
 
-        if (networkUtil.isNetworkConnected(getApplicationContext()) == true) {
+        if (NetworkUtil.isNetSupport(getApplicationContext()) == true) {
 
             new Thread(new Runnable() {
                 @Override

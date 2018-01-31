@@ -23,6 +23,7 @@ import com.bbs.iwhere.model.FriendLcationModel;
 import com.bbs.iwhere.model.FriendListModel;
 import com.bbs.iwhere.service.LocationService.LocationCallback;
 import com.bbs.iwhere.service.LocationService.LocationService;
+import com.bbs.iwhere.util.NetworkUtil;
 import com.bbs.iwhere.view.activity.LocationShowActivity;
 import com.bbs.iwhere.view.activity.RoutePlanActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
@@ -101,6 +102,11 @@ public class LocationFragment extends BaseFragment implements View.OnClickListen
 
     //弹出好友列表dialog
     public void friendListDialog(final List<EaseUser> friendLists) {
+
+        if (!NetworkUtil.isNetSupport(getActivity().getApplicationContext())) {
+            Toast.makeText(getActivity(), R.string.no_net_error, Toast.LENGTH_LONG).show();
+            return;
+        }
 
         selectFriendDialog = new AlertDialog.Builder(getActivity());
         selectFriendDialog.setTitle("请选择好友");

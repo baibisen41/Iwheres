@@ -15,11 +15,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.mapapi.map.Text;
 import com.bbs.iwhere.R;
 import com.bbs.iwhere.db.DbFriendListManager;
 import com.bbs.iwhere.model.FriendListModel;
+import com.bbs.iwhere.util.NetworkUtil;
 import com.bbs.iwhere.view.activity.NearbyDetailActivity;
 import com.bbs.iwhere.view.fragment.common.BaseFragment;
 import com.bbs.okhttp.utils.Exceptions;
@@ -99,6 +101,10 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
     }
 
     private void keepTime() {
+        if (!NetworkUtil.isNetSupport(getActivity().getApplicationContext())) {
+            Toast.makeText(getActivity(), R.string.no_net_error, Toast.LENGTH_LONG).show();
+            return;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
